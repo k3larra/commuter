@@ -1,4 +1,4 @@
-## Fictive Persona Maria
+## Fictive persona Maria
 Name: Maria
 
 Age: 23
