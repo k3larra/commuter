@@ -6,6 +6,8 @@ Add docker container.
 
 More descritions.
 
+Fictional personas
+
 Links to app and to 
 
 https://skanependlaren.firebaseapp.com/
