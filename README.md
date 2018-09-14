@@ -1,13 +1,14 @@
 # ML-Backend supporting Skånependlaren commuter app.
-This information is a complament to the [general information](https://skanependlaren.firebaseapp.com/) around the Skånependlaren. The information here concerns the ML-backend and how the predictions are made. In this documentation we present the code for predictions, labeled data and test data. The general outline of the bacjkend is illustrated below. 
+This information is a complement to the [general information](https://skanependlaren.firebaseapp.com/) around the Skånependlaren. The information here concerns the ML-backend and how the predictions are made. In this documentation we present the code for predictions, labelled data and test data. The general outline of the backend is illustrated below.
+
+## System description
+
 ![Backend](https://github.com/k3larra/commuter/blob/master/images/backend_skanependlaren.png "Little image")
 
+*Backend that saves labeled data from tha app and delivers predictions to the app. When new labeled data is entered by the user (this could be done explicitly or when the user selects a new route) the labeleld data is saved and can be used for training. The corination for this is done via the realtime database and cloud functions. Retraining is currently done one hour after the last use of the app. Predictions are initiated when the user/app uploads features (time,location,accuracy) to the realtime database and the Node.JS performs the predictions and returns the result via the realtime database.*
 
-Add docker container.
 
-More descritions.
-
-Fictional personas:
+## Fictional personas:
 To evaluate the predictions we have created three fictive personas. We have also creted some scenarions for these personas to help us recreate and simulate situations. The personas and scenarious are presented below. For each user labelled data has been created that matches the users travel pattern for one year. For all scenarions test data has been created to evaluate prediction accuracy for each situation.
 For each user labeled data is agregated after one week of use, one month of use and one year of use.
 
