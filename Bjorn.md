@@ -23,7 +23,7 @@ It is Wednesday and 12 and Björn checks the add Skånependlaren going from the 
 It is Saturday morning and Björn calls Jörgen, they decide to start playing boule around 15 when the weather forecast seems suitable. He checks the app at 14 and decides to take the bus from "Malmö Ön" to "Sergels väg" at 14:21. After leaving his apartment at 14:10 he checks for delays a few times while walking to the bus stop.
 
 ### Scenario 3
-It is Wednesday evening at 19:25 after visiting Kim, Max and Sofia, Björn walks towards the bus stop, since the buses leaves quite often he has not bothered to check for exact time when the bus leaves. He brings up his app and sees that it leaves in 4 minutes and speeds up his walk to arrive at the bus stop at a convenient time.
+It is Wednesday evening at 19:25 after visiting Kim, Max and Sofia, Björn walks towards the bus stop. Since the buses leaves quite often he has not bothered to check for exact time when the bus leaves. He brings up his app and sees that it leaves in 4 minutes and speeds up his walk to arrive at the bus stop at a convenient time.
 
 
 
