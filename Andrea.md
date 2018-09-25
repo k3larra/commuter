@@ -13,7 +13,7 @@ Travel Pattern: Semi-recurrent
 
 ![Andrea](https://github.com/k3larra/commuter/raw/master/images/Andrea.jpg)
 
-Andrea lives with her parents in a small village outside Lund and attends her school in Lund most weekdays. She goes of at the bus stop "Bankgatan" when she is on her way to school. At irregular times on weekends she travels with friends or alone to Malmö or Lund to shop or just hang out in town.
+Andrea lives with her parents in a small village outside Lund called Veberöd. She attends her school in Lund most weekdays. She leaves from the station Veberöd Försköningen" and goes of at the bus stop "Bankgatan" when she is on her way to school. At irregular times on weekends she travels with friends or alone to Malmö or Lund to shop or just hang out in town.
 
 ### Scenario 1
 It is Monday morning 7:23 and Andrea is as usual late for the bus and runs towards the bus stop "Veberöd försköningen". She checks the app while running to see if there are any delays.
