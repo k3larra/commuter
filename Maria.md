@@ -20,10 +20,10 @@ Marias parent’s lives in a City called Kristianstad and she visits them quite 
 On her spare time, Maria dances Tango and goes out to music pubs mostly in Malmö, for both activities she travels in the evening from the station Lund C to the station Malmö Triangeln and back later the same day.
 
 Maria never remember departure times and uses the app Skånependlaren to check when the next transport leaves. This works well since the times she travels the transport leaves frequently.
+
 Marias collected data can be viewed [here](data/tnK534JMwwfhvUEycn69HPbhqkt2.csv)
+
 And a visualisation of some of the data [here](Maria_dataview.ipynb).
-dsds
-sd
 
 ### Scenario 1
 It is Monday morning 9:45 and Maria is a little bit late for her lecture 10:15 and checks her app while walking to the station. She expects to get information when the next train leaves and if she needs to run to catch the train.
