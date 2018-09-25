@@ -40,11 +40,30 @@ It is Monday morning 9:45 and Maria is a little bit late for her lecture 10:15 a
 ```
 
 ### Scenario 2
-It is Saturday morning and Maria wakes up with a headache and decides to go home to her parents in Kristianstad to get some fresh air with her dog. While in bed, she checks her app so she doesn’t need to hurry to catch a suitable train.
-
+It is Saturday morning and Maria wakes up with a headache and decides to go home to her parents in Kristianstad to get some fresh air with her dog. While in bed, she checks her app so she doesn’t need to hurry to catch a suitable train
+```
+#rows used to predict this journey
+#Activity,geoHash,minuteOfDay,weekday
+{3,1242479403,560,6}
+#Activity 3 still
+#GeoHash around Lund C (124247900-12424800)
+#Time 540-720
+#Weekday 6
+#expected result 8121690042 (From station Lund C(81216) to Kristianstad C(90042)
+```
 ### Scenario 3
 Maria has spent a late Friday night in Malmö and want information on when the next transport leaves.
 
+```
+#rows used to predict this journey
+#Activity,geoHash,minuteOfDay,weekday
+{7,1242212679,1347,5}
+#Activity 7 walking or 3 still
+#GeoHash around Malmö Triangeln (1242212000-1242213000)
+#Time 1100-1440
+#Weekday 5
+#expected result 8014081216 (From station Malmö Triangeln(80140) to Lund C(81216)
+```
 
 *Image from Pixabay*
 
