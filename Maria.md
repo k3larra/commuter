@@ -46,7 +46,7 @@ It is Saturday morning and Maria wakes up with a headache and decides to go home
 #Activity,geoHash,minuteOfDay,weekday
 {3,1242479403,560,6}
 #Activity 3 still
-#GeoHash around Lund C (124247900-12424800)
+#GeoHash around Lund C (124247000-124248000)
 #Time 540-720
 #Weekday 6
 #expected result 8121690042 (From station Lund C(81216) to Kristianstad C(90042)
