@@ -1,4 +1,4 @@
-## Fictive persona Andrea
+## Fictive persona Andrea (Predictions not finalized)
 Name: Andrea
 
 Age: 17
@@ -24,6 +24,10 @@ It is Saturday 12:23 and Andrea has decided to go to Nova Lund for shopping. She
 ### Scenario 3
 In school a Monday 14:50 Andrea checks the app to check next departure and if she needs to hurry to the bus.
 
+### Predictions for the scenarios (Not finalized)
+* [Predictions After one week use](Andrea_week.ipynb)
+* [Predictions After one month use](Andrea_month.ipynb)
+* [Predictions After one year use](Andrea_year.ipynb)
 
 
 *Image from Pixabay*
