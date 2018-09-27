@@ -26,9 +26,9 @@ It is Saturday morning and Björn calls Jörgen, they decide to start playing bo
 It is Wednesday evening at 19:25 after visiting Kim, Max and Sofia, Björn walks towards the bus stop. Since the buses leaves quite often he has not bothered to check for exact time when the bus leaves. He brings up his app and sees that it leaves in 4 minutes and speeds up his walk to arrive at the bus stop at a convenient time.
 
 ### Predictions for the scenarios (Not finalized)
-* [Predictions After one week use](Bjorn_week.ipynb)
-* [Predictions After one month use](Bjorn_month.ipynb)
-* [Predictions After one year use](Bjorn_year.ipynb)
+* [Predictions after one week use](Bjorn_week.ipynb)
+* [Predictions after one month use](Bjorn_month.ipynb)
+* [Predictions after one year use](Bjorn_year.ipynb)
 
 *Image from Pixabay*
 
