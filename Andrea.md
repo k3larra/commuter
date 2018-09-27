@@ -1,4 +1,4 @@
-## Fictive persona Andrea (Predictions not finalized)
+## Fictive persona Andrea
 Name: Andrea
 
 Age: 17
