@@ -69,6 +69,7 @@ Maria has spent a late Friday night in Malmö and want information on when the n
 * [Predictions After one week use](Maria_week.ipynb)
 * [Predictions After one month use](Maria_month.ipynb)
 * [Predictions After one year use](Maria_year.ipynb)
+
 *Image from Pixabay*
 
 [BACK](README.md)
