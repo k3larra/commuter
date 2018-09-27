@@ -25,9 +25,9 @@ It is Saturday 12:23 and Andrea has decided to go to Nova Lund for shopping. She
 In school a Monday 14:50 Andrea checks the app to check next departure and if she needs to hurry to the bus.
 
 ### Predictions for the scenarios (Not finalized)
-* [Predictions After one week use](Andrea_week.ipynb)
-* [Predictions After one month use](Andrea_month.ipynb)
-* [Predictions After one year use](Andrea_year.ipynb)
+* [Predictions after one week use](Andrea_week.ipynb)
+* [Predictions after one month use](Andrea_month.ipynb)
+* [Predictions after one year use](Andrea_year.ipynb)
 
 *Image from Pixabay*
 
