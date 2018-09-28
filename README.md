@@ -9,8 +9,7 @@ This information is a complement to the [general information](https://skanependl
 
 
 ## Fictional personas
-To evaluate the predictions we have created three fictive personas. We have also creted some scenarions for these personas to help us recreate and simulate situations. The personas and scenarious are presented below. For each user labelled data has been created that matches the users travel pattern for one year. For all scenarions test data has been created to evaluate prediction accuracy for each situation.
-For each user labeled data is agregated after one week of use, one month of use and one year of use.
+To evaluate the predictions we have created three fictive personas. We have also created some scenarios for these personas to help us recreate and simulate situations. The personas and scenarios are presented below. For each user labelled data has been created that matches the users travel pattern for one year. For all scenarios, test data has been created to evaluate prediction accuracy for each situation. For each user labelled data is aggregated after one week of use, one month of use and one year of use.
 
 ### [Maria](Maria.md)
 Maria labeled training/development data.
