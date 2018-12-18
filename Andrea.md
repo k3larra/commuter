@@ -1,15 +1,10 @@
 ## Fiktive persona Andrea
-Name: Andrea
-
-Age: 17
-
-Sex: Female
-
-Occupation: First year at secondary school with aesthetic focus.
-
-Lives: Veberöd
-
-Travel Pattern: Semi-recurrent
+_Name:_ Andrea<br/>
+_Age:_ 17<br/>
+_Sex:_ Female<br/>
+_Occupation:_ First year at secondary school with aesthetic focus.<br/>
+_Lives:_ Veberöd<br/>
+_Travel Pattern:_ Semi-recurrent
 
 ![Andrea](https://github.com/k3larra/commuter/raw/master/images/Andrea.jpg)
 
@@ -30,7 +25,7 @@ The data is extracted from the same distribution as the training and validation 
 ## Iterative learning camparison.
 ![Andrea](https://github.com/k3larra/commuter/raw/master/images/AndreaTraining.png)
 
-*This figure shows training accuracy during the two first weeks of use, starting from a Saturday. All trained models accuracy are evaluated using the same test set (se above). The blue line represents a Cold Start case when no data exists to train from, since it is Saturday only outilier data is aviable to train from and it is not untill the Monday on day 3 that the model reaches around 90% accuracy. This is a consequence of that the journeys on weekdays represents around 90% of Andreas journeys. The red line represents a more traditional ML setting were relevant training data is aviable before the model is deployed and used. The green and orange lines represents a situaion were a teaching set (se above) is added in advance. For the green line only 2 rows exists in the teaching set, and for the orange line 37 rows exists. It is interesting to note that the minimal teaching set generalise better in the beginning than the more verbose teaching set*
+**Figure 1:** *This figure shows training accuracy during the two first weeks of use, starting from a Saturday. All trained models accuracy are evaluated using the same test set (se above). The blue line represents a Cold Start case when no data exists to train from, since it is Saturday only outilier data is aviable to train from and it is not untill the Monday on day 3 that the model reaches around 90% accuracy. This is a consequence of that the journeys on weekdays represents around 90% of Andreas journeys. The red line represents a more traditional ML setting were relevant training data is aviable before the model is deployed and used. The green and orange lines represents a situaion were a teaching set (se above) is added in advance. For the green line only 2 rows exists in the teaching set, and for the orange line 37 rows exists. It is interesting to note that the minimal teaching set generalise better in the beginning than the more verbose teaching set*
 
 ### Scenario 1
 It is Monday morning 7:23 and Andrea is as usual late for the bus and runs towards the bus stop "Veberöd försköningen". She checks the app while running to see if there are any delays.
