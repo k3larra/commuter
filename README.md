@@ -21,8 +21,9 @@ The general outline of the backend is illustrated below. Our overaching goal has
 
 ### Initial research approach
 We have implented the backend described in System Architecture and our focus is now on the uses first encounter with the app. In this situation the app has no knowledge of the users commute patterns and can thus not make any predictions. The commute patterns can be learned over time and it will probably take a few weeks until enough training data has been collected to make accurate journey predictions. In this work we want to explore a Machine Teaching approach that involves an initial Machine Teaching session where known travel patterns are added. In this work the focus is not so much on the ML algorithm used instead our focus is exploring the user experience in an initial phase.
-[Link][Sources of errors that exists in the real world application]
+[Link](Sources of errors that exists in the real world application)
 
+[Work or not?](###system-architecture)
 
 
 ### Data from fictional personas (#data-from-fictional-personas)
