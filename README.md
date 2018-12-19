@@ -1,39 +1,68 @@
 # Commuting and Machine Teaching
-The focus in this project is initially on exploring if and how a Machine Teaching<sup>1</sup> approach can mitigate consequenses of cold start in a commuter app. The commuter app [Skånependlaren(https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) focuses on presenting departure times in the near future as efficient as possible. The target group is commuters and consequently there is no interface in the app for planning, bying tickets or other more high level functionality. The situation targeted is from a few hours before departure until departure. The [app](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) in the version that exists publicly prior to this project delivers departure times including delays, first change in transportaion mode and total travel time for the journey.
+The focus in this project is initially on exploring if and how a Machine Teaching<sup>1</sup> (MT) approach can mitigate consequences of cold start in a commuter app. The commuter app [Skånependlaren](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) focuses on presenting departure times in the near future as efficient as possible. The target group is commuters and consequently there is no interface in the app for planning, buying tickets or other more high level functionality. The situation targeted is from a few hours before departure until departure. The [app](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) in the version that exists publicly prior to this project delivers departure times including delays, first change in transportaion mode and total travel time for the journey.
 
 ### Journey patterns
-A commuters journey pattern is an interesting machine lerarning problem for our research since it uses a limited amount of data, the stations in Skåne region, and the travel pattern over time are relativelly unique for the individual user. Since the journey consistiong of origin destination and not the departure station is in focus a commter app it would be difficoult to predict a users next journey except as a guessing based on statistical travel data that predict most common journey in a given situation.
+A commuters journey pattern is an interesting machine learning problem for our research since it uses a limited amount of data, the stations in Skåne region, and the travel pattern over time are relativelly  unique for the individual user. Since the journey consisting of origin destination and not the departure station is in focus a commuter app it would be difficult to predict a users next journey except as a guessing based on statistical travel data that predict most common journey in a given situation.
 
 ### Individual approach
-Since our  primary research interest is around how Machine Learning(ML) can simplify for individuals and thus the focus is on the individual experience and not som much the comparison with other users. The context of commuting fits well into those research interests. Another factor that is important to us is that, even if we handle personal data, travel patterns are mostly sensitive if they can be connected to a person. In this work we [avoid saving data](https://skanependlaren.firebaseapp.com) that can be used to identify individuals. We do also give the users an option to delete all collected data and trained models.
+Since our  primary research interest is around how Machine Learning(ML) can simplify for individuals and thus the focus is on the individual experience and not so much the comparison with other users. The context of commuting fits well into those research interests. Another factor that is important to us is that, even if we handle personal data, travel patterns are mostly sensitive if they can be connected to a person. In this work we [avoid saving data](https://skanependlaren.firebaseapp.com) that can be used to identify individuals. We do also give the users an option to delete all collected data and trained models.
 
 ### Methodology
 In this project we use a Research through Design<sup>2</sup> methodology and this site with its history represents our documentation of the explorative process.
 
+### Project process.
+The sections referensed below represents the initial steps in our explorative process.
+* [System architecture](#System_architecture)
+* [Verification of backend_functionality](#Verification_of_backend_functionality)
+* [Initial MT approach](Initial_MT_research_approach)
+  * [Verification of ML functionality](Verification_of_ML_functionality)
+  * [Evaluation of MT interface](Evaluation_of_MT_interface)
+* [Use study MT approach handling cold start situation](User_study_MT_approach_handling_cold_start_situation)
+* [Use study MT to update the ML model]()
+
 ## ML-Backend connected to Skånependlaren commuter app.
-The general outline of the backend is illustrated below. Our overaching goal has been to save training data and train one ML model separate for each user. Our context gives us some metrics that we need to taget. One is of course accuracy and another is response time. Aspect of the accuracy is a more complex issue and will be discussed below, resonse time for a prediction given the application has to be counted in a few seconds. This targets the situation when you start the app and as soon as possible want to have departure time for next transort.
+The general outline of the backend is illustrated below. Our overaching goal has been to save training data and train one ML model separate for each user. Our context gives us some metrics that we need to target. One is of course accuracy and another is response time. Aspect of the accuracy is a more complex issue and will be discussed below, response time for a prediction given the application has to be counted in a few seconds. This targets the situation when you start the app and as soon as possible want to have departure time for next transport.
 
 ### System architecture
 
 ![Backend](https://github.com/k3larra/commuter/blob/master/images/backend_skanependlaren.png)
 
-*Backend that saves labelled data from the app and delivers predictions to the app. When new labelled data is entered by the user (this could be done explicitly or when the user selects a new route) the labelled data is saved and can be used for training. The coordination for this is done via the real-time database and cloud functions. Retraining is currently done one hour after the last use of the app. Predictions are initiated when the user/app uploads features (time,location,accuracy) to the real-time database and the Node.JS performs the predictions and returns the result via the real-time database.*
+*Backend that saves labelled data from the app and delivers predictions to the app. When new labelled data is entered by the user (this could be done explicitly or when the user selects a new route) the labelled data is saved and can be used for training. The coordination for this is done via the real-time database and cloud functions. Retraining is currently done one hour after the last use of the app. Predictions are initiated when the user/app uploads features (weekday, time, location, accuracy) to the real-time database and the Node.JS performs the predictions and returns the result via the real-time database.*
 
-### Initial research approach
-We have implented the backend described in System Architecture and our focus is now on the uses first encounter with the app. In this situation the app has no knowledge of the users commute patterns and can thus not make any predictions. The commute patterns can be learned over time and it will probably take a few weeks until enough training data has been collected to make accurate journey predictions. In this work we want to explore a Machine Teaching approach that involves an initial Machine Teaching session where known travel patterns are added. In this work the focus is not so much on the ML algorithm used instead our focus is exploring the user experience in an initial phase.
-[Link](Sources of errors that exists in the real world application)
+### Verification of backend functionality
+Initial we wanted to make a technical verification that uses the backend and delivers predictions in the app. We reached our main metric for the backend and can deliver predictions in most cases in a few seconds. These test were mostly to verify the functionality and since the explorative appraoch changes to the infrastructure is highly probable given the nature of the research we will iterate the backend infrastructure when the machine learning part works as expected.as a result
 
-[Work or not?](#system-architecture)
+<img src="https://skanependlaren.firebaseapp.com/assets/film.gif " alt="alt text" width="250">
+
+### Initial MT research approach
+Our focus in this part of the work is on the users first encounter with the app. In this situation the app has no knowledge of the users commute patterns and can thus not make any predictions. The commute patterns could be learned over time and it will probably take a few weeks until enough training data has been collected to make accurate journey predictions. In our approach we are interested of transferring the commuters knowledge of his/her commute patterns to the ML artifact. Initially we want to explore and evaluate a MT approach that start with an initial Machine Teaching session. In this session known travel patterns are added and used to train the model so predictions can be made from first use. We will not at this stage target the situation were incorrect predictions are made and relearning the model is needed.
+
+#### Verification of ML functionality
+In this work the focus is not so much on optimising the ML algorithm used of course we want to have accurate predictions but there are many other parameters that has to be taken into account as for example.
+* Ease of use
+* generabizability of the algorithm so it can handle a varying amount of data, concept drift and different of use patterns.
+* Online inference, scalability so each user can have her/his own model.
+In our experimentation we did initially work with [tensorflow](https://www.tensorflow.org) and tried out different ML algorithms by using [estimators](https://www.tensorflow.org/guide/estimators). Given our data and our competence in the area these solutions took a lot of time especially in handling with normalisation of parameters tuning and saving the models correctly so inference could be made online. In parallel we evaluated tha [Fastai](https://www.fast.ai/) framework that builds on [PyTorch](https://pytorch.org/) and found that the abstraction level that framework represents was more in line with our needs. The evaluations below uses Pytorch 1.0 and Fastai 1.0.
+
+When we started this work we had limited amount of real user data and the data we had contained many false searhces that would complicate evaluation of the ML algorithm.
+
+Our real world data that currently collect from usage contains irrellevant searches this is due to the constuction of the [app](https://skanependlaren.firebaseapp.com/) and the usage. Example of invalid data coming from the interaction design, is the two dropdowns and the related searches. Searches are done directly when the user changes one of them there therefor is no way to tell if you plan to change both origin and destination or if you are satisfied when you changed only one of them. That is a preferred behaviour since we want to deliver departure times in an efficient way. At the moment we do not have an algorithm that filters searches and tries to find the one that is relevant, this can probably be done but at this stage we have selected to prioritise a functioning ML-algorithm since this will influence all development in the future. The selection of ML algorithm will influence the amount of data cleaning we have to do. There are also situations where a user explores possible routes whithout the intention of conducting them even in the near future, this adds irrelevant data. Our focus at this stage is not on an iterative ML setting instead we focus on the
+
+Initially we have as described above varified our chosen ML algorithm so it gives predicitons with enough accuracy. For this work we have used travel data for [three personas](#personas) to varify    [Link](Sources of errors that exists in the real world application)
 
 
-### Data from fictional personas (#data-from-fictional-personas)
+#### Evaluation of MT interface
+
+### User study MT approach handeling cold start situation
+
+
+### Data from fictional personas
 For initial evaluation regarding the journey predictions we have created three fictive personas and some scenarios for these personas to help us recreate and simulate situations. The personas and scenarios are presented below.
 
 For each user labelled data has been created that matches the users travel patterns. This data especially differs from real world data in the sense that it only contains valid searches and no erroneous data.
 
-#### Sources of errors that exists in the real world application
-Typical errors that exists in real data are due to the constuction of the [app](https://skanependlaren.firebaseapp.com/) and usage. Example of invalid data coming from the construction is the two dropdowns at the top and tha fact that journey searches are done directely when the user changes one of them, there is no way to tell if you plan to change both origin and destination, and thus create two searches or if changing one of them is sufficient. At the moment we do not have an algoritm that filters serches and tries to find the one that is relevant. There are of course also situations where a user explores possible routes whitout the intention of conductiong them even in the near future.
 
+### Personas
 For all scenarios, test data has been created to evaluate prediction accuracy for each situation. For each user labelled data is aggregated after one week of use, one month of use and one year of use.
 
 ### [Maria](Maria.md)
