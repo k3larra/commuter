@@ -5,6 +5,7 @@ _Sex:_ Female<br/>
 _Occupation:_ First year at secondary school with aesthetic focus.<br/>
 _Lives:_ Veberöd<br/>
 _Travel Pattern:_ Commuter with more random travel patterns on weekends.
+_ID:_ ehaBtfOPDNZjzy1MEvjQmGo4Zv12<br/>
 
 ![Andrea](https://github.com/k3larra/commuter/raw/master/images/Andrea.jpg)
 
@@ -23,6 +24,7 @@ One [minimal teaching](https://github.com/k3larra/commuter/blob/master/data/ehaB
 The data is extracted from the same distribution as the training and validation set for the first year of [use](https://github.com/k3larra/commuter/blob/master/data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train_valid.csv). The [test set](https://github.com/k3larra/commuter/blob/master/data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_test.csv) consits of 379 rows. This set contains a majority of data reflecting Andreas recurrent travel patterns to and from school and uincludes outilier data created mostly over the weekends when she goes to different places in the region.
 
 ## Iterative learning camparison.
+Using the following code we have evaluated our machine lerning algorithm on Andreas data.
 ![Andrea](https://github.com/k3larra/commuter/raw/master/images/AndreaTraining.png)
 
 **Figure 1:** *This figure shows training accuracy during the two first weeks of use, starting from a Saturday. All trained models accuracy are evaluated using the same test set (se above). The blue line represents a Cold Start situation when no data exists to train from. Since the training start on a Saturday only outilier data is aviable to train from and it is not untill the Monday on day 3 that the model reaches around 90% accuracy. This is a consequence of the fact that the journeys on weekdays represents around 90% of Andreas total journeys. The red line represents a more traditional ML setting were relevant training data is aviable before the model is deployed and used, in this case the data described above from one year of usage is used for the training. The green and orange lines represents a situaion were a teaching set (se above) is added in advance. For the green line only 2 rows exists in the teaching set, and for the orange line 37 rows exists. It is interesting to note that the minimal teaching set generalise better in the beginning than the more verbose teaching set*
@@ -30,16 +32,19 @@ The data is extracted from the same distribution as the training and validation 
 ### Scenario 1
 It is Monday morning 7:23 and Andrea is as usual late for the bus and runs towards the bus stop "Veberöd försköningen". She checks the app while running to see if there are any delays.
 
-
 ### Scenario 2
 It is Saturday 12:23 and Andrea has decided to go to Nova Lund for shopping. She opens up the app and searches for the next departure.
-
 
 ### Scenario 3
 In school a Monday 14:50 Andrea checks the app to check next departure and if she needs to hurry to the bus.
 
+### Data
+[Randomised training data for one year of use.](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train_valid.csv)
+[Test set extracted from the same distibution as data for one year.](https://github.com/k3larra/commuter/blob/master/data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_test.csv)
+[Teaching data minimal](https://github.com/k3larra/commuter/blob/master/data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_teaching_set_minimal.csv)
+[Teaching data verbose](https://github.com/k3larra/commuter/blob/master/data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_teaching_set.csv)
 
-<!-- ### Predictions for the scenarios (Not finalized) -->
+### Data visualisation
 <!-- * [Predictions after one week use](Andrea_week.ipynb)
 * [Predictions after one month use](Andrea_month.ipynb)
 * [Predictions after one year use](Andrea_year.ipynb) -->

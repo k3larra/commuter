@@ -1,10 +1,10 @@
 # Commuting and Machine Learning and Machine Teaching
-*In this project we explore in what way Machine Learning (ML) can be used to personalize and improve performance in a commuter app using contextual parameters (time, day, location and activity). We will focus on an interactive approach to Machine Learning (iML) in a series of experiments. We have selected commuting and [commute patterns](commute_patterns) since it is an area that has some characteristics that suits iML well; especially the fact that it is hard to deduce one users commute patterns from other users. From a ML perspective training our ML-artifact is an online learning situation that includes cold start, outlier data, data cleaning, concept drift and aging data. In the project we will also study if and how a iML approach changes the users feeling of ownership both with respect to the training and to the collected data.*
+*In this project we explore in what way Machine Learning (ML) can be used to personalize and improve performance in a commuter app using contextual parameters (time, day, location and activity). We focus on an interactive approach to Machine Learning (iML) in a series of experiments. We have selected commuting and [commute patterns](#commute_patterns) since it is an area that has some characteristics that suits iML well; especially the fact that it is hard to deduce one users commute patterns from other users. From a ML perspective training our ML-artifact is an online learning situation that includes cold start, outlier data, data cleaning, concept drift and aging data. In the project we will also study if and how a iML approach changes the users feeling of ownership both with respect to the training and to the collected data.*
 
-The existing non ML commuter app [Skånependlaren](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) focuses on presenting departure times in the near future as efficient as possible. The target group for the app is commuters and consequently there is no interface in the app for planning, buying tickets or other more high level functions. The situation targeted is getting departure times from a few hours before departure until departure. The [app](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) that has existed prior to this project delivers departure times including delays, first change in transportaion mode and total travel time for the journey.
+The existing non ML commuter app [Skånependlaren](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) focuses on presenting departure times in the near future as efficient as possible. The target group for the app is commuters and consequently there is no interface in the app for planning, buying tickets or other more high level functions. The situation targeted is getting departure times from a few hours before departure until departure. The [app](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) as existed prior to this project and delivers departure times including delays, first change in transportaion mode and total travel time for the journey.
 
 ### Commute patterns
-A commuters journey pattern is an interesting machine learning problem for our research since it uses a limited amount of data, the stations in Skåne region, and the travel pattern over time are relativelly unique for the individual user. Since we focus on journeys that consists of origin destination and not on predictiong only the departure station it would be difficult to predict a users next journey except as a guessing based on statistical travel data that predict most common journeys for all in a given situation.
+A commuters journey pattern are relativelly unique for the individual user. Since we focus on journeys that consists of origin destination and not on predictiong only the departure station it would be difficult to predict a users next journey except as a guessing based on statistical travel data that predict most common journeys for all in a given situation.
 
 ### Individual approach
 Since one of our research interest is around how Machine Learning(ML) can be personalized the focus is on the individual experience and not so much the comparison with other users. The context of commuting fits well into those research interests. Another factor that is important to us is that, even if we handle personal data, travel patterns are not very sensitive and can mostly be missued if they can be connected to a person. In this work we [avoid saving data](https://skanependlaren.firebaseapp.com) that can be used to identify individuals. We do also give the users an option to delete all collected data and trained models.
@@ -13,22 +13,21 @@ Since one of our research interest is around how Machine Learning(ML) can be per
 In this project we use a Research through Design<sup>2</sup> methodology and this site with its history represents our documentation of the explorative process.
 
 ### Project process.
-The sections referensed below represents the initial steps in our explorative process.
+The sections referensed below represents the initial steps:
 * [ML backend](#ML_backend)
 * [Verification of backend_functionality](#Verification_of_backend_functionality)
-* [Initial MT approach](Initial_MT_research_approach)
-  * [Verification of ML functionality](Verification_of_ML_functionality)
-  * [Evaluation of simple MT interface](Evaluation_of_MT_interface)
-* [Use study: MT approach handling cold start situation](User_study_MT_approach_handling_cold_start_situation)
+* [Initial MT approach](#Initial_MT_research_approach)
+  * [Verification of ML functionality](#Verification_of_ML_functionality)
+  * [Evaluation of simple MT interface](#Evaluation_of_MT_interface)
+* [Use study: MT approach handling cold start situation](#User_study_MT_approach_handling_cold_start_situation)
 * [Use study: iterative ML used to update the ML model]()
 * [Use study: interactive ML in kombination with iterative ML]()
 * [Use study: MT, interactive ML and iterative ML]()
 
-## Process documentation
-Initially in the project we will, as the plan above indicates, focus on the commuters first encounter with the app and the task of training an ML-model so the app can make predictions for her/his recurrent journeys. We will use a Machine Teaching<sup>1</sup> (MT) approach to mitigate the consequences of this cold start problem. After this we will verify our approach and test it in a use situation. After this initial stage we will explore iML during app use in a more longitudial survey.
+Initially in the project we will, as the plan above indicates, focus on the commuters first encounter with the app and the task of training an ML-model so the app can make predictions for her/his recurrent journeys. We will use a Machine Teaching<sup>1</sup> (MT) approach to mitigate the consequences of this cold start problem.
 
 ### ML-Backend connected to Skånependlaren commuter app.
-The general outline of the backend is illustrated below. Our overaching goal has been to save training data and train one ML model separate for each user. Our context gives us some metrics that we need to target. One is of course accuracy and another is response time. Aspect of the accuracy is a more complex issue and will be discussed below, response time for a prediction given the application has to be counted in a few seconds. This targets the situation when you start the app and as soon as possible want to have departure time for next transport.
+The general outline of the backend  that connects tha app and the machine learning is oulined below. Our overaching goal has been to save training data and train one ML model separate for each user. Our context gives us some metrics that we need to target. One is of course accuracy, another is response time and training time. Aspects of the accuracy is a more complex issue and will be discussed below, response time for a prediction given the application has to be counted in a few seconds. This targets the situation when you start the app and as soon as possible want to have departure time for next transport.
 
 
 ![Backend](images/backend_skanependlaren.png)
