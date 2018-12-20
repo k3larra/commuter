@@ -32,8 +32,6 @@ The general outline of the backend is illustrated below. Our overaching goal has
 
 
 ![Backend](images/backend_skanependlaren.png)
-![Backend](images/training.png)
-
 *Figure 1: Backend that saves labelled data from the app and delivers predictions to the app. When new labelled data is entered by the user (this could be done explicitly or when the user selects a new route) the labelled data is saved and can be used for training. The coordination for this is done via the real-time database and cloud functions. Retraining is currently done one hour after the last use of the app. Predictions are initiated when the user/app uploads features (weekday, time, location, activity) to the real-time database and the Node.JS performs the predictions and returns the result via the real-time database.*
 
 ### Verification of backend functionality
@@ -42,6 +40,13 @@ Initial we wanted to make a technical verification that uses the backend and del
 ### Initial MT research approach
 Our focus in this part of the work is on the users first encounter with the app. In this situation the app has no knowledge of the users commute patterns and can thus not make any predictions. The commute patterns could be learned over time but it will probably take a few weeks until enough training data has been collected to make accurate journey predictions. In our initial approach we are interested of transferring the commuters knowledge of his/her commute patterns to the ML artifact. Initially we want to explore and evaluate a MT approach that starts with an initial Machine Teaching session. In this session the user adds known travel patterns and that can be used to train the model so predictions can be made from first use.
 
+![Backend](images/small_detail_search.png)
+![Backend](images/small_prediction.png)
+![Backend](images/training.png)
+
+**Figure 3:** *In the figure on the left the standard app is shown and details for one departure is expanded. In the second figure the app has received a contextbased prediction and departure times has been collected from the transport provider. In the figure on the right labelled training data can be added.*
+
+
 #### Verification of ML functionality
 The focus not only on optimising the ML algorithm used, of course we want to have accurate predictions, but there are many other parameters that has to be taken into account as for example.
 * Ease of use
@@ -49,10 +54,11 @@ The focus not only on optimising the ML algorithm used, of course we want to hav
 * Online inference, scalability so each user can have her/his own model.
 In our experimentation we did initially work with [tensorflow](https://www.tensorflow.org) and tried out different ML algorithms by using [estimators](https://www.tensorflow.org/guide/estimators). Given our data and our competence in the area these solutions took a lot of time especially in handling with normalisation of parameters tuning and saving the models correctly so inference could be made online. In parallel we evaluated [Fastai](https://www.fast.ai/) framework that builds on [PyTorch](https://pytorch.org/) and found that the abstraction level that framework represents was more in line with our needs. The evaluations below uses Pytorch 1.0 and Fastai 1.0.
 
-Our initial tests with fastai [tabular learner](https://docs.fast.ai/tabular.html) and a neural network with [two hidden layers](ml/baseline.ipynb) gave us predictions that met our expectations regarding accuracy. To evaluate this in a more structured way we created some idealised data using [personas](#Personas) and senarios. The result can be seen in Figure 2 and more details and training data can be seen for the individual users.
+Our initial tests with fastai [tabular learner](https://docs.fast.ai/tabular.html) and a neural network with [two hidden layers](ml/baseline.ipynb) gave us predictions that met our expectations regarding accuracy. To evaluate this in a more structured way we created some idealised data using [personas](#Personas) and senarios. The data was created using our app and the result of the evaluation can be seen in Figure 3 and more details and discussion exists in the persona descriptions.
 
-![](images/AndreaTraining).
-**Figure 2:** *This figure shows training accuracy during the two first weeks of use, starting from a Saturday. All trained models accuracy are evaluated using the same test set. The blue line represents a Cold Start situation when no data exists to train from. The red line represents a more traditional ML setting were relevant training data is aviable before the model is deployed and used, in this case the data described above from one year of usage is used for the training. The green and orange lines represents a situaion were a teaching set is added in advance.*
+![](images/AndreaTraining.png).
+
+**Figure 3:** *This figure shows training accuracy during the two first weeks of use, starting from a Saturday. All trained models accuracy are evaluated using the same test set. The blue line represents a Cold Start situation when no data exists to train from. The red line represents a more traditional ML setting were relevant training data is aviable before the model is deployed and used, in this case the data described above from one year of usage is used for the training. The green and orange lines represents a situaion were a teaching set is added in advance.*
 
 #### Evaluation of MT interface
 In progress
