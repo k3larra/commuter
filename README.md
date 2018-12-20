@@ -32,8 +32,9 @@ The general outline of the backend is illustrated below. Our overaching goal has
 
 
 ![Backend](https://github.com/k3larra/commuter/blob/master/images/backend_skanependlaren.png)
+![Backend](images/training.png)
 
-*Backend that saves labelled data from the app and delivers predictions to the app. When new labelled data is entered by the user (this could be done explicitly or when the user selects a new route) the labelled data is saved and can be used for training. The coordination for this is done via the real-time database and cloud functions. Retraining is currently done one hour after the last use of the app. Predictions are initiated when the user/app uploads features (weekday, time, location, activity) to the real-time database and the Node.JS performs the predictions and returns the result via the real-time database.*
+*Figure 1: Backend that saves labelled data from the app and delivers predictions to the app. When new labelled data is entered by the user (this could be done explicitly or when the user selects a new route) the labelled data is saved and can be used for training. The coordination for this is done via the real-time database and cloud functions. Retraining is currently done one hour after the last use of the app. Predictions are initiated when the user/app uploads features (weekday, time, location, activity) to the real-time database and the Node.JS performs the predictions and returns the result via the real-time database.*
 
 ### Verification of backend functionality
 Initial we wanted to make a technical verification that uses the backend and delivers predictions in the app. We reached our main metric for the backend and can deliver predictions in most cases in a few seconds. These test were mostly to verify the functionality. An animation that visualize a prediction can be seen on this [site](https://skanependlaren.firebaseapp.com/).
@@ -48,26 +49,25 @@ The focus not only on optimising the ML algorithm used, of course we want to hav
 * Online inference, scalability so each user can have her/his own model.
 In our experimentation we did initially work with [tensorflow](https://www.tensorflow.org) and tried out different ML algorithms by using [estimators](https://www.tensorflow.org/guide/estimators). Given our data and our competence in the area these solutions took a lot of time especially in handling with normalisation of parameters tuning and saving the models correctly so inference could be made online. In parallel we evaluated [Fastai](https://www.fast.ai/) framework that builds on [PyTorch](https://pytorch.org/) and found that the abstraction level that framework represents was more in line with our needs. The evaluations below uses Pytorch 1.0 and Fastai 1.0.
 
-Our initial tests with fastai [tabular learner](https://docs.fast.ai/tabular.html) and a neural network with [two hidden layers](ml/baseline.ipynb) gave us predictions that met our expectations regarding accuracy. To When we started this work we had limited amount of real user data and the data we had contained many false searhces that would complicate evaluation of the ML algorithm.
+Our initial tests with fastai [tabular learner](https://docs.fast.ai/tabular.html) and a neural network with [two hidden layers](ml/baseline.ipynb) gave us predictions that met our expectations regarding accuracy. To evaluate this in a more structured way we created some idealised data using [personas](#Personas) and senarios. The result can be seen in Figure 2 and more details and training data can be seen for the individual users.
 
-Our real world data that currently collect from usage contains irrellevant searches this is due to the constuction of the [app](https://skanependlaren.firebaseapp.com/) and the usage. Example of invalid data coming from the interaction design, is the two dropdowns and the related searches. Searches are done directly when the user changes one of them there therefor is no way to tell if you plan to change both origin and destination or if you are satisfied when you changed only one of them. That is a preferred behaviour since we want to deliver departure times in an efficient way. At the moment we do not have an algorithm that filters searches and tries to find the one that is relevant, this can probably be done but at this stage we have selected to prioritise a functioning ML-algorithm since this will influence all development in the future. The selection of ML algorithm will influence the amount of data cleaning we have to do. There are also situations where a user explores possible routes whithout the intention of conducting them even in the near future, this adds irrelevant data. Our focus at this stage is not on an iterative ML setting instead we focus on the
-
-Initially we have as described above varified our chosen ML algorithm so it gives predicitons with enough accuracy. For this work we have used travel data for [three personas](#personas) to varify    [Link](Sources of errors that exists in the real world application)
-
+![](images/AndreaTraining).
+**Figure 2:** *This figure shows training accuracy during the two first weeks of use, starting from a Saturday. All trained models accuracy are evaluated using the same test set. The blue line represents a Cold Start situation when no data exists to train from. The red line represents a more traditional ML setting were relevant training data is aviable before the model is deployed and used, in this case the data described above from one year of usage is used for the training. The green and orange lines represents a situaion were a teaching set is added in advance.*
 
 #### Evaluation of MT interface
-
+In progress
 ### User study MT approach handeling cold start situation
-
-
-### Data from fictional personas
-For initial evaluation regarding the journey predictions we have created three fictive personas and some scenarios for these personas to help us recreate and simulate situations. The personas and scenarios are presented below.
-
-For each user labelled data has been created that matches the users travel patterns. This data especially differs from real world data in the sense that it only contains valid searches and no erroneous data.
-
+In progress
+### Use study iterative ML used to update the ML model
+Not started
+### Use study interactive ML in kombination with iterative ML
+Not Started
+### Use study MT, interactive ML and iterative ML
+Not started
 
 ### Personas
-For all scenarios, test data has been created to evaluate prediction accuracy for each situation. For each user labelled data is aggregated after one week of use, one month of use and one year of use.
+For initial evaluation regarding the journey predictions we have created three  personas and some scenarios for these personas to help us recreate and simulate situations. The personas and scenarios are presented below. For each user labelled data has been created that matches the users travel patterns. This data differs from real world data in the sense that it only contains valid searches and no [erroneous data](#Data_collection_and_creation).
+We have created idealised data that will help us evaluate oru approach, the data has been created using the app so the data mimics a real world situation as close as possible. We have used an interface that
 
 ### [Maria](Maria.md)
 Maria labelled training/development data.
@@ -84,8 +84,13 @@ Andrea labelled training/development data.
 Andrea test data
 ehaBtfOPDNZjzy1MEvjQmGo4Zv12.csv
 
+### Data collection and creation
+Our real world data that currently collect from usage contains irrellevant searches this is due to the constuction of the [app](https://skanependlaren.firebaseapp.com/) and the usage. Example of invalid data coming from the interaction design, is the two dropdowns and the related searches. Searches are done directly when the user changes one of them there therefor is no way to tell if you plan to change both origin and destination or if you are satisfied when you changed only one of them. That is a preferred behaviour since we want to deliver departure times in an efficient way. At the moment we do not have an algorithm that filters searches and tries to find the one that is relevant, this can probably be done but at this stage we have selected to prioritise a functioning ML-algorithm since this will influence all development in the future. The selection of ML algorithm will influence the amount of data cleaning we have to do. There are also situations where a user explores possible routes whithout the intention of conducting them even in the near future, this adds irrelevant data. Our focus at this stage is not on an iterative ML setting instead we focus on the.
+
+
 ## Skånependlaren app
 The app that has been used for this work can be downloaded from google play [Skånependlaren](https://skanependlaren.firebaseapp.com/)
+
 
 <hr>
 Images on the pages are owned by the author or if stated otherwise collected from [pixabay](https://pixabay.com) and licenced under [CC0 Creative Commons]( https://creativecommons.org/publicdomain/zero/1.0/deed.en)
