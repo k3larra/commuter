@@ -31,7 +31,7 @@ Initially in the project we will, as the plan above indicates, focus on the comm
 The general outline of the backend is illustrated below. Our overaching goal has been to save training data and train one ML model separate for each user. Our context gives us some metrics that we need to target. One is of course accuracy and another is response time. Aspect of the accuracy is a more complex issue and will be discussed below, response time for a prediction given the application has to be counted in a few seconds. This targets the situation when you start the app and as soon as possible want to have departure time for next transport.
 
 
-![Backend](https://github.com/k3larra/commuter/blob/master/images/backend_skanependlaren.png)
+![Backend](images/backend_skanependlaren.png)
 ![Backend](images/training.png)
 
 *Figure 1: Backend that saves labelled data from the app and delivers predictions to the app. When new labelled data is entered by the user (this could be done explicitly or when the user selects a new route) the labelled data is saved and can be used for training. The coordination for this is done via the real-time database and cloud functions. Retraining is currently done one hour after the last use of the app. Predictions are initiated when the user/app uploads features (weekday, time, location, activity) to the real-time database and the Node.JS performs the predictions and returns the result via the real-time database.*
