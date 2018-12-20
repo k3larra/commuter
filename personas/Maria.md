@@ -10,7 +10,7 @@ Occupation: Student (Game design first year, Bachelor level)
 Lives: Lund
 
 Travel Pattern: Semirecurrent
-
+_ID:_ tnK534JMwwfhvUEycn69HPbhqkt2<br/>
 ![Maria](https://github.com/k3larra/commuter/raw/master/images/Maria321.jpg)
 
 Maria lives by herself at a student accommodation in the City of Lund 10 minutes walk from the train station Lund C. She started studying literature in Lund for one year but felt that this was not really for her; instead, she chose to try if a bachelor program in Game Design at Malmö University could be something for her. She likes playing computer games with a strong narrative and the interdisciplinary aspect of the game design field intrigues her.  She is a thorough student that works hard, spends a lot of time at the University and follows all lectures.  She travels between the stations Lund C and Malmö C in the mornings most weekdays between 8 and 10 and travels in the other direction sometime after 15 in the afternoon.

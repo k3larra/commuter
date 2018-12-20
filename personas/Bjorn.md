@@ -1,17 +1,13 @@
 ## Fictive persona Björn
-Name: Björn
+_Name:_ Björn<br/>
+_Age:_ 69<br/>
+_Sex:_ Male<br/>
+_Occupation:_ Retired Former plummer<br/>
+_Lives:_ Malmö Ön<br/>
+_Travel Pattern:_ Recurrent<br/>
+_ID:_ hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2<br/>
 
-Age: 69
-
-Sex: Male
-
-Occupation: Retired Former plummer
-
-Lives: Malmö Ön
-
-Travel Pattern: Recurrent
-
-![Bjorn](https://github.com/k3larra/commuter/raw/master/images/Bjorn.jpg)
+![Bjorn](images/Bjorn.jpg)
 
 Björn lives in a 3 room apartment on sixth floor near the coast in Malmö. Björn recently got a first grandchild Kim. Kim’s parents Max and Sofia lives in Bunkeflostrand and  Björn picks up Kim from day-care latest 14:00 Tuesday to Friday and walks home to his sons house in Bunkeflo. He stays there until Max or Sofia comes home around 18 and then usually takes the bus home around 19. It is important to Björn to be in time to pick up Kim so he often leaves early and checks the app frequently before he leaves home for delays.
 Björn regularly every Saturday afternoon meets his plumber friends Jörgen and Håkan for Boule. They usually meet at Björns place and in central Malmö and walks down to Limhamnsfältet for their boule session. He usually takes the bus home sometime after 18.
@@ -25,10 +21,10 @@ It is Saturday morning and Björn calls Jörgen, they decide to start playing bo
 ### Scenario 3
 It is Wednesday evening at 19:25 after visiting Kim, Max and Sofia, Björn walks towards the bus stop. Since the buses leaves quite often he has not bothered to check for exact time when the bus leaves. He brings up his app and sees that it leaves in 4 minutes and speeds up his walk to arrive at the bus stop at a convenient time.
 
-### Predictions for the scenarios (Not finalized)
+<!-- ### Predictions for the scenarios (Not finalized)
 * [Predictions after one week use](Bjorn_week.ipynb)
 * [Predictions after one month use](Bjorn_month.ipynb)
-* [Predictions after one year use](Bjorn_year.ipynb)
+* [Predictions after one year use](Bjorn_year.ipynb) -->
 
 *Image from Pixabay*
 
