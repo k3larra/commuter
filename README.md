@@ -1,7 +1,9 @@
-# Commuting and Machine Teaching
-The focus in this project is initially on exploring if and how a Machine Teaching<sup>1</sup> (MT) approach can mitigate consequences of cold start in a commuter app. The commuter app [Skånependlaren](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) focuses on presenting departure times in the near future as efficient as possible. The target group is commuters and consequently there is no interface in the app for planning, buying tickets or other more high level functionality. The situation targeted is from a few hours before departure until departure. The [app](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) in the version that exists publicly prior to this project delivers departure times including delays, first change in transportaion mode and total travel time for the journey.
+# Commuting and Machine Learning and Machine Teaching
+*In this project we explore in what way Machine Learning (ML) can be used to personalize and improve performance in a commuter app using the contextual parameters (time, day, location and activity). We will focus on an interactive approach to Machine Learning (iML) in a series of experiments. We have selected commuting and [commute patterns](Commute_patterns) since it is an area that has some characteristics that suits iML well especially the fact that it is hard to deduce one users commute patterns from statistical data other users and it is thus hard to pretrain a model that matches an individuals commute patterns. From a ML perspective training our ML-artifact is an online learning situation that includes cold start, outlier data, data cleaning, concept drift and aging data. In the project we will also study if and how a iML approach changes the users feeling of ownership both with respect to the training and to the collected data.*
 
-### Journey patterns
+Initially in the project we will focus on the commuters first encounter with the app and the task to train a ML-model so the app can make predictions for her/his recurrent journeys. We will use a Machine Teaching<sup>1</sup> (MT) approach to mitigate the consequences of this cold start problem. After this we will verify our approach test it with users. The existing non ML commuter app [Skånependlaren](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) focuses on presenting departure times in the near future as efficient as possible. The target group for the app commuters and consequently there is no interface in the app for planning, buying tickets or other more high level functions. The situation targeted is from a few hours before departure until departure. The [app](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) in the version that has existed prior to this project delivers departure times including delays, first change in transportaion mode and total travel time for the journey.
+
+### Commute patterns
 A commuters journey pattern is an interesting machine learning problem for our research since it uses a limited amount of data, the stations in Skåne region, and the travel pattern over time are relativelly  unique for the individual user. Since the journey consisting of origin destination and not the departure station is in focus a commuter app it would be difficult to predict a users next journey except as a guessing based on statistical travel data that predict most common journey in a given situation.
 
 ### Individual approach
@@ -12,18 +14,20 @@ In this project we use a Research through Design<sup>2</sup> methodology and thi
 
 ### Project process.
 The sections referensed below represents the initial steps in our explorative process.
-* [System architecture](#System_architecture)
+* [ML backend](#ML_backend)
 * [Verification of backend_functionality](#Verification_of_backend_functionality)
 * [Initial MT approach](Initial_MT_research_approach)
   * [Verification of ML functionality](Verification_of_ML_functionality)
-  * [Evaluation of MT interface](Evaluation_of_MT_interface)
+  * [Evaluation of simple MT interface](Evaluation_of_MT_interface)
 * [Use study MT approach handling cold start situation](User_study_MT_approach_handling_cold_start_situation)
-* [Use study MT to update the ML model]()
+* [Use study iterative ML used to update the ML model]()
+* [Use study interactive ML in kombination with iterative ML]()
+* [Use study MT, interactive ML and iterative ML]()
 
 ## ML-Backend connected to Skånependlaren commuter app.
 The general outline of the backend is illustrated below. Our overaching goal has been to save training data and train one ML model separate for each user. Our context gives us some metrics that we need to target. One is of course accuracy and another is response time. Aspect of the accuracy is a more complex issue and will be discussed below, response time for a prediction given the application has to be counted in a few seconds. This targets the situation when you start the app and as soon as possible want to have departure time for next transport.
 
-### System architecture
+### ML Backend
 
 ![Backend](https://github.com/k3larra/commuter/blob/master/images/backend_skanependlaren.png)
 
@@ -32,6 +36,7 @@ The general outline of the backend is illustrated below. Our overaching goal has
 ### Verification of backend functionality
 Initial we wanted to make a technical verification that uses the backend and delivers predictions in the app. We reached our main metric for the backend and can deliver predictions in most cases in a few seconds. These test were mostly to verify the functionality and since the explorative appraoch changes to the infrastructure is highly probable given the nature of the research we will iterate the backend infrastructure when the machine learning part works as expected.as a result
 
+<img src="https://github.com/k3larra/commuter/blob/master/images/Screenshot_1530272157.png" alt="alt text" width="250">
 <img src="https://skanependlaren.firebaseapp.com/assets/film.gif " alt="alt text" width="250">
 
 ### Initial MT research approach
