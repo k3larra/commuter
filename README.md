@@ -36,7 +36,7 @@ The general outline of the backend is illustrated below. Our overaching goal has
 ### Verification of backend functionality
 Initial we wanted to make a technical verification that uses the backend and delivers predictions in the app. We reached our main metric for the backend and can deliver predictions in most cases in a few seconds. These test were mostly to verify the functionality and since the explorative appraoch changes to the infrastructure is highly probable given the nature of the research we will iterate the backend infrastructure when the machine learning part works as expected.as a result
 
-<img src="https://github.com/k3larra/commuter/blob/master/images/Screenshot_1530272157.png" alt="alt text" width="250">
+<!-- <img src="https://github.com/k3larra/commuter/blob/master/images/Screenshot_1530272157.png" alt="alt text" width="250"> -->
 <img src="https://skanependlaren.firebaseapp.com/assets/film.gif " alt="alt text" width="250">
 
 ### Initial MT research approach
