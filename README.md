@@ -38,7 +38,7 @@ Initial we wanted to make a technical verification that uses the backend and del
 
 ![](https://github.com/k3larra/commuter/blob/master/images/small_detail_search.png)
 
-<img src="https://skanependlaren.firebaseapp.com/assets/film.gif " alt="alt text" width="250">
+![](https://skanependlaren.firebaseapp.com/assets/film.gif)
 
 ### Initial MT research approach
 Our focus in this part of the work is on the users first encounter with the app. In this situation the app has no knowledge of the users commute patterns and can thus not make any predictions. The commute patterns could be learned over time and it will probably take a few weeks until enough training data has been collected to make accurate journey predictions. In our approach we are interested of transferring the commuters knowledge of his/her commute patterns to the ML artifact. Initially we want to explore and evaluate a MT approach that start with an initial Machine Teaching session. In this session known travel patterns are added and used to train the model so predictions can be made from first use. We will not at this stage target the situation were incorrect predictions are made and relearning the model is needed.
