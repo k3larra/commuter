@@ -56,7 +56,9 @@ In our experimentation we did initially work with [tensorflow](https://www.tenso
 
 Our initial tests with fastai [tabular learner](https://docs.fast.ai/tabular.html) and a neural network with [two hidden layers](ml/baseline.ipynb) gave us predictions that met our expectations regarding accuracy. To evaluate this in a more structured way we created some idealised data using our [personas](#Personas) and senarios. The data was created using our app and the result of the evaluation can be seen in Figure 3 and more details and discussion exists in the persona descriptions.
 
-![](images/AndreaTraining.png).
+![](images/AndreaTraining.png)
+![](images/BjornTraining.png)
+![](images/MariaTraining.png)
 
 **Figure 3:** *This figure shows training accuracy during the two first weeks of use, starting from a Saturday. All trained models accuracy are evaluated using the same test set. The blue line represents a cold start situation when no data exists to train from. The red line represents a more traditional ML setting were relevant training data is aviable before the model is deployed and used. The green and orange lines represents a situaion were a teaching set is added in advance.*
 
