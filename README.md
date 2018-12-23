@@ -18,7 +18,7 @@ In this project we use a Research through Design<sup>2</sup> methodology and thi
 
 ### Project process.
 The sections referensed below represents the initial steps:
-* [ML backend](#ML-Backend-connected-to-Skånependlaren-commuter-app
+* [ML backend](#ML-Backend-connected-to-Skånependlaren-commuter-app)
 * [Verification of backend_functionality](#Verification_of_backend_functionality)
 * [Initial MT approach](#Initial_MT_research_approach)
   * [Verification of ML functionality](#Verification_of_ML_functionality)
