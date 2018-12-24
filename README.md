@@ -46,6 +46,9 @@ Some general information around the project can be found [on this site](https://
 Images on the pages are owned by the author or if stated otherwise collected from [pixabay](https://pixabay.com) and licenced under [CC0 Creative Commons]( https://creativecommons.org/publicdomain/zero/1.0/deed.en)
 
 <hr>
+The app used for this work can be downloaded from google play [Skånependlaren](https://skanependlaren.firebaseapp.com/)
+Some general information around the project can be found [on this site](https://skanependlaren.firebaseapp.com/). The target group for this site is to give app users more information around the project and the ML-artifact. Users will at a later stage be able to log in and inspect their data and trained model.
+Images on the pages are owned by the author or if stated otherwise collected from [pixabay](https://pixabay.com) and licenced under [CC0 Creative Commons]( https://creativecommons.org/publicdomain/zero/1.0/deed.en)
 The app used for this work can be downloaded from google play [Skånependlaren](https://skanependlaren.firebaseapp.com/) <br>
 Some general information around the project can be found [on this site](https://skanependlaren.firebaseapp.com/). The target group for this site is to give app users more information around the project and the ML-artifact. Users will at a later stage be able to log in and inspect their data and trained model.<br>
 Images on the pages are owned by the author or if stated otherwise collected from [pixabay](https://pixabay.com) and licenced under [CC0 Creative Commons]( https://creativecommons.org/publicdomain/zero/1.0/deed.en)<br>
