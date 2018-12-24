@@ -1,5 +1,5 @@
 # Exploring Machine Learning in a commuting context.
-*In this project we explore in what way Machine Learning (ML) can be used to [personalize](individual-approach-security-and-privacy) and improve performance in a commuter app using some selected contextual parameters (time, day, location and activity). We focus on an interactive approach to Machine Learning (iML) in a series of experiments. We selected commuting and [commute patterns](#Commute-patterns) for our exploration since it is an area that has some characteristics that suits iML well. From a ML perspective training our ML-artifact is an online learning situation that includes cold start, outlier data, data cleaning, concept drift and aging data. In the project we will also study if and how an iML approach changes the users notion of ownership both with respect to the training outcome, towards the collected data and the trained model.*
+*In this project we explore in what way Machine Learning (ML) can be used to [personalize](#individual-approach-security-and-privacy) and improve performance in a commuter app using some selected contextual parameters (time, day, location and activity). We focus on an interactive approach to Machine Learning (iML) in a series of experiments. We selected commuting and [commute patterns](#Commute-patterns) for our exploration since it is an area that has some characteristics that suits iML well. From a ML perspective training our ML-artifact is an online learning situation that includes cold start, outlier data, data cleaning, concept drift and aging data. In the project we will also study if and how an iML approach changes the users notion of ownership both with respect to the training outcome, towards the collected data and the trained model.*
 
 The existing non ML commuter app [Skånependlaren](https://play.google.com/store/apps/details?id=se.k3larra.alvebuss&hl=sv) focuses on presenting departure times in the commuters near future as efficient as possible. The target group for the app is narrowed to commuters and there is no interface in the app for planning, buying tickets or other more high level functions.
 
@@ -29,24 +29,24 @@ We beleve that these different aproaches. so the user can add searces and give f
 and Machine Teaching (MT)<sup>1</sup>
 
 ### Project plan.
-Initially in this project we will focus on the commuters first encounter with the app and the task of training an ML-model so the app can make predictions for her/his recurrent journeys. In the following stage we will explore a more iterative way of learning. We will also evaluate learning that takee place in the background, so the model can be trained iteratively during use, even when the user is not aware of it.
+Initially in this project we will focus on the commuters first encounter with the app and the task of training an ML-model so the app can make predictions for her/his recurrent journeys. In the following stage we will explore a more iterative way of learning during usage. We will also at a later stage evaluate learning that take place in the background, so the model can be trained iteratively during use, even when the user is not aware of it.
 
 The pages referensed below represents the steps of our research in an chronologucal order:
 * [ML backend](backend/backend.md) (Done)
   * [Verification of backend_functionality](backend/backend.md#Verification-of-backend-functionality) (Done)
-* [Machine Teaching approach](#Initial-MT-research-approach)
+* [Machine Teaching approach](#Initial-MT-research-approach) (Ongoing)
   * [Verification of ML functionality](#Verification_of_ML_functionality) (Ongoing)
   * [Evaluation of simple MT interface](#Evaluation_of_MT_interface) (Ongoing)
   * [Use study: MT approach handling cold start situation](#User_study_MT_approach_handling_cold_start_situation) (Ongoing)
   * Use study: MT approach updating a trained model
-* Use study: iML
-* Use study: iterative ML
-* Use study: combining MT, iML and iterative ML
+* Interactive ML
+* Iterative ML
+* Combining MT, interactive ML and iterative ML
 
 <hr>
 The app used for this work can be downloaded from google play [Skånependlaren](https://skanependlaren.firebaseapp.com/) <br/>
 Some general information around the project can be found [on this site](https://skanependlaren.firebaseapp.com/). The terget group for this site is to give app users more information around the project and the ML-artifact. Users will at a later stage be able to logg in and inpect their data and trained model.<br/>
-Images on the pages are owned by the author or if stated otherwise collected from [pixabay](https://pixabay.com) and licenced under [CC0 Creative Commons]( https://creativecommons.org/publicdomain/zero/1.0/deed.en)
+Images on the pages are owned by the author or if stated otherwise collected from [pixabay](https://pixabay.com) and licenced under [CC0 Creative Commons]( https://creativecommons.org/publicdomain/zero/1.0/deed.en)<br/>
 _References_<br/>
 [1] P. Y. Simard et al., “Machine Teaching: A New Paradigm for Building Machine Learning Systems,” 2017.<br/>
 [2] P. Stappers and E. Giaccardi, “Research through Design,” Encycl. Human-Computer Interact. 2nd ed.; Idea Gr. Ref. Hershey, PA, USA, pp. 1–94, 2017.
