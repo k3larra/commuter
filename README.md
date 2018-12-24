@@ -7,10 +7,10 @@ The existing non ML commuter app [Skånependlaren](https://play.google.com/store
 A commuters journey pattern are relativelly unique for the individual user. Since we focus on journeys that consists of origin destination, and not on predicting only the departure station, it would be difficult to predict a users next journey. Therefore we find the commute context to be an interesting area for researching an individual approch to machine learning.
 
 ### Individual approach, security and privacy
-Since one of our research interest is around how Machine Learning(ML) can be personalized the focus, in this research, is on the individual experience and not so much the comparison with other users or using other commuters data. Another factor that is important to us is that, even if we handle personal data, travel patterns are private data but cannot be classified on its own as sensitive personal data. In this work we try to mitigate any privacy issues by [avoiding saving data](https://skanependlaren.firebaseapp.com) that can be used to identify individuals and we use standard cloud service security. We do also give the users an option to delete all collected data and trained models at any time.
+Since one of our research interest is around how Machine Learning(ML) can be personalized the focus, in this research, is on the individual experience and not so much the comparison with other users or using other commuters data. Another factor that is important to us is that, even if we handle personal data, travel patterns are private data but cannot be classified on its own as sensitive personal data. In this work we try to mitigate any privacy issues and [avoid saving data](https://skanependlaren.firebaseapp.com) that can be used to identify individuals. We use standard cloud service security to provide resonable protection from a security perspetive. We give the users an option to delete all collected data and trained models at any time.
 
 #### Personas
-As a complement to the [noisy data](#Data-collection) that our real world users create we have used personas that represents some typical users, one university student, one high school student and one pensioner. These personas together with individual scenarions are used when we evaluate journey predictions. For each persona labelled data has been created that matches the users travel patterns.
+As a complement to the [noisy data](#Data-collection) that our real world users create we have used personas that represents some typical users, one university student, one high school student and one pensioner. These personas together with individual scenarions are used when we our functionality and they also provides best case scenarios. For each persona labelled data has been created that matches the users travel patterns.
 
 * [Maria](personas/Maria.md)
 * [Björn](personas/Bjorn.md)
@@ -29,7 +29,7 @@ We beleve that these different aproaches. so the user can add searces and give f
 and Machine Teaching (MT)<sup>1</sup>
 
 ### Project plan.
-Initially in this project we will focus on the commuters first encounter with the app and the task of training an ML-model so the app can make predictions for her/his recurrent journeys. In the following stage we will explore a more iterative way of learning during usage. We will also at a later stage evaluate learning that take place in the background, so the model can be trained iteratively during use, even when the user is not aware of it.
+Initially in this project we will focus on the commuters first encounter with the app and the task of training an ML-model so the app can make predictions for her/his recurrent journeys. In the following stages we will explore a more iterative way of machine learning during usage. We will also at a later stage evaluate machine learning that take place in the background, so the model can be trained iteratively during use, even when the user is not aware of it.
 
 The pages referensed below represents the steps of our research in an chronologucal order:
 * [ML backend](backend/backend.md) (Done)
