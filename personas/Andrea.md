@@ -1,4 +1,4 @@
-## Fictive persona Andrea
+# Persona Andrea
 _Name:_ Andrea<br/>
 _Age:_ 17<br/>
 _Sex:_ Female<br/>
@@ -38,9 +38,21 @@ It is Saturday 12:23 and Andrea has decided to go to Nova Lund for shopping. She
 ### Scenario 3
 In school a Monday 14:50 Andrea checks the app to check next departure and if she needs to hurry to the bus.
 
-### Data
-[Randomised training data for one year of use.](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train_valid.csv)
-[Test set extracted from the same distibution as data for one year.](https://github.com/k3larra/commuter/blob/master/data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_test.csv)
+
+### Two weeks usage
+This data represents 2 weeks of usage of the app, the data is in chronological order.
+[Two weeks data](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12start14days.csv)
+
+### One year Data
+This data represents an estimation of one years usage, the data is not in chronological order.
+[One year data](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train_valid.csv)
+
+### Test set
+This data can be used as test set and comes from the same distribution as the one year data. The data is not in chronological order.
+[Test set](https://github.com/k3larra/commuter/blob/master/data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_test.csv)
+
+### Teaching set
+This data represents travel patterns created using the persona.
 [Teaching data minimal](https://github.com/k3larra/commuter/blob/master/data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_teaching_set_minimal.csv)
 [Teaching data verbose](https://github.com/k3larra/commuter/blob/master/data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_teaching_set.csv)
 
