@@ -11,10 +11,10 @@ Data created by the app before preprocessing has a format as shown in Figure 1.
 * startStation and endStation are unique numbers given by [Skånetrafiken Open API](http://labs.skanetrafiken.se/api.asp).
 * longitude and latitude is position given by the device.
 * time is unix timestamp.
-* [uid](https://firebase.google.com/docs/auth/android/anonymous-auth) is a unique id connected to the device and the current app installation. This uid is in our application not connected to any user data only to the installation and is created when the app connects to the online database [firebase](https://firebase.google.com/) for the first time.
+* [uid](https://firebase.google.com/docs/auth/android/anonymous-auth) is a unique id connected to the device and the current app installation. This uid is in our application not connected to any user data only to the installation and is created when the app connects to the real-time database [firebase](https://firebase.google.com/) for the first time.
 
 ### Preprocessed data
-The raw data presented above is preprocessed in the app so it can be used for training an ML-artifacts and do journey predictions. To be able to perform journey classification origin destination is combined to one label. We convert our Unix timestamp to time of day and weekday. We convert latitude and longitude using a [geoHash](https://en.wikipedia.org/wiki/Geohash) algorithm so locations close to each other are numerically close.
+The raw data presented above is preprocessed in the app so it can be used for training an ML-artifacts and do journey predictions. To be able to perform journey classification origin destination is combined to one label. We convert our Unix timestamp to time of day and weekday. We convert latitude and longitude using a [geoHash](https://en.wikipedia.org/wiki/Geohash) algorithm so locations close to each other in the real world are numerically close.
 
 After the preprocessing the data looks like the figure 2.
 ![](../images/preprocessed_data.png)
@@ -39,7 +39,7 @@ For training detectedActivity and weekday are treated as categorical input param
 ### Data sets created for the personas
 The datasets created for the personas has been created using the app and the UI seen in the figure 3.
 
-![](../images/trainingdatasmall.png)
+![](../images/trainingdatasmall.png)<br>
 **Figure 3:** *UI used to create labelled data*
 
 Using this UI it is possible to:
@@ -51,3 +51,5 @@ Using this UI it is possible to:
 * Activity either is a selected activity or evenly distributed over all activities.
 
 By using this UI datasets can be created rather effectively that can serve as training, validation, test and teaching sets for the personas. The UI also to some extent can serve as a simple machine teaching UI.
+
+[BACK](../README.md)
