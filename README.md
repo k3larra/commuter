@@ -32,6 +32,7 @@ Initially in this project we will focus on the commuters first encounter with th
 The pages referenced below represents the steps of our research in a chronological order:
 * [ML backend](backend/backend.md) (Done)
   * [Verification of backend_functionality](backend/backend.md#Verification-of-backend-functionality) (Done)
+  * [Data creation and data preprocessing](data/data.md) (Done)
 * [Machine Teaching approach](#Initial-MT-research-approach) (Ongoing)
   * [Verification of ML functionality](#Verification_of_ML_functionality) (Ongoing)
   * [Evaluation of simple MT interface](#Evaluation_of_MT_interface) (Ongoing)
