@@ -25,37 +25,39 @@ Visit the pages for the individual personas for more information:
 * [Andrea](../personas/Andrea.md)
 * [Björn](../personas/Bjorn.md)
 
-Code details for evaluation can be found [here](ml_verification.ipynb).
 
-Training Result for the 3 Personas
+
+Training result for the 3 personas training over 7 epochs on a Neural network with two hidden layers with 200 and 100 neurons. Code details for evaluation can be found [here](ml_verification.ipynb). The training could go on further since there is only a little amount of overfitting for Andrea. Training time is less than 10 seconds. Time for inference is less than ?????
 
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train.png)
+**Figure 1:** *Maria training result*
+
 ![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train.png)
+**Figure 2:** *Andrea training result*
+
 ![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_train.png)
+**Figure 3:** *Björn training result*
 
-Prediction results on test sets
-Maria | 1.0000
-Andrea | 0.995
-Björn | 1.000
+| Persona | Prediction accurracy over test set |
+| ------  |--- ---|
+| Maria   | 1.000 |
+| Andrea  | 0.995 |
+| Björn   | 1.000 |
+| All     | 0.997 |
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+Finally predicting over all personas as one
 
-Mixing all personas,,,,
-
-Using less data
+![](../images/ALLpersonas.png)
+**Figure 3:** *All personas combined training result*
 
 _Hardware & Software used:_
 Google cloud VM instance
-2 vCPU, 13GB memory
-1 GPU x NVIDIA Tesla K80
-OS Debian 9
-PyTorch 1.0
-Fastai 1.0
-Python 3.7
+* 2 vCPU, 13GB memory
+* 1 GPU x NVIDIA Tesla K80
+* OS Debian 9
+* PyTorch 1.0
+* Fastai 1.0
+* Python 3.7
 
 ### Result and discussion
-Given our results fastai and tabular learner meets our expectations regarding [accuracy in predictions, time to train and response time for inference](../backend/backend.md). These metrics are sufficient to be able continue with the project.
+Given our results fastai and tabular learner meets our expectations regarding [accuracy in predictions, time to train and response time for inference](../backend/backend.md). These metrics are sufficient to be able continue with the project and no further technical investigations are needed at this point.
