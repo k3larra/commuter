@@ -32,6 +32,8 @@ Training Result for the 3 Personas
 
 Test result for all Personas
 
+Mixing all personas,,,,
+
 Using less data
 
 _Hardware & Software used:_
