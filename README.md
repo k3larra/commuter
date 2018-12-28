@@ -33,9 +33,10 @@ The pages referenced below represents the steps of our research in a chronologic
 * [ML backend](backend/backend.md) (Done)
   * [Verification of backend_functionality](backend/backend.md#Verification-of-backend-functionality) (Done)
   * [Data creation and data preprocessing](data/data.md) (Done)
-* [Machine Teaching approach](#Initial-MT-research-approach) (Ongoing)
-  * [Verification of ML functionality](#Verification_of_ML_functionality) (Ongoing)
-  * [Evaluation of simple MT interface](#Evaluation_of_MT_interface) (Ongoing)
+  * [Verification of ML functionality](ml/ml.md) (Ongoing)
+* [Machine Teaching approach](machine_teaching/machine_teaching.md) (Ongoing)
+  * [Evaluation MT functionality](machine_teaching/machine_teaching.md#Evaluation_of_MT_interface) (Ongoing)
+  * [Evaluation of simple MT interface](machine_teaching/machine_teaching.md#Evaluation_of_MT_interface) (Ongoing)
   * [Use study: MT approach handling cold start situation](#User_study_MT_approach_handling_cold_start_situation) (Ongoing)
   * Use study: MT approach updating a trained model
 * Interactive ML

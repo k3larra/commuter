@@ -1,5 +1,5 @@
 # ML-Backend connected to Skånependlaren commuter app.
-Figure 1 shows the general outline of the ML-backend. Except creating an efficient backend one goal has been to keep training data and the ML-artifact separate for each user, this to be able to target privacy and security issues.
+Figure 1 shows the general outline of the ML-backend. Except the goal of creating an efficient backend design guideline has been to keep training data and the ML-artifact separate for each user, this to be able to target privacy and security issues.
 
 Our context, commuting, gives us some metrics that we need to target. One central metric is accuracy, others are response time and training time. Aspects of the accuracy is a function of many factors and will be central in further discussion during this project. To target the situation when a user starts the app we want to deliver journey predictions within a few seconds. In some interactive training setting trainin can be alowed to take hours since the users don't expect new correct predictions until they are in the same situation next time. In a machine teaching session retraining can be expected to take place as fast as possible so the teacher can evaluate the training during the session.
 
@@ -8,6 +8,5 @@ Our context, commuting, gives us some metrics that we need to target. One centra
 
 ### Verification of backend functionality
 Initially we made a technical verification that uses the backend and delivers predictions in the app. We reached our main metric for the backend and can deliver predictions in most cases in a few seconds. Retraing in this initial setting took around 10 minutes due to selected hardware (Non GPU server) and ML Framework (TensorFlow). These test were mostly to verify the functionality. An animation that visualize a prediction can be seen on this [site](https://skanependlaren.firebaseapp.com/).
-
 
 [BACK](../README.md)
