@@ -21,16 +21,28 @@ To evaluate this in a more structured way we used our [personas](../README.md#Pe
 ### Fastai 1.0 Pytorch 1.0 tests.
 In the tests outlined below uses the persona data created for one year use and the test set created from the same distribution.
 Visit the pages for the individual personas for more information:
-* [Maria](personas/Maria.md)
-* [Andrea](personas/Andrea.md)
-* [Björn](personas/Bjorn.md)
+* [Maria](../personas/Maria.md)
+* [Andrea](../personas/Andrea.md)
+* [Björn](../personas/Bjorn.md)
 
 Code details for evaluation can be found [here](ml_verification.ipynb).
 
-
 Training Result for the 3 Personas
 
-Test result for all Personas
+![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train.png)
+![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train.png)
+![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_train.png)
+
+Prediction results on test sets
+Maria | 1.0000
+Andrea | 0.995
+Björn | 1.000
+
+| Tables        | Are           | Cool  |
+| ------------- |:-------------:| -----:|
+| col 3 is      | right-aligned | $1600 |
+| col 2 is      | centered      |   $12 |
+| zebra stripes | are neat      |    $1 |
 
 Mixing all personas,,,,
 
