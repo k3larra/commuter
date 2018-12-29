@@ -33,7 +33,7 @@ The pages referenced below represents the steps of our research in a chronologic
 * [ML backend](backend/backend.md) (Done)
   * [Verification of backend_functionality](backend/backend.md#Verification-of-backend-functionality) (Done)
   * [Data creation and data preprocessing](data/data.md) (Done)
-  * [Verification of ML functionality](ml/ml.md) (Ongoing)
+  * [Verification of ML functionality](ml/ml.md) (Done)
 * [Machine Teaching approach](machine_teaching/machine_teaching.md) (Ongoing)
   * [Evaluation MT functionality](machine_teaching/machine_teaching.md#Evaluation_of_MT_interface) (Ongoing)
   * [Evaluation of simple MT interface](machine_teaching/machine_teaching.md#Evaluation_of_MT_interface) (Ongoing)

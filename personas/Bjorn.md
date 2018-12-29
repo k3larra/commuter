@@ -7,7 +7,7 @@ _Lives:_ Malmö Ön<br/>
 _Travel Pattern:_ Recurrent<br/>
 _ID:_ hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2<br/>
 
-![Bjorn](images/Bjorn.jpg)
+![Bjorn](../images/Bjorn.jpg)
 
 Björn lives in a 3-room apartment on sixth floor near the coast in Malmö. Björn recently got a first grandchild Kim. Kim’s parents Max and Sofia lives in Bunkeflostrand and  Björn picks up Kim from day-care latest 14:00 Tuesday to Friday and walks home to his sons house in Bunkeflo. He stays there until Max or Sofia comes home around 18 and then usually takes the bus home around 19. It is important to Björn to be in time to pick up Kim so he often leaves early and checks the app frequently before he leaves home for delays.
 Björn regularly every Saturday afternoon meets his plumber friends Jörgen and Håkan for Boule. They usually meet at Björns place and in central Malmö and walks down to Limhamnsfältet for their boule session. He usually takes the bus home sometime after 18.

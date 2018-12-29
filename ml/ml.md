@@ -13,7 +13,7 @@ In our framework evaluation we did initially work with [tensorflow](https://www.
 
 In parallel we evaluated [Fastai](https://www.fast.ai/) framework that builds on [PyTorch](https://pytorch.org/) and found that the abstraction level that framework represents was more in line with our needs. The evaluations below uses Pytorch 1.0 and Fastai 1.0.
 
-Our initial tests with fastai [tabular learner](https://docs.fast.ai/tabular.html) and a standard neural network with [two hidden layers](ml/baseline.ipynb) gave us predictions that indicated it will fullfill our expectations regarding accuracy. Initila tests also indicated that inference time and training time is in line withour needs.
+Our initial tests with fastai [tabular learner](https://docs.fast.ai/tabular.html) and a standard neural network with [two hidden layers](ml/baseline.ipynb) gave us predictions that indicated it will fullfill our expectations regarding accuracy. Initial tests also indicated that inference time and training time is in line withour needs.
 
 To evaluate this in a more structured way we used our [personas](../README.md#Personas) and senarios.
 
@@ -21,27 +21,37 @@ To evaluate this in a more structured way we used our [personas](../README.md#Pe
 ### Fastai 1.0 Pytorch 1.0 tests.
 In the tests outlined below uses the persona data created for one year use and the test set created from the same distribution.
 Visit the pages for the individual personas for more information:
-* [Maria](personas/Maria.md)
-* [Andrea](personas/Andrea.md)
-* [Björn](personas/Bjorn.md)
-
-Code details for evaluation can be found [here](ml_verification.ipynb).
+* [Maria](../personas/Maria.md)
+* [Andrea](../personas/Andrea.md)
+* [Björn](../personas/Bjorn.md)
 
 
-Training Result for the 3 Personas
 
-Test result for all Personas
+Training result for the 3 personas training over 7 epochs on a Neural network with two hidden layers with 200 and 100 neurons. Code details for evaluation can be found [here](ml_verification.ipynb). The training could go on further since there is only a little amount of overfitting for Andrea. Training time is less than 10 seconds. Time for inference is less than ?????
 
-Using less data
+![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train.png)
+
+**Figure 1:** *Maria training result, prediction accuracy over test set was 1.000*
+
+![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train.png)
+
+**Figure 2:** *Andrea training result, prediction accuracy over test set was 0.995*
+
+![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_train.png)
+
+**Figure 3:** *Björn training result, prediction accuracy over test set was 1.000*
+
+![](../images/ALLpersonas.png)
+**Figure 3:** *All personas combined training result, prediction accuracy over test set was 0.997*
 
 _Hardware & Software used:_
 Google cloud VM instance
-2 vCPU, 13GB memory
-1 GPU x NVIDIA Tesla K80
-OS Debian 9
-PyTorch 1.0
-Fastai 1.0
-Python 3.7
+* 2 vCPU, 13GB memory
+* 1 GPU x NVIDIA Tesla K80
+* OS Debian 9
+* PyTorch 1.0
+* Fastai 1.0
+* Python 3.7
 
 ### Result and discussion
-Given our results fastai and tabular learner meets our expectations regarding [accuracy in predictions, time to train and response time for inference](../backend/backend.md). These metrics are sufficient to be able continue with the project.
+Given our results fastai and tabular learner meets our expectations regarding [accuracy in predictions, time to train and response time for inference](../backend/backend.md). These metrics are sufficient to be able continue with the project and no further technical investigations are needed at this point.
