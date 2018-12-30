@@ -31,17 +31,18 @@ Training result for the 3 personas training over 7 epochs on a Neural network wi
 
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train.png)
 
-**Figure 1:** *Maria training result, prediction accuracy over test set was 1.000*
+**Figure 1:** *Maria training result, prediction accuracy over test set was 1.000, all 3 scenarios correct predicted.*
 
 ![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train.png)
 
-**Figure 2:** *Andrea training result, prediction accuracy over test set was 0.995*
+**Figure 2:** *Andrea training result, prediction accuracy over test set was 0.995, all 3 scenarios correct predicted.*
 
 ![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_train.png)
 
-**Figure 3:** *Björn training result, prediction accuracy over test set was 1.000*
+**Figure 3:** *Björn training result, prediction accuracy over test set was 1.000,  all 3 scenarios correct predicted.*
 
 ![](../images/ALLpersonas.png)
+
 **Figure 3:** *All personas combined training result, prediction accuracy over test set was 0.997*
 
 _Hardware & Software used:_
