@@ -1,5 +1,6 @@
 from fastai import *          # Quick accesss to most common functionality
 from fastai.tabular import *  # Quick accesss to tabular functionality
+stations = pd.read_csv("../data/stations.csv")
 
 def predict_journeys(learner,dataset):
     "This can be something that is already in the framework."
@@ -32,3 +33,34 @@ def make_shure_we_got_enough_rows(dataset,minrows=1000):
 def save_results(filename,result):
     a = np.asarray(result)
     np.savetxt("saved/"+filename,a,delimiter=',',fmt="%10.2f")
+    
+def from_to(journey_code):
+    if(len(str(journey_code))==10):
+        fromStationNbr = str(journey_code)[0:5]
+        try:
+            fromStationNbr = stations.loc[stations['stationId']==int(fromStationNbr)]['stationName'].iloc[0]
+        except:
+            fromStationNbr = str(journey_code)[0:5]
+        toStationNbr = str(journey_code)[5:10]
+        try:
+            toStationNbr = stations.loc[stations['stationId']==int(toStationNbr)]['stationName'].iloc[0]
+        except:
+            toStationNbr = str(journey_code)[5:10]
+        return fromStationNbr+"->"+toStationNbr
+    else:
+        return journey_code 
+    
+def from_to_id(journey_code):
+    if(len(str(journey_code))==10):
+        return str(journey_code)[0:5]+"->"+str(journey_code)[5:10]
+    else:
+        return journey_code 
+    
+def evaluate_learning(learner,testset):
+    result = []
+    #result.append(["prediction","accuracy","day"])
+    for row in testset.itertuples():
+        row.Index
+        predicted = learner.predict(row)
+        result.append([predicted[0],round(predicted[2].max().item(),2),row[4],row[5]])
+    return (result)
