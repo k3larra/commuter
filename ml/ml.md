@@ -29,17 +29,17 @@ Visit the pages for the individual personas for more information:
 
 Training result for the 3 personas training over 7 epochs on a Neural network with two hidden layers with 200/100 neurons. Code details for evaluation can be found [here](ml_verification.ipynb). The training could go on further since there is only a little amount of overfitting for Andrea. Training time is less than 10 seconds. Time for inference is less than ?????
 
-![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train.png)
+![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train2.png)
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_cf2.png)
 
 **Figure 1:** *Maria training result, prediction accuracy over test set was 1.000, all 3 scenarios correct predicted.*
 
-![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train.png)
+![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train2.png)
 ![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_cf2.png)
 
 **Figure 2:** *Andrea training result, prediction accuracy over test set was 0.995, all 3 scenarios correct predicted.*
 
-![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_train.png)
+![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_train2.png)
 ![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_cf2.png)
 
 **Figure 3:** *Björn training result, prediction accuracy over test set was 1.000,  all 3 scenarios correct predicted.*
@@ -54,4 +54,4 @@ Google cloud VM instance
 * Python 3.7
 
 ### Result and discussion
-Given our results fastai and tabular learner meets our expectations regarding [accuracy in predictions, time to train and response time for inference](../backend/backend.md). These metrics are sufficient to be able continue with the project and no further technical investigations are needed at this point.
+Given our results fastai and tabular learner meets our expectations regarding [accuracy in predictions, time to train and response time for inference](../backend/backend.md). We estimate that these metrics are sufficient to continue with the project and no further technical investigations are needed at this stage.
