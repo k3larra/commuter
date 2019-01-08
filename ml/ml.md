@@ -30,17 +30,17 @@ Visit the pages for the individual personas for more information:
 Training result for the 3 personas training over 7 epochs on a Neural network with two hidden layers with 200/100 neurons. Code details for evaluation can be found [here](ml_verification.ipynb). The training could go on further since there is only a little amount of overfitting for Andrea. Training time is less than 10 seconds. Time for inference is less than ?????
 
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train.png)
-![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_cf.png)
+![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_cf2.png)
 
 **Figure 1:** *Maria training result, prediction accuracy over test set was 1.000, all 3 scenarios correct predicted.*
 
 ![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train.png)
-![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_cf.png)
+![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_cf2.png)
 
 **Figure 2:** *Andrea training result, prediction accuracy over test set was 0.995, all 3 scenarios correct predicted.*
 
 ![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_train.png)
-![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_cf.png)
+![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_cf2.png)
 
 **Figure 3:** *Björn training result, prediction accuracy over test set was 1.000,  all 3 scenarios correct predicted.*
 
