@@ -1,16 +1,24 @@
-### Initial MT research approach
+# Initial MT research approach
 [Code](mt.ipynb)
-Our focus in this part of the work is on the users first encounter with the app. In this situation the app has no knowledge of the users commute patterns and cannot make any accurate predictions. The commute patterns could be learned over time but it would take some time until enough training data has been collected to make accurate journey predictions. In our initial approach we are interested of transferring the commuters knowledge of his/her commute patterns to the ML artifact. Initially we want to explore and evaluate a MT approach that starts with an initial Machine Teaching session. In this session the user adds known travel patterns and that can be used to train the model so predictions can be made from first use.
+
+Our focus in this part of the work is on the users first encounter with the app. In this situation the app has no knowledge of the users commute patterns and cannot make any accurate predictions. The commute patterns could be learned over time but it would take some time and is complicated by [noisy data](..data/data.md). In our approach we are interested in transferring the commuters knowledge of his/her commute patterns to the ML artifact.
+
+Our delimitation is to explore and evaluate a MT approach that starts with an initial Machine Teaching session. During this session the user adds his/her known travel patterns that is used to train the model so journey predictions can be made from start.
 The training is done using the same model and settings as in [ml verification](../ml/ml.md)
+
+ In this part of the work, presented on this page, we focus on the models performance for different teaching sets. We do not optimize the model in any way to optimize predictions but keep our initial settings from our [ML verification](../ml/ml.md). We are instead interested in finding and using a model that can handle training sets from different distributions.
+
+ The app version used and the interface used to create teaching data in part 1 can be seen in Figure 1.
+
 ![Backend](../images/small_detail_search.png)
 ![Backend](../images/small_prediction.png)
-![Backend](../images/training.png)
+![Backend](../images/trainingdata.png)
 
 **Figure 1:** *In the figure on the left the standard app is shown and details for one departure is expanded. In the second figure the app has received a contextbased prediction and departure times has been collected from the transport provider. In the figure on the right labelled training data can be added.*
 
-### Functional test with teaching data.
-To evaluate the approach some teaching sets were created for each user. One minimal with only the most frequent patterns and one more verbose that targeted all scenarios for the persona. The initial teaching sets were created using the UI on the right in figure 1.
-<br>Teachingsets created:<br>
+## Part 1: Functional test with teaching data.
+To evaluate the approach some teaching sets were created for each user. One minimal with only the most frequent patterns and one more verbose that targeted all scenarios for the persona. In the more verbose set we created data rows from imagining the different combinations of arguments for each journey. The initial teaching sets were created using the UI on the right in figure 1.
+<br>**Teachingsets created:**<br>
 Andrea:
 [Verbose](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_teaching_set.csv)
 [Limited](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_teaching_set_minimal.csv)
@@ -21,15 +29,24 @@ Andrea:
 [Verbose](../data/tnK534JMwwfhvUEycn69HPbhqkt2_teaching_set.csv)
 [Limited](../data/tnK534JMwwfhvUEycn69HPbhqkt2_teaching_set_minimal.csv)
 
-<br>Test sets used:<br>
+To evaluate the models we used the same test sets as in our [ML verification](../ml/ml.md)
+<br>**Test sets used:**<br>
+[Andrea test set](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_test.csv)<br>
+[Björn test set](../data/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_test.csv)<br>
+[Maria test set](../data/tnK534JMwwfhvUEycn69HPbhqkt2_test.csv)
 
-The results of the evaluations were mixed and somtimes hard to create a optimal teaching set by hand. But the results are quite promising for the users Andrea and Maria. THhe......
+### Results part 1: Training with hand made teaching sets.
+The results of the evaluations were mixed and indicates that it is hard to create a good teaching set by hand. To hande the sometimes small teahing sets the rows were duplicated so at least 1000 rows are in the teaching sets. But the results are initially promising as can be seen in Figure 2 and for the individual users in Figure 3-5.
 
-![](../images/teach1_bjorn.png)
-![](../images/teach1_andrea.png)
-![](../images/teach1_maria.png)
+In figure 1 the accuracy for the users journeys in the test sets are shown distributed over the week. For Andrea the results are good since she her travel patterns are regular on weekdays but more irregular on weekends. In her teaching sets her weekend journeys are more correct than in the original data set. For Björn and Maria it becomes clear that the model can't distinguish the important parametes from the ones that does limited information. This indicates that it is important to augment the training data so the parameters that carries less information is more random.
 
-Training results and confusion matrix
+![](../images/andrea_teach1_small.png)
+![](../images/bjorn_teach1_small.png)
+![](../images/maria_teach1_small.png)
+
+**Figure 2:** *The accuracy and SD for the accuracy distributed over the week for the different users. The models used are trained using the teaching sets and evaluated towards the same test set for each user.*
+
+In the figures below more details around the training for each users is presented.
 
 Minimal teaching set
 
@@ -82,8 +99,9 @@ Accurracy 0.98
 
 #### First MT interface
 To overcome some of the limitations in the functional test above a teaching UI is created that automatically augment the data. Data augmentation is generally a way to get more data out of limited data. In our case creating extra data points over a time interval or over multiple locations can give better accuracy [REFS].
-The interface in figure 2 was used, the data is agmented in the following way..........
-![](../images/MT1.png)
+The interface in figure 2 was used, the data is agmented in the following way........ss..
+
+![](../images/mt1.png)
 
 <br>Teachingsets created:<br>
 Andrea:

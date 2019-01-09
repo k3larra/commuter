@@ -19,7 +19,7 @@ Our initial tests with fastai [tabular learner](https://docs.fast.ai/tabular.htm
 To evaluate this in a more structured way we used our [personas](../README.md#Personas) and senarios.
 
 
-### Fastai 1.0 Pytorch 1.0 tests.
+### Fastai 1.0 PyTorch 1.0 tests.
 In the tests outlined below uses the persona data created for one year use and the test set created from the same distribution.
 Visit the pages for the individual personas for more information:
 * [Maria](../personas/Maria.md)
