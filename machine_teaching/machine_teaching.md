@@ -48,56 +48,56 @@ In figure 1 the accuracy for the users journeys in the test sets are shown distr
 
 In the figures below more details around the training for each users is presented.
 
-Minimal teaching set
+#### Minimal teaching set
+Using the minimal teaching sets for training training results and confusion matrix fpor the personas.
 
-Andrea
+**Andrea**
 
-![](../images/andrea_train1.png)
-![](../images/andrea_cf1.png)
+![](../images/andrea_train2.png)
+![](../images/andrea_cf11.png)
 
-Accuracy 0.89
+**Figure 3:** *For Andrea only her commute patterns to school is in the teaching set as seen in the confusion matrix. The accuracy is acceptable since the bulk of Andreas journeys are to and from school. Accuracy on test set 0.89*
 
-Björn
+**Björn**
 
 ![](../images/bjorn_train1.png)
 ![](../images/bjorn_cf1.png)
 
-Accuracy 0.57
+**Figure 3:** *For Björn the result is not acceptable and the journeys are confused with each other. This can also be seen in Figure 1. Accuracy on test set 0.57*
 
-
-Maria
+**Maria**
 
 ![](../images/maria_train1.png)
 ![](../images/maria_cf1.png)
 
-Accuracy: 0.86
+**Figure 4:** *For Maria the result can be acceptable the teaching sets includes some of her irregular journeys on the evenings and correctly predicts many of her commutes to school in Malmö. Accuracy on test set 0.86*
 
-Verbose teaching set
+### Verbose manual teaching set
 
-Andrea
+**Andrea**
 
 ![](../images/andrea_train2.png)
 ![](../images/andrea_cf2.png)
 
-Accurracy 0.92
+**Figure 5:** *. Accuracy on test set 0.92*
 
-Björn
+**Björn**
 
 ![](../images/bjorn_train2.png)
 ![](../images/bjorn_cf2.png)
 
+**Figure 6:** *... Accuracy on test set 0.74*
 Accuracy 0.74
 
-Maria
+**Maria**
 
 ![](../images/maria_train2.png)
 ![](../images/maria_cf2.png)
 
-Accurracy 0.98
+**Figure 4:** *. Accuracy on test set 0.98*
 
-**Figure 1:** *Accuracy for persona test set. The models are trained using the teaching sets referenced above and the accuracy is plotted over weekdays. The black line is standard deviation for the accuracy. *
 
-#### First MT interface
+## Part 2: Augmented teaching set
 To overcome some of the limitations in the functional test above a teaching UI is created that automatically augment the data. Data augmentation is generally a way to get more data out of limited data. In our case creating extra data points over a time interval or over multiple locations can give better accuracy [REFS].
 The interface in figure 2 was used, the data is agmented in the following way........ss..
 
@@ -134,6 +134,3 @@ Accurracy test set: 1.0
 ![](../images/maria_cf3.png)
 
 Accurracy test set: 0.99
-
-## User study MT approach handling cold start situation
-In progress
