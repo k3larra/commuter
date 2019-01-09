@@ -99,9 +99,22 @@ In the figures below more details around the training result for each users is p
 
 
 ## Part 2: Augmented teaching set
-To overcome some of the limitations in the functional test above a teaching UI is created that automatically augment the data. The interface in figure 2 was used. the data is agmented in the following way.
+To overcome some of the limitations in the functional test above a teaching UI is created that augment teaching data. The interface for experimental teaching interface can be seen in Figure 8. The data is agmented in the following way:
+
+- The datapoints created are evenly distributed around departure station or smartphone location.
+- Time instances distributed over a time span or the whole day.
+- Fixed day, weekend or weekday
+- Datapoints for one [activity](../data/data.md) or evenly distributed over activities.
+- 40 rows are created when "ADD TRAININ DATA" is pressed.
+
+Selecting 40 rows is a tradeoff between number of rows and enough augmentation of data. For example Andreas journeys to school in mornings were added by selecting correct origin destination, 400 meters around departure station and a timespan between 07:00 and 09:00 for weekdays.
 
 ![](../images/mt10.png)
+
+**Figure 8:** *Experimental teaching interface that creates 40 augmented rows in batches.*
+
+### Results part 2: Training with augmented teaching set.
+The results for these teaching sets clearly indicates that the extra amount of data gives the neural network more information to train on and better possibility to converge on the parameters with most information gain.
 
 <br>Teachingsets created:<br>
 Andrea:
@@ -111,26 +124,30 @@ Andrea:
 <br>Maria:
 [Augmented](../data/tnK534JMwwfhvUEycn69HPbhqkt2_teaching_set_aug.csv)
 
-### Andrea
+In Figure 9 the accuracy for the users journeys in the test sets are shown distributed over the week. Compared to Figure 2 the augmented teaching set is added and a significant increase in accuracy and a decrease in standard deviation can be observed. Especially the matrices for Björn has improved significantly.
+
+![](../images/andrea_teach3.png)
+![](../images/bjorn_teach3.png)
+![](../images/maria_teach3.png)
+
+**Figure 9:** *The accuracy and SD for the accuracy distributed over a week for the different personas. The models used are trained using the teaching sets and evaluated towards the same test set for each user.*
+
+**Andrea**
 
 ![](../images/andrea_train3.png)
-![](../images/andrea_teach3.png)
-![](../images/andrea_cf3.png)
+![](../images/andrea_cf3.png)<br>
+**Figure 10:** *Andreas results are better and the accuracy on test set decreased compared to the verbose teaching set to 0.88. False positives are due to lack of information regarding weekend journeys.*
 
-Accurracy test set: 0.88
-
-### Björn
+**Björn**
 
 ![](../images/bjorn_train3.png)
-![](../images/bjorn_teach3.png)
 ![](../images/bjorn_cf3.png)
 
-Accurracy test set: 1.0
+**Figure 11:** *For Björn the augmented teaching set helped the model significantly to distinguish his weekend journeys from the weekday journeys. Accuracy on test set 1.0*
 
-### Maria
+**Maria**
 
 ![](../images/maria_train3.png)
-![](../images/maria_teach3.png)
 ![](../images/maria_cf3.png)
 
-Accurracy test set: 0.99
+**Figure 12:** *The augmented teaching set increased the accuracy on test set for Maria to 0.99. So no drastic improvement.*
