@@ -1,5 +1,5 @@
 # Initial MT research approach
-[Code](mt.ipynb)
+[Code](mt.ipynb) used especially in this evaluation.
 
 Our focus, in this part of the project, is the user’s first encounter with the commuter app. In this situation, the app has no knowledge of the users commute patterns and cannot make any accurate predictions. The commute patterns could be learned over time but it would take some time and is complicated by [noisy data](../README.md#data-collection). In our approach we are interested in transferring the commuters knowledge of his/her commute patterns to the ML artifact and thus mitigate cold start problem.
 
@@ -20,7 +20,7 @@ Described below is an exploration and evaluation of an MT approach that starts w
 
 To evaluate the approach some teaching sets were created for each user. One minimal set with only the most frequent patterns and one more verbose that targeted all scenarios for the persona. In the more verbose set, we created data rows by imagining the different combinations of arguments for each journey. We created the teaching sets using the UI on the right in figure 1.
 
-<br>**Teachingsets created:**<br>
+**Teachingsets created:**<br>
 Andrea:
 [Verbose](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_teaching_set.csv)
 [Limited](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_teaching_set_minimal.csv)
@@ -33,7 +33,7 @@ Andrea:
 
 To evaluate the models we used the same test sets as in our [ML verification](../ml/ml.md)
 
-<br>**Test sets used:**<br>
+**Test sets used:**<br>
 [Andrea test set](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_test.csv)<br>
 [Björn test set](../data/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_test.csv)<br>
 [Maria test set](../data/tnK534JMwwfhvUEycn69HPbhqkt2_test.csv)
@@ -58,14 +58,14 @@ In the figures below more details around the training result for each users is p
 ![](../images/andrea_train2.png)
 ![](../images/andrea_cf1.png)
 
-**Figure 3:** *For Andrea only her commute patterns to school is in the teaching set as seen in the confusion matrix. The accuracy is acceptable since the bulk of Andreas journeys are to and from school. Accuracy on test set 0.89*
+**Figure 3:** *Andrea has only her commute patterns to school in the teaching set as seen in the confusion matrix. The accuracy is acceptable since the bulk of Andreas journeys are to and from school. Accuracy on test set 0.89*
 
 **Björn**
 
 ![](../images/bjorn_train1.png)
 ![](../images/bjorn_cf1.png)
 
-**Figure 3:** *For Björn the result is unclear and the journeys are confused with each other. This can also be seen in Figure 1. Accuracy on test set 0.57*
+**Figure 3:** *For Björn the result is unclear and the journeys are confused with each other. This can also be seen in Figure 1. Accuracy on test set is 0.57*
 
 **Maria**
 
@@ -81,7 +81,7 @@ In the figures below more details around the training result for each users is p
 ![](../images/andrea_train2.png)
 ![](../images/andrea_cf2.png)
 
-**Figure 5:** *Some of Andreas evening are correctely predicted but since she has no distinkt commute pattern it is hard to predict any of them with high accuracy. The total accuracy for the test set is 0.92 since the bulk of journeys are on weekdays to school*
+**Figure 5:** *Some of Andreas evening journeys are correctely predicted but since she has no distinct commute pattern, regarding those journeys, it is hard to predict any of them with high accuracy. The total accuracy for the test set is 0.92 since the bulk of journeys are on weekdays to school*
 
 **Björn**
 
@@ -99,13 +99,13 @@ In the figures below more details around the training result for each users is p
 
 
 ## Part 2: Augmented teaching set
-To overcome some of the limitations in the functional test above a teaching UI is created that augment teaching data. The interface for experimental teaching interface can be seen in Figure 8. The data is agmented in the following way:
+To overcome some of the limitations in the functional test above a teaching UI is created that augment teaching data. The interface for experimental teaching interface can be seen in Figure 8. The data is agmented in the following way
 
 - The datapoints created are evenly distributed around departure station or smartphone location.
 - Time instances distributed over a time span or the whole day.
 - Fixed day, weekend or weekday
 - Datapoints for one [activity](../data/data.md) or evenly distributed over activities.
-- 40 rows are created when "ADD TRAININ DATA" is pressed.
+- 40 rows are created when "ADD TRAINING DATA" is pressed.
 
 Selecting 40 rows is a tradeoff between number of rows and enough augmentation of data. For example Andreas journeys to school in mornings were added by selecting correct origin destination, 400 meters around departure station and a timespan between 07:00 and 09:00 for weekdays.
 
