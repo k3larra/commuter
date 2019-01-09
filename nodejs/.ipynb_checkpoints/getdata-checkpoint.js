@@ -38,7 +38,8 @@ refLearning.on("child_removed", function(snapshot, prevChildKey) {
 });
 
 function addit(filepathname,snapshot){
-    fs.appendFileSync(filepathname,+
+    if(snapshot.val().monthday==-1){ //This indicates that the entry is created by the teaching interface
+        fs.appendFileSync(filepathname,+
            snapshot.val().detectedActivity+","+
            //snapshot.val().longitude+","+
            //snapshot.val().latitude+","+
@@ -47,9 +48,11 @@ function addit(filepathname,snapshot){
            //snapshot.val().time+","+
            snapshot.val().minuteOfDay+","+
            snapshot.val().weekday+","+
+           
            //snapshot.val().detectedActivityConfidence+","+
            //snapshot.val().uid+
            snapshot.val().startStation+snapshot.val().endStation+
            "\n");
+    }   
     //console.log("Wrote for user: "+snapshot.val().uid);
 }
