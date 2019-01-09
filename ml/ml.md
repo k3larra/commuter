@@ -28,7 +28,7 @@ Visit the pages for the individual personas for more information:
 
 
 
-Training result for the 3 personas training over 7 epochs on a Neural network with two hidden layers with 200/100 neurons. Code details for evaluation can be found [here](ml_verification.ipynb). The training could go on further since there is only a little amount of overfitting for Andrea. Training time is less than 10 seconds. Time for inference is less than ?????
+Training result for the 3 personas training over 7 epochs on a Neural network with two hidden layers with 200/100 neurons. Code details for evaluation can be found [here](ml_verification.ipynb). The training could go on further since there is only a little amount of overfitting for Andrea. Training time is less than 10 seconds. Time for inference is less than 0.2 seconds.
 
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train2.png)
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_cf2.png)

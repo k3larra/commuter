@@ -1,22 +1,23 @@
 # Initial MT research approach
 [Code](mt.ipynb)
 
-Our focus, in this part of the project, is the users first encounter with the commuter app. In this situation the app has no knowledge of the users commute patterns and cannot make any accurate predictions. The commute patterns could be learned over time but it would take some time and is complicated by [noisy data](../data/data.md). In our approach we are interested in transferring the commuters knowledge of his/her commute patterns to the ML artifact and thus mitigate cold start problem.
+Our focus, in this part of the project, is the user’s first encounter with the commuter app. In this situation, the app has no knowledge of the users commute patterns and cannot make any accurate predictions. The commute patterns could be learned over time but it would take some time and is complicated by [noisy data](../README.md#data-collection). In our approach we are interested in transferring the commuters knowledge of his/her commute patterns to the ML artifact and thus mitigate cold start problem.
 
-Our delimitation is to explore and evaluate a MT approach that starts with an initial Machine Teaching session. During this session the user adds his/her known travel patterns that is used to train the model so journey predictions can be made from start.
-The training is done using the same model and settings as in [ml verification](../ml/ml.md)
+Described below is an exploration and evaluation of an MT approach that starts with an initial Machine Teaching session. During this session the user adds his/her known travel patterns that will be used to train the model so journey predictions can be made accurately from first use of the app.
 
- In this part of the work, presented on this page, we focus on the models performance for different teaching sets. We do not optimize the model in any way to optimize predictions but keep our initial settings from our [ML verification](../ml/ml.md). We are instead interested in finding and using a model that can handle training sets from different distributions.
+ The presentation on this page focus on the models performance for different teaching sets. We do not optimize the model in any way to optimize predictions for the teaching sets instead we keep our initial settings from our [ml verification](../ml/ml.md). We do this to evaluate the models robustness with respect to different distributions of teaching sets.
 
- The app version used and the interface used to create teaching data in part 1 can be seen in Figure 1.
+## Part 1: Functional test with teaching data.
+
+ The app version and the interface used to create teaching data in this part can be seen in Figure 1.
 
 ![Backend](../images/small_detail_search.png)
 ![Backend](../images/small_prediction.png)
 ![Backend](../images/trainingdata.png)
 
-**Figure 1:** *In the figure on the left the standard app is shown and details for one departure is expanded. In the second figure the app has received a contextbased prediction and departure times has been collected from the transport provider. In the figure on the right labelled training data can be added.*
+**Figure 1:** *On the left the standard app is shown and details for one departure is expanded. In the second figure the app has received a contextbased prediction and departure times has been collected from the transport provider. In the figure on the right labelled training data can be added.*
 
-## Part 1: Functional test with teaching data.
+
 To evaluate the approach some teaching sets were created for each user. One minimal with only the most frequent patterns and one more verbose that targeted all scenarios for the persona. In the more verbose set we created data rows from imagining the different combinations of arguments for each journey. The initial teaching sets were created using the UI on the right in figure 1.
 <br>**Teachingsets created:**<br>
 Andrea:
