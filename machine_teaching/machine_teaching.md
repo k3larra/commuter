@@ -81,29 +81,27 @@ In the figures below more details around the training result for each users is p
 ![](../images/andrea_train2.png)
 ![](../images/andrea_cf2.png)
 
-**Figure 5:** *. Accuracy on test set 0.92*
+**Figure 5:** *Some of Andreas evening are correctely predicted but since she has no distinkt commute pattern it is hard to predict any of them with high accuracy. The total accuracy for the test set is 0.92 since the bulk of journeys are on weekdays to school*
 
 **Björn**
 
 ![](../images/bjorn_train2.png)
 ![](../images/bjorn_cf2.png)
 
-**Figure 6:** *... Accuracy on test set 0.74*
-Accuracy 0.74
+**Figure 6:** *For Björn the result is really mixed and many journeys are confused with each other giving an accuracy on the test set of 0.74.*
 
 **Maria**
 
 ![](../images/maria_train2.png)
 ![](../images/maria_cf2.png)
 
-**Figure 7:** *. Accuracy on test set 0.98*
+**Figure 7:** *For Maria the verbose teaching set worked well. Accuracy on test set 0.98*
 
 
 ## Part 2: Augmented teaching set
-To overcome some of the limitations in the functional test above a teaching UI is created that automatically augment the data. Data augmentation is generally a way to get more data out of limited data. In our case creating extra data points over a time interval or over multiple locations can give better accuracy [REFS].
-The interface in figure 2 was used, the data is agmented in the following way........ss..
+To overcome some of the limitations in the functional test above a teaching UI is created that automatically augment the data. The interface in figure 2 was used. the data is agmented in the following way.
 
-![](../images/mt1.png)
+![](../images/mt10.png)
 
 <br>Teachingsets created:<br>
 Andrea:
