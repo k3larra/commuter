@@ -32,17 +32,17 @@ Training result for the 3 personas training over 7 epochs on a Neural network wi
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train2.png)
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_cf2.png)
 
-**Figure 1:** *Maria training result, prediction accuracy over test set was 1.000, all 3 scenarios correct predicted.*
+**Figure 1:** *Maria training result, prediction accuracy over test set was 1.000, all 3 scenarios correct predicted. Confusion matrix.*
 
 ![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_train2.png)
 ![](../images/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_cf2.png)
 
-**Figure 2:** *Andrea training result, prediction accuracy over test set was 0.995, all 3 scenarios correct predicted.*
+**Figure 2:** *Andrea training result, prediction accuracy over test set was 0.995, all 3 scenarios correct predicted. Confusion matrix.*
 
 ![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_train2.png)
 ![](../images/hCWCulj7M1aMVyd0Fm0Eqrv8q1Q2_cf2.png)
 
-**Figure 3:** *Björn training result, prediction accuracy over test set was 1.000,  all 3 scenarios correct predicted.*
+**Figure 3:** *Björn training result, prediction accuracy over test set was 1.000,  all 3 scenarios correct predicted. Confusion matrix.*
 
 _Hardware & Software used:_
 Google cloud VM instance
