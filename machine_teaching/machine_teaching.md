@@ -99,13 +99,13 @@ In the figures below more details around the training result for each users is p
 
 
 ## Part 2: Augmented teaching set
-To overcome some of the limitations in the functional test above a teaching UI is created that augment teaching data. The interface for experimental teaching interface can be seen in Figure 8. The data is agmented in the following way
+To overcome some of the limitations in the test above a the teaching UI is transformed so it can be used to create and augment teaching data. The interface for experimental teaching interface can be seen in Figure 8. The data is augmented in the following way:
 
 - The datapoints created are evenly distributed around departure station or smartphone location.
 - Time instances distributed over a time span or the whole day.
-- Fixed day, weekend or weekday
+- Fixed day, weekend, weekday or independant of day.
 - Datapoints for one [activity](../data/data.md) or evenly distributed over activities.
-- 40 rows are created when "ADD TRAINING DATA" is pressed.
+- 40 rows, using the distribution outlined above, are created when "ADD TRAINING DATA" is pressed.
 
 Selecting 40 rows is a tradeoff between number of rows and enough augmentation of data. For example Andreas journeys to school in mornings were added by selecting correct origin destination, 400 meters around departure station and a timespan between 07:00 and 09:00 for weekdays.
 
@@ -114,9 +114,9 @@ Selecting 40 rows is a tradeoff between number of rows and enough augmentation o
 **Figure 8:** *Experimental teaching interface that creates 40 augmented rows in batches.*
 
 ### Results part 2: Training with augmented teaching set.
-The results for these teaching sets clearly indicates that the extra amount of data gives the neural network more information to train on and better possibility to converge on the parameters with most information gain.
+The results for these teaching sets clearly indicates that the extra amount of data gives the neural network more information to train from and a better possibility to converge on the parameters with most information gain.
 
-<br>Teachingsets created:<br>
+Teachingsets created:<br>
 Andrea:
 [Augmented](../data/ehaBtfOPDNZjzy1MEvjQmGo4Zv12_teaching_set_aug.csv)
 <br>Björn:
@@ -124,7 +124,7 @@ Andrea:
 <br>Maria:
 [Augmented](../data/tnK534JMwwfhvUEycn69HPbhqkt2_teaching_set_aug.csv)
 
-In Figure 9 the accuracy for the users journeys in the test sets are shown distributed over the week. Compared to Figure 2 the augmented teaching set is added and a significant increase in accuracy and a decrease in standard deviation can be observed. Especially the matrices for Björn has improved significantly.
+In Figure 9 the accuracy for the users journeys in the test sets are shown distributed over the week. Compared to Figure 2 the augmented teaching set is added and a significant increase in accuracy and a decrease in standard deviation can be observed. Especially the metrix for Björn has improved.
 
 ![](../images/andrea_teach3.png)
 ![](../images/bjorn_teach3.png)
@@ -132,11 +132,13 @@ In Figure 9 the accuracy for the users journeys in the test sets are shown distr
 
 **Figure 9:** *The accuracy and SD for the accuracy distributed over a week for the different personas. The models used are trained using the teaching sets and evaluated towards the same test set for each user.*
 
+In the figures below more details around the training result for each users is presented.
+
 **Andrea**
 
 ![](../images/andrea_train3.png)
 ![](../images/andrea_cf3.png)<br>
-**Figure 10:** *Andreas results are better and the accuracy on test set decreased compared to the verbose teaching set to 0.88. False positives are due to lack of information regarding weekend journeys.*
+**Figure 10:** *Andreas results in parity with preious results, the accuracy on test set decreased compared to the verbose teaching set to 0.88. False positives are due to lack of information regarding iregular weekend journeys.*
 
 **Björn**
 
