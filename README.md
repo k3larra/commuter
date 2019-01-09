@@ -35,9 +35,9 @@ The pages referenced below represents the steps of our research in a chronologic
   * [Data creation and data preprocessing](data/data.md) (Done)
   * [Verification of ML functionality](ml/ml.md) (Done)
 * [Machine Teaching approach](machine_teaching/mt.md) (Ongoing)
-  * [Evaluation MT functionality](machine_teaching/machine_teaching.md) (Ongoing)
-  * Evaluation of simple MT interface (Ongoing)
-  * Use study: MT approach handling cold start situation (Ongoing)
+  * [Evaluation MT functionality](machine_teaching/machine_teaching.md) (Done)
+  * Evaluation of simple MT interface (Not started)
+  * [Use study: MT approach handling cold start situation](machine_teaching/use_study_cold_start.md) (Planning)
   * Use study: MT approach updating a trained model
 * Interactive ML
 * Iterative ML
