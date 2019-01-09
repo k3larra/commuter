@@ -1,4 +1,5 @@
 # About Machine Learning and Commuting
+[Code](ml_verification.ipynb)
 In this setup, we are not interested in a detailed performance test since we at this stage only can estimate the requirements the usage, context and app design will result in. At this stage interested in metrics around accuracy, time for predictions and training time. As mentioned in [backend](../backend/backend.md) we need an ML-model that converges for our data and inference times that are as short as possible and model training time shorter than 10 minutes. Regarding inference time, it is only one part in the chain of events from the request of journey prediction until the transport provider delivers departure times.
 
 #### Verification: ML functionality for our context
