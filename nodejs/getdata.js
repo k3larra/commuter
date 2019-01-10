@@ -22,10 +22,9 @@ refLearning.on("child_added", function(snapshot, prevChildKey) {
     if (fs.existsSync(savepath+snapshot.val().uid+".csv")){
         addit(savepath+snapshot.val().uid+".csv",snapshot);
     }else{
-        fs.appendFileSync(savepath+snapshot.val().uid+".csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+
-           "\n");
+        fs.appendFileSync(savepath+snapshot.val().uid+".csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+"\n");
         addit(savepath+snapshot.val().uid+".csv",snapshot);
-    }                
+    }
 });
 
 
