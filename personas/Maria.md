@@ -31,11 +31,11 @@ Maria has spent a late Friday night in Malmö and want information on when the n
 
 ### Two weeks usage data
 This data represents 2 weeks of usage of the app, the data is in chronological order.<br>
-[Two weeks chronological data](../data/tnK534JMwwfhvUEycn69HPbhqkt2_start14days.csv)
+[Two weeks data](../data/tnK534JMwwfhvUEycn69HPbhqkt2_start14days.csv)
 
 ### One year usage data
 This data represents an estimation of one year´s usage, the data is not in chronological order.<br>
-[One year chronological data](../data/tnK534JMwwfhvUEycn69HPbhqkt2_train_valid.csv)
+[One year data](../data/tnK534JMwwfhvUEycn69HPbhqkt2_train_valid.csv)
 
 ### Test set
 This data can be used as test set and comes from the same distribution as the one year data. The data is not in chronological order.<br>

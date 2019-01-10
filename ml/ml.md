@@ -1,4 +1,5 @@
 # About Machine Learning and Commuting
+[Code](ml_verification.ipynb)
 In this setup, we are not interested in a detailed performance test since we at this stage only can estimate the requirements the usage, context and app design will result in. At this stage interested in metrics around accuracy, time for predictions and training time. As mentioned in [backend](../backend/backend.md) we need an ML-model that converges for our data and inference times that are as short as possible and model training time shorter than 10 minutes. Regarding inference time, it is only one part in the chain of events from the request of journey prediction until the transport provider delivers departure times.
 
 #### Verification: ML functionality for our context
@@ -18,7 +19,7 @@ Our initial tests with fastai [tabular learner](https://docs.fast.ai/tabular.htm
 To evaluate this in a more structured way we used our [personas](../README.md#Personas) and senarios.
 
 
-### Fastai 1.0 Pytorch 1.0 tests.
+### Fastai 1.0 PyTorch 1.0 tests.
 In the tests outlined below uses the persona data created for one year use and the test set created from the same distribution.
 Visit the pages for the individual personas for more information:
 * [Maria](../personas/Maria.md)
@@ -27,7 +28,7 @@ Visit the pages for the individual personas for more information:
 
 
 
-Training result for the 3 personas training over 7 epochs on a Neural network with two hidden layers with 200/100 neurons. Code details for evaluation can be found [here](ml_verification.ipynb). The training could go on further since there is only a little amount of overfitting for Andrea. Training time is less than 10 seconds. Time for inference is less than ?????
+Training result for the 3 personas training over 7 epochs on a Neural network with two hidden layers with 200/100 neurons. Code details for evaluation can be found [here](ml_verification.ipynb). The training could go on further since there is only a little amount of overfitting for Andrea. Training time is less than 10 seconds. Time for inference is less than 0.2 seconds.
 
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_train2.png)
 ![](../images/tnK534JMwwfhvUEycn69HPbhqkt2_cf2.png)
