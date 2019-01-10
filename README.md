@@ -44,7 +44,7 @@ The pages referenced below represents the steps of our research in a chronologic
 * Combining MT, interactive ML and iterative ML
 ---
 The app used for this work can be downloaded from google play [Skånependlaren](https://skanependlaren.firebaseapp.com/) <br>
-Some general information around the project can be found [on this site](https://skanependlaren.firebaseapp.com/). The target group for this site is to give app users more information around the project and the ML-artifact. Users will at a later stage be able to log in and inspect their data and trained model.<br>
+Some general information around the project can be found [on this site](https://skanependlaren.firebaseapp.com/). The target group for that site is to give app users more information around the project and the ML-artifact.<br>
 Images on the pages are owned by the author or if stated otherwise collected from [pixabay](https://pixabay.com) and licenced under [CC0 Creative Commons]( https://creativecommons.org/publicdomain/zero/1.0/deed.en)<br>
 _References_<br>
 [1] P. Y. Simard et al., “Machine Teaching: A New Paradigm for Building Machine Learning Systems,” 2017.<br>
