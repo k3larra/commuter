@@ -1,11 +1,15 @@
 var admin = require("firebase-admin");
-var PythonShell = require('python-shell');
+// var PythonShell = require('python-shell');
+let {PythonShell} = require('python-shell')
 var serviceAccount = require("../../key/skanependlaren-firebase-adminsdk-xemd8-4c798104f8.json");
 var fs = require('fs');
-var savepath = "../datatest/"
+var savepath = "../data/"
+var mltrainer = '../ml/pendlaren_FastAI.py'
 //const bigquery = require('@google-cloud/bigquery')();
 //const dataset = bigquery.dataset('commuting');
 verbose = true; //Sends more information to Node server
+results = "Node server starting"
+console.log('results: %j', results)
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
@@ -21,27 +25,28 @@ var predictRef = db.ref("predict");
 
 //Listen for new user
 userRef.on("child_added", function(snapshot) {
-    console.log("User: "+snapshot.key+" settings uppdated.");
-    //const fileId = snapshot.key;
-    //if (fs.existsSync(savepath+snapshot.val().uid+".csv")){
-        //Do nothing
-    //}else{
-        //Create the file
-    //    fs.appendFileSync(savepath+snapshot.val().uid+".csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+"\n");
-    //}  
-    //FIX Check if file for the user exists
-    //const table = dataset.table(tableId);
-   //table.exists().then(function(data){
-   //    if(data[0]){
-   //         console.log("Table for user: "+snapshot.key+" exists");
-   //    }else{
-   //        console.log("Table for user: "+snapshot.key+" exist and is created");
-           //FIX Create the file
-   //        createTable(tableId);
-   //    }
-   // })
-   //Starting server or new user resetting all setting data to false...
-   //console.log("User: "+snapshot.key+" added.");
+    //File will be added at first save data.
+            //console.log("User: "+snapshot.key+" settings uppdated.");
+            //const fileId = snapshot.key;
+            //if (fs.existsSync(savepath+snapshot.val().uid+".csv")){
+                //Do nothing
+            //}else{
+                //Create the file
+            //    fs.appendFileSync(savepath+snapshot.val().uid+".csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+"\n");
+            //}  
+            //FIX Check if file for the user exists
+            //const table = dataset.table(tableId);
+           //table.exists().then(function(data){
+           //    if(data[0]){
+           //         console.log("Table for user: "+snapshot.key+" exists");
+           //    }else{
+           //        console.log("Table for user: "+snapshot.key+" exist and is created");
+                   //FIX Create the file
+           //        createTable(tableId);
+           //    }
+           // })
+           //Starting server or new user resetting all setting data to false...
+           //console.log("User: "+snapshot.key+" added.");
    userRef.child(snapshot.key).update({
           clear:false,
           train:false,
@@ -72,9 +77,9 @@ userRef.on("child_changed", function(snapshot,prevChildKey) {
       if(clear&&!train&&!update_training_settings){
         //callDeleteUser(id);
       }else if(!clear && train && !update_training_settings){
-        //callTrain(id,false);
+        callTrain(id,false);
       }else if (!clear && !train && update_training_settings){
-        //callTrain(id,true);
+        callTrain(id,true);
       }else if (!clear && !train && !update_training_settings){
       }else{
         console.log("ERROR: The combination for user: "+id+" train="+train+
@@ -107,30 +112,21 @@ function callTrain(id,retrain){
     var timeStart=Date.now();
     db.ref("userSettings").child(id).once("value")
         .then(function(snapshot){
-            var useActivity = snapshot.child("useActivity").val();
-            var useLocation = snapshot.child("useLocation").val();
-            var useWeekday = snapshot.child("useWeekday").val();
-            var useTime = snapshot.child("useTime").val();
-            console.log("useActivity: "+useActivity+ " useLocation: "+useLocation+" useWeekday: "+useWeekday+" useTime: "+useTime);
             var options = {
                 mode: 'text',
-                pythonPath: '/usr/bin/python2.7',
-                //pythonOptions: ['-u'],
-                args: ['-i',id,'-a',useActivity,'-l',useLocation,'-w',useWeekday,'-t',useTime,'-r',retrain]
+                //pythonPath: '/usr/bin/python2.7',     //Check 3.7
+                args: ['-i',id]
             };
             //console.log(options);
-            PythonShell.run('pendlaren_TF16.py', options, function (err, results) {
-              var timeTakenForTraining = (Math.round((Date.now()-timeStart)/(1000*60))); //In minutes  
-              console.log("Model for user "+id+" created in "+timeTakenForTraining+" minutes");
+            PythonShell.run(mltrainer, options, function (err, results) {
+              var timeTakenForTraining = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
+              console.log("Model for user "+id+" created in "+timeTakenForTraining+" seconds");
               if (results){
-                console.log('results: %j', results);
+                console.log(results[0])
+                console.log(results[results.length-1])
               }
               if (err) {
-                  if (String(err).includes("Your CPU supports instructions")){
-                        console.log("WARNING: No GPU on server");
-                  }else{
-                   console.log("Tensorflow returned with the error:"+err);
-                  }
+                   console.log("Trainingerror:"+err);
               }
               if(retrain){
                   db.ref("users").child(id).update({
@@ -141,12 +137,11 @@ function callTrain(id,retrain){
                       train:false
                     });
               }
-              db.ref("userSettings").child(id).update({   //test to predict
+              db.ref("userSettings").child(id).update({
                     modelExists:true,
                     modelCreatedTime: admin.database.ServerValue.TIMESTAMP,
               });
             });
-
     });
 }
 
@@ -266,14 +261,11 @@ function doPrediction(id,val){
 }
 
 
+//New learning or teaching data 
 
-//FIX handles automatic retraining of the model
-//Should not be active for now.
 var refLearning = db.ref("learningdata");
 var added =0;
 var saved=0;
-
-//New learning 
 refLearning.on("child_added", function(snapshot, prevChildKey) {
     added=added+1;
     if(snapshot.val().monthday==-1){  //This is teaching data
@@ -293,13 +285,10 @@ refLearning.on("child_added", function(snapshot, prevChildKey) {
     }
     refLearning.child(snapshot.key).remove()
     .then(function() {
-      console.log("Remove succeeded.")
+      //console.log("Remove succeeded.")
     }).catch(function(error) {
-        console.log("Remove failed: " + error.message)
+      console.log("Remove failed: " + error.message)
     });
-        //Fix add it to my training file or teaching file!!
-        //And remove it from firebase here and disable firebase function .then{}!!!
-      //Here I could clean up Firebase and remove stray entries.
 });
 
 
@@ -307,7 +296,7 @@ refLearning.on("child_added", function(snapshot, prevChildKey) {
 refLearning.on("child_removed", function(snapshot, prevChildKey) {
   saved=saved+1;
   var result = added-saved;
-  console.log("Search saved for user: "+snapshot.val().uid+" total saved in this session: "+ saved + " not removed "+ result);
+  //console.log("Search saved for user: "+snapshot.val().uid+" total saved in this session: "+ saved + " not removed "+ result);
   //When retrain timer is started
   //updateTimeOrAddNewTraining(snapshot.val().uid);
 });
@@ -327,13 +316,13 @@ function addit(filepathname,snapshot){
            //snapshot.val().uid+
            snapshot.val().startStation+snapshot.val().endStation+
            "\n");
-        console.log("what");
 }   
 
 
 //*************************************************************//
 //MISC
-
+//FIX handles automatic retraining of the model
+//Should not be active for now.
 //Timer code
 var timerObjects = [];
 minute = 60*1000;
