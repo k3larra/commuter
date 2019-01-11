@@ -5,6 +5,7 @@ var serviceAccount = require("../../key/skanependlaren-firebase-adminsdk-xemd8-4
 var fs = require('fs');
 var savepath = "../data/"
 var mltrainer = '../ml/pendlaren_FastAI.py'
+var mlpredictor = '../ml/pendlaren_FastAI_predict.py'
 //const bigquery = require('@google-cloud/bigquery')();
 //const dataset = bigquery.dataset('commuting');
 verbose = true; //Sends more information to Node server
@@ -94,16 +95,12 @@ userRef.on("child_removed", function(snapshot) {
 
 //Listen for new prediction
 predictRef.on("child_added", function(snapshot) {
-  //doPrediction(snapshot.key,snapshot.val());
+  doPrediction(snapshot.key,snapshot.val());
   predictRef.child(snapshot.key).remove();
 });
 
-//Training incremental or retrain
-//FIX Should probably always retrain!!!
-//FIX needs fixing for FastAI
+//Remove retrain??
 function callTrain(id,retrain){
-    //Perhaps check if user is in retrain list and remove it will retrain again otherwise. 
-    //This ocurs if retrain is made manually.
     if (retrain){
         console.log("Retraining model for user : "+id+" with updated parameters started.");
     }else{
@@ -151,7 +148,7 @@ function callDeleteUser(id){
   console.log("Deleting user, model and BigQuery dat for user : "+id+" started.");
         var options = {
           mode: 'text',
-          pythonPath: '/usr/bin/python2.7',
+          //pythonPath: '/usr/bin/python2.7',
           pythonOptions: ['-u'],
           args: ['-u',id]
         };
@@ -174,26 +171,51 @@ function doPrediction(id,val){
 //Check which parameters are active and that no training is currently active or just try????.
     db.ref("userSettings").child(id).once("value")
         .then(function(snapshot){
-            var useActivity = snapshot.child("useActivity").val();
-            var useLocation = snapshot.child("useLocation").val();
-            var useWeekday = snapshot.child("useWeekday").val();
-            var useTime = snapshot.child("useTime").val();
             var modelExists = snapshot.child("modelExists").val();
-            //console.log("useActivity: "+useActivity+ " useLocation: "+useLocation+" useWeekday: "+useWeekday+" useTime: "+useTime);
-            //Only use prediction settings asked for
-            if(!useActivity){
-               delete val["detectedActivity"]
-            }
-            if(!useLocation){
-               delete val["geoHash"]
-            }
-            if(!useTime){
-               delete val["minuteOfDay"]
-            }
-            if(!useWeekday){
-               delete val["weekday"]
-            }
             var timeStart=Date.now();
+            if (modelExists){
+                console.log("Model exists for: "+id);
+                //console.log(val)
+                var options = {
+                    mode: 'text',
+                    pythonOptions: ['-u'],
+                    args: ['-i',id,'-a',val.detectedActivity,'-g',val.geoHash,'-m',val.minuteOfDay,'-w',val.weekday]
+                };
+                //console.log(options);
+                PythonShell.run(mlpredictor, options, function (err, results) {
+                  var timeTakenForPrediction = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
+                  if (results){
+                    var fromStation = results[0];
+                    var toStation = results[1];
+                    var probability = results[2];
+                    console.log("Predicted for :"+id+" from: "+fromStation+" to: "+toStation+" with probability: "+
+                        probability+" prediction took: "+timeTakenForPrediction+"s");
+                    db.ref("result").child(id).child("new").set({
+                        probability: Math.round(probability*100),
+                        from:fromStation,
+                        to:toStation,
+                        time:admin.database.ServerValue.TIMESTAMP,
+                        timeTaken:timeTakenForPrediction
+                    });
+                    db.ref("userSettings").child(id).update({   //test to predict
+                        modelExists:true,
+                    });
+                  }
+                  if (err) {
+                    console.log("Predictionerror disabling prediction:"+err);
+                    db.ref("userSettings").child(id).update({   //test to predict
+                        modelExists:false,
+                    });
+                  }
+
+                });
+            }else{
+                    console.log("No model exists");
+                    db.ref("userSettings").child(id).update({   //test to predict
+                        modelExists:false,
+                    });
+            }
+            /*
             const exec = require('child_process').exec;
             fs = require('fs');
             fs.writeFile('pendlaren/'+id+'/pred.json', JSON.stringify(val), function (err) {
@@ -257,6 +279,7 @@ function doPrediction(id,val){
             }else{
                  console.log("No model exists");
             }
+            */
     });
 }
 

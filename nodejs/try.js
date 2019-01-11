@@ -1,3 +1,37 @@
-l = ["epoch     train_loss  valid_loss","1         0.815828    1.057832    ","2         0.564487    0.764715    ","3         0.448928    0.491816    ","4         0.373309    0.353728    ","5         0.316852    0.289918    ","6         0.275295    0.264370    ","7         0.245403    0.238879    "]
-console.log(l[0])
-console.log(l[l.length-1])
+let {PythonShell} = require('python-shell')
+let options = {
+  pythonOptions: ['-u'], // get print results in real-time
+};
+var pyshell = new PythonShell('try.py', options);
+
+
+//setInterval(predict, 2000);
+
+function predict() {
+    console.log("Go");
+    //pyshell.send(JSON.stringify([4,1242481883,1163,6]));
+}
+
+pyshell.send(JSON.stringify([4,1242481883,1163,6]));
+
+pyshell.on('message', function (message) {
+    // received a message sent from the Python script (a simple "print" statement)
+    console.log(message);
+});
+
+// end the input stream and allow the process to exit
+pyshell.end(function (err) {
+    if (err){
+        throw err;
+    };
+
+    console.log('finished');
+});
+
+
+/*let {PythonShell} = require('python-shell')
+var python_process;
+var pyshell = new PythonShell('../code/commuter.py');
+python_process = pyshell.childProcess;
+console.log("hepp")
+//python_process.from_to_id("journey")*/
