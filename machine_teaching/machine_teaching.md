@@ -1,7 +1,7 @@
 # Initial MT research approach
 [Code](mt.ipynb) used especially in this evaluation.
 
-Our focus, in this part of the project, is the user’s first encounter with the commuter app. In this situation, the app has no knowledge of the users commute patterns and cannot make any accurate predictions. The commute patterns could be learned over time but it would take some time and is complicated by [noisy data](../README.md#data-collection). In our approach we are interested in transferring the commuters knowledge of his/her commute patterns to the ML artifact and thus mitigate cold start problem.
+Our focus, in this part of the project, is the user’s first encounter with the commuter app. In this situation/scenario, the app has no knowledge of the users commute patterns and cannot make any accurate predictions. The commute patterns could be learned over time but it would take some time and is complicated by [noisy data](../README.md#data-collection). In our approach we are interested in transferring the commuters knowledge of his/her commute patterns to the ML artifact and thus mitigate cold start problem.
 
 Described below is an exploration and evaluation of an MT approach that starts with an initial Machine Teaching session. During this session the user adds his/her known travel patterns that will be used to train the model so journey predictions can be made accurately from first use of the app.
 
