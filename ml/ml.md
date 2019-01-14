@@ -1,4 +1,7 @@
 # Verification of ML functionality
+
+[BACK](../README.md)
+
 [Code](ml_verification.ipynb)
 In this setup, we are not interested in a detailed performance test since we at this stage only can estimate the requirements the usage, context and app design will result in. At this stage interested in metrics around accuracy, time for predictions and training time. As mentioned in [backend](../backend/backend.md) we need an ML-model that converges for our data and inference times that are as short as possible and model training time shorter than 10 minutes. Regarding inference time, it is only one part in the chain of events from the request of journey prediction until the transport provider delivers departure times.
 
@@ -56,3 +59,5 @@ Google cloud VM instance
 
 ### Result and discussion
 Given our results fastai and tabular learner meets our expectations regarding [accuracy in predictions, time to train and response time for inference](../backend/backend.md). We estimate that these metrics are sufficient to continue with the project and no further technical investigations are needed at this stage.
+
+[BACK](../README.md)

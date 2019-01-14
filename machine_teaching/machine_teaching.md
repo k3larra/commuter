@@ -1,4 +1,7 @@
 # Initial MT research approach
+
+[BACK](../README.md)
+
 [Code](mt.ipynb) used especially in this evaluation.
 
 Our focus, in this part of the project, is the user’s first encounter with the commuter app. In this situation/scenario, the app has no knowledge of the users commute patterns and cannot make any accurate predictions. The commute patterns could be learned over time but it would take some time and is complicated by [noisy data](../README.md#data-collection). In our approach we are interested in transferring the commuters knowledge of his/her commute patterns to the ML artifact and thus mitigate cold start problem.
@@ -153,3 +156,5 @@ In the figures below more details around the training result for each users is p
 ![](../images/maria_cf3.png)
 
 **Figure 12:** *The augmented teaching set increased the accuracy on test set for Maria to 0.99. So no drastic improvement.*
+
+[BACK](../README.md)
