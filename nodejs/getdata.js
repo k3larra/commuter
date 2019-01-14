@@ -1,3 +1,7 @@
+/*Used for testing purposes
+listens for added serch and train data on the connected firebase db
+saves to files named as the user uid.csv*/
+
 var admin = require("firebase-admin");
 var serviceAccount = require("../../key/skanependlaren-firebase-adminsdk-xemd8-4c798104f8.json");
 var fs = require('fs');
@@ -8,6 +12,7 @@ admin.initializeApp({
  credential: admin.credential.cert(serviceAccount),
  databaseURL: "https://skanependlaren.firebaseio.com"
 });
+
 var db = admin.database();
 var refLearning = db.ref("learningdata");
 var added =0;
@@ -22,14 +27,12 @@ refLearning.on("child_added", function(snapshot, prevChildKey) {
     if (fs.existsSync(savepath+snapshot.val().uid+".csv")){
         addit(savepath+snapshot.val().uid+".csv",snapshot);
     }else{
-        fs.appendFileSync(savepath+snapshot.val().uid+".csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+
-           "\n");
+        fs.appendFileSync(savepath+snapshot.val().uid+".csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+"\n");
         addit(savepath+snapshot.val().uid+".csv",snapshot);
-    }                
+    }
 });
 
-
-//New learning data addded BigQuery
+//The data is removed by another process (currently in pendlaren_node_ server.js) when it has been saved.
 refLearning.on("child_removed", function(snapshot, prevChildKey) {
   saved=saved+1;
   var result = added-saved;
