@@ -1,5 +1,0 @@
-results: "Node server starting"
-Retraining model for user : tnK534JMwwfhvUEycn69HPbhqkt2 parameters not changed.
-Model for user tnK534JMwwfhvUEycn69HPbhqkt2 created in 8 seconds
-epoch     train_loss  valid_loss  accuracy
-7         0.263074    0.179634    0.955357  
