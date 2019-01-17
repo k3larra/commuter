@@ -1,0 +1,20 @@
+ * Serving Flask app "testPredictAndTrain.py" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+epoch     train_loss  valid_loss  accuracy
+1         1.516891    0.781088    0.926686  
+2         0.640535    0.141410    0.973607  
+3         0.289765    0.065457    0.988270  
+4         0.154611    0.060003    0.991202  
+5         0.092345    0.043220    0.991202  
+6         0.069238    0.039444    0.991202  
+7         0.053198    0.036802    0.991202  
+epoch     train_loss  valid_loss  accuracy
+1         1.357654    0.924561    0.929619  
+2         0.537255    0.108294    0.985337  
+3         0.243774    0.064765    0.988270  
+4         0.131702    0.050866    0.988270  
+5         0.084986    0.045191    0.988270  
+6         0.063011    0.037911    0.991202  
