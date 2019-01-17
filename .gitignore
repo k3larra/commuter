@@ -44,3 +44,10 @@ config.rst
 /.pydevproject
 
 package-lock.json
+
+# Environments
+.env
+.venv
+env/
+venv/
+ENV/
