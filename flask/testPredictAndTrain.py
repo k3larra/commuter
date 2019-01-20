@@ -6,8 +6,11 @@ from fastai import *
 from fastai.tabular import *
 sys.path.append("../code")
 from commuter import *
-model_dir = '../models/'
-data_dir = '../data/'
+#model_dir = '../models/'
+#data_dir = '../data/'
+model_dir = '../../userdata/models/'
+data_dir = '../../userdata/data/'
+import os
 #userId = "tnK534JMwwfhvUEycn69HPbhqkt2"
 #data = TabularDataBunch.load_empty(model_dir+userId)
 #learn = tabular_learner(data, layers=[200,100])
@@ -43,7 +46,7 @@ def retrain():
             teachingSet = pd.read_csv(data_dir+userId+teachingSetName)
             teachingSet= make_shure_we_got_enough_rows(teachingSet)
             valid_idx = list(np.random.randint(0,len(teachingSet),int(len(teachingSet)*0.1)))
-            data = (TabularList.from_df(teachingSet, path='../models/'+userId, cat_names=cat_names, cont_names=cont_names, procs=procs)
+            data = (TabularList.from_df(teachingSet, path=model_dir+userId, cat_names=cat_names, cont_names=cont_names, procs=procs)
                 .split_by_idx(valid_idx)
                 .label_from_df(cols=dep_var)
                 .databunch())
@@ -73,20 +76,25 @@ def predict():
                 prediction,accuracy = predict_journey(learn,detectedActivity,geoHash,minuteOfDay,weekday)
                 return json.dumps({"probability": str(accuracy), "fromStation": str(prediction)[0:5], "toStation": str(prediction)[5:10],"error":0})
             except:
-                return json.dumps({"error":2 }) 
+                return json.dumps({"error":2}) 
         else:
-            return json.dumps({"error":1 }) #Not all parameters
+            return json.dumps({"error":1}) #Not all parameters
     else:
-        return json.dumps({"error":1 })   #no id
+        return json.dumps({"error":1})   #no id
     
 @app.route('/delete')
 def delete():
+    print("delete")
     userId = request.args.get('userId')
     if userId != None:
         try:
-            shutil.rmtree(model_dir+userId)
-            return json.dumps({"error":0 })
+            shutil.rmtree(model_dir+userId)  #The model
+            #oldname = ":"
+            for filename in os.listdir(data_dir):
+                if filename.startswith(userId):
+                    os.remove(data_dir+filename)
+            return json.dumps({"error":0})
         except:
-            return json.dumps({"error":1 })
+            return json.dumps({"error":1})
     else:
-        return json.dumps({"error":1 })   #no id
+        return json.dumps({"error":2})   #no id

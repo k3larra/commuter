@@ -4,7 +4,8 @@ const http = require('http');
 let {PythonShell} = require('python-shell')
 var serviceAccount = require("../../key/skanependlaren-firebase-adminsdk-xemd8-4c798104f8.json");
 var fs = require('fs');
-var savepath = "../data/"
+//var savepath = "../data/"
+var savepath = '../../userdata/data/'
 var mltrainer = '../ml/pendlaren_FastAI.py'
 var mlpredictor = '../ml/pendlaren_FastAI_predict.py'
 //const bigquery = require('@google-cloud/bigquery')();
@@ -12,7 +13,7 @@ var mlpredictor = '../ml/pendlaren_FastAI_predict.py'
 verbose = true; //Sends more information to Node server
 results = "Node server starting"
 console.log('results: %j', results)
-
+//ToDo Clean file!!!!!!
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://skanependlaren.firebaseio.com"
@@ -23,6 +24,7 @@ admin.initializeApp({
 
 var db = admin.database();
 var userRef = db.ref("users");
+var userSettingsRef = db.ref("userSettings");
 var predictRef = db.ref("predict");
 
 //Listen for new user
@@ -77,7 +79,7 @@ userRef.on("child_changed", function(snapshot,prevChildKey) {
             }
       });
       if(clear&&!train&&!update_training_settings){
-        //callDeleteUser(id);
+        callDeleteUser(id);
       }else if(!clear && train && !update_training_settings){
         callTrain(id,false);
       }else if (!clear && !train && update_training_settings){
@@ -110,6 +112,43 @@ function callTrain(id,retrain){
     var timeStart=Date.now();
     db.ref("userSettings").child(id).once("value")
         .then(function(snapshot){
+            http.get('http://127.0.0.1:5000/retrain?userId='+id, (resp) => {
+            let data = '';
+            resp.on('data', (chunk) => {
+                data += chunk;
+            });
+            // The whole response has been received. Print out the result.
+            resp.on('end', () => {
+                var timeTakenForTraining = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
+                console.log(data);
+                trainingResult = JSON.parse(data)
+                if (trainingResult.error == 0){
+                    console.log("Done training for: "+id);
+                    if(retrain){
+                        db.ref("users").child(id).update({
+                            update_training_settings:false,
+                        });
+                    }else{
+                        userRef.child(id).update({
+                          train:false
+                        });
+                    }
+                    db.ref("userSettings").child(id).update({
+                        modelExists:true,
+                        modelCreatedTime: admin.database.ServerValue.TIMESTAMP,
+                    });
+                }else if(trainingResult.error == 1){
+                    console.log("Training file not found for: "+id);
+                }else if (trainingResult.error == 2){
+                    console.log("Unknown training error for: "+id);
+                }else{
+                    console.log("Unknown training error for: "+id);
+                }
+            });
+            }).on("error", (err) => {
+              console.log("Error in connection for: "+id);
+            });
+            /*
             var options = {
                 mode: 'text',
                 //pythonPath: '/usr/bin/python2.7',     //Check 3.7
@@ -139,15 +178,43 @@ function callTrain(id,retrain){
                     modelExists:true,
                     modelCreatedTime: admin.database.ServerValue.TIMESTAMP,
               });
-            });
+            });*/
     });
 }
 
 //FIX this calls fuctions that deletes the user 
 //Can probably be done from here
 function callDeleteUser(id){
-  console.log("Deleting user, model and BigQuery dat for user : "+id+" started.");
-        var options = {
+  console.log("Deleting user, model data and firebase entry for user : "+id+" started.");
+  http.get('http://127.0.0.1:5000/delete?userId='+id, (resp) => {
+    let data = '';
+    // A chunk of data has been recieved.
+    resp.on('data', (chunk) => {
+        data += chunk;
+    });
+    resp.on('end', () => {
+        trainingResult = JSON.parse(data)
+        if (trainingResult.error == 0){
+            userRef.child(id).update({   //think I have to do this first???
+              clear:false
+            });
+            userRef.child(id).remove();
+            /*userSettingsRef.child(id).update({   //If removed everything gets back to standard UI so let this stay in firebase.
+              modelExists:true
+            });
+            userSettingsRef.child(id).remove(); //Check if works....*/
+        }else if(trainingResult.error == 1){
+            console.log("Unknown deleting error for: "+id);
+        }else{
+            console.log("Unknown error for: "+id);
+        }
+        
+    });
+    }).on("error", (err) => {
+      console.log("Error in connection for: "+id);
+    });
+}
+      /*  var options = {
           mode: 'text',
           //pythonPath: '/usr/bin/python2.7',
           pythonOptions: ['-u'],
@@ -158,13 +225,10 @@ function callDeleteUser(id){
       console.log('results: %j', results);
       if (err) {
         console.log("Tensorflow threw the error:"+err);
-      }
-      userRef.child(id).update({
-          clear:false
-            });
-            userRef.child(id).remove();
-      });
-}
+      }*/
+
+      // });
+
 
 
 //Fix this major rewriting needed use FastAI
@@ -187,11 +251,9 @@ function doPrediction(id,val){
                     resp.on('data', (chunk) => {
                         data += chunk;
                     });
-
-                    // The whole response has been received. Print out the result.
                     resp.on('end', () => {
                         predictionResult = JSON.parse(data)
-                            var timeTakenForPrediction = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
+                        var timeTakenForPrediction = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
                             if (predictionResult.error == 0){
                                 console.log("Predicted for :"+id+
                                             " from: "+predictionResult.fromStation+
