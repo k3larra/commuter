@@ -1,4 +1,5 @@
 var admin = require("firebase-admin");
+const http = require('http');
 // var PythonShell = require('python-shell');
 let {PythonShell} = require('python-shell')
 var serviceAccount = require("../../key/skanependlaren-firebase-adminsdk-xemd8-4c798104f8.json");
@@ -176,6 +177,53 @@ function doPrediction(id,val){
             if (modelExists){
                 console.log("Model exists for: "+id);
                 //console.log(val)
+                http.get('http://127.0.0.1:5000/predict?userId='+id+
+                '&detectedActivity='+val.detectedActivity+
+                '&geoHash='+val.geoHash+
+                '&minuteOfDay='+val.minuteOfDay+
+                '&weekday='+val.weekday, (resp) => {
+                    let data = '';
+                    // A chunk of data has been recieved.
+                    resp.on('data', (chunk) => {
+                        data += chunk;
+                    });
+
+                    // The whole response has been received. Print out the result.
+                    resp.on('end', () => {
+                        predictionResult = JSON.parse(data)
+                            var timeTakenForPrediction = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
+                            if (predictionResult.error == 0){
+                                console.log("Predicted for :"+id+
+                                            " from: "+predictionResult.fromStation+
+                                            " to: "+predictionResult.toStation+
+                                            " with probability: "+predictionResult.probability+
+                                            " prediction took: "+timeTakenForPrediction+"s");
+                                db.ref("result").child(id).child("new").set({
+                                    probability: Math.round(predictionResult.probability*100),
+                                    from:predictionResult.fromStation,
+                                    to:predictionResult.toStation,
+                                    time:admin.database.ServerValue.TIMESTAMP,
+                                    timeTaken:timeTakenForPrediction
+                                });
+                                db.ref("userSettings").child(id).update({   //PRediction worked som model exists
+                                    modelExists:true,
+                                });
+                            }else if(predictionResult.error == 1){
+                                console.log("no id: "+id);
+                            }else if (predictionResult.error == 2){
+                                console.log("Prediction error or no trained mode found for: "+id);
+                                db.ref("userSettings").child(id).update({   //Disable prediction for user
+                                    modelExists:false,
+                                });
+                            }else{
+                                console.log("Unknown prediction error for: "+id);
+                            }
+                            //console.log(data);
+                        });
+                    }).on("error", (err) => {
+                        console.log("Error in connection for: "+id);
+                    });
+                /*
                 var options = {
                     mode: 'text',
                     pythonOptions: ['-u'],
@@ -208,78 +256,13 @@ function doPrediction(id,val){
                     });
                   }
 
-                });
+                });*/
             }else{
                     console.log("No model exists");
                     db.ref("userSettings").child(id).update({   //test to predict
                         modelExists:false,
                     });
             }
-            /*
-            const exec = require('child_process').exec;
-            fs = require('fs');
-            fs.writeFile('pendlaren/'+id+'/pred.json', JSON.stringify(val), function (err) {
-                if (err)
-                    return console.log("The file could not be written a probable cause is that no training has taken place");
-                console.log('Asking prediction for user '+id+" using data "+JSON.stringify(val));
-            });
-            if(modelExists){
-                const testscript = exec('./pendlaren_prediction_local.sh pendlaren/'+id+"/");
-                //Run the script and write data to firebase
-                testscript.stdout.on('data', function(data){
-                    try {
-                        var myJSONObj = JSON.parse(data);
-                        var probArray = myJSONObj.predictions[0].probabilities
-                        var result = myJSONObj.predictions[0].classes
-                        var ids = myJSONObj.predictions[0].class_ids
-                        var prediction = result[0]
-                        var maxProbability = probArray[ids[0]]
-                        var fromStation = (prediction).substring(0,5);
-                        var toStation = (prediction).substring(5,10);
-                        var timeTakenForPrediction = (Math.round((Date.now()-timeStart)/1000));
-                        console.log("Predicted for :"+id+" from: "+fromStation+" to: "+toStation+" with probability: "+
-                                    maxProbability+" prediction took: "+timeTakenForPrediction+"s");
-                        db.ref("result").child(id).child("new").set({
-                                    probability: Math.round(maxProbability*100),
-                                    from:fromStation,
-                                    to:toStation,
-                                    time:admin.database.ServerValue.TIMESTAMP,
-                                    timeTaken:timeTakenForPrediction
-                            });
-                         db.ref("userSettings").child(id).update({   //test to predict
-                            modelExists:true,
-                         });
-                    } catch (e){
-                        console.log(e);
-                        console.log("Set modelExists to false for user: "+id);
-                        db.ref("userSettings").child(id).update({   //test to predict
-                            modelExists:false,
-                        });
-                    }
-                });
-                testscript.stderr.on('data', function(data){
-                    if(data.includes("Failed to load model")){
-                        console.log("ERROR: Failed to load model for user: "+id+" set modelExists to false");
-                        console.log(data);
-                        db.ref("userSettings").child(id).update({   //test to predict
-                             modelExists:false,
-                        });
-                    }else if (data.includes("Your CPU supports instructions")){
-                        console.log("WARNING: No GPU on server");
-                    }else if (data.includes("Unable to read file")){
-                        //console.log("No trained model");
-                    }else if (data.includes("WARNING")){
-                        console.log("WARNING: Prediction for user: "+id+" failed with data "+data);
-                    }else if (data.includes("ERROR")){
-                        console.log("ERROR: Prediction for user: "+id+" failed with data "+data);
-                    }else{
-                       console.log("Prediction for user: "+id+" failed with data "+data);
-                    }
-                });
-            }else{
-                 console.log("No model exists");
-            }
-            */
     });
 }
 
