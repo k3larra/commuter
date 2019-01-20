@@ -2,6 +2,8 @@ node_modules
 build
 npm-debug.log
 .env
+.pkl
+.pth
 .DS_Store
 MANIFEST
 build
