@@ -1,3 +1,4 @@
+/* In this program various isolated test regarding the communication between nodejs server and flask server takes place */
 const http = require('http');
 //setInterval(pred1, 1000);
 //setInterval(pred2, 2000);

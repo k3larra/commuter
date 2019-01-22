@@ -64,3 +64,4 @@ def evaluate_learning(learner,testset):
         predicted = learner.predict(row)
         result.append([predicted[0],round(predicted[2].max().item(),2),row[4],row[5]])
     return (result)
+

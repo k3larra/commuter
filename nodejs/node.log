@@ -1,0 +1,12 @@
+results: "Node server starting"
+Model exists for: tnK534JMwwfhvUEycn69HPbhqkt2
+undefined:1
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+^
+
+SyntaxError: Unexpected token < in JSON at position 0
+    at JSON.parse (<anonymous>)
+    at IncomingMessage.resp.on (/home/jupyter/commuter/nodejs/pendlaren_node_server.js:177:49)
+    at IncomingMessage.emit (events.js:194:15)
+    at endReadableNT (_stream_readable.js:1107:12)
+    at process.internalTickCallback (internal/process/next_tick.js:72:19)

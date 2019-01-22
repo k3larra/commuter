@@ -1,56 +1,27 @@
 var admin = require("firebase-admin");
 const http = require('http');
-// var PythonShell = require('python-shell');
-let {PythonShell} = require('python-shell')
+//let {PythonShell} = require('python-shell')
 var serviceAccount = require("../../key/skanependlaren-firebase-adminsdk-xemd8-4c798104f8.json");
 var fs = require('fs');
-//var savepath = "../data/"
 var savepath = '../../userdata/data/'
-var mltrainer = '../ml/pendlaren_FastAI.py'
-var mlpredictor = '../ml/pendlaren_FastAI_predict.py'
-//const bigquery = require('@google-cloud/bigquery')();
-//const dataset = bigquery.dataset('commuting');
-verbose = true; //Sends more information to Node server
+//var mltrainer = '../ml/pendlaren_FastAI.py'
+//var mlpredictor = '../ml/pendlaren_FastAI_predict.py'
+//verbose = true; //Sends more information to Node server
 results = "Node server starting"
 console.log('results: %j', results)
-//ToDo Clean file!!!!!!
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://skanependlaren.firebaseio.com"
 });
 
-
-//FIX Inactivate the functions in Firebase???
-
 var db = admin.database();
 var userRef = db.ref("users");
 var userSettingsRef = db.ref("userSettings");
 var predictRef = db.ref("predict");
+var refLearning = db.ref("learningdata");
 
 //Listen for new user
 userRef.on("child_added", function(snapshot) {
-    //File will be added at first save data.
-            //console.log("User: "+snapshot.key+" settings uppdated.");
-            //const fileId = snapshot.key;
-            //if (fs.existsSync(savepath+snapshot.val().uid+".csv")){
-                //Do nothing
-            //}else{
-                //Create the file
-            //    fs.appendFileSync(savepath+snapshot.val().uid+".csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+"\n");
-            //}  
-            //FIX Check if file for the user exists
-            //const table = dataset.table(tableId);
-           //table.exists().then(function(data){
-           //    if(data[0]){
-           //         console.log("Table for user: "+snapshot.key+" exists");
-           //    }else{
-           //        console.log("Table for user: "+snapshot.key+" exist and is created");
-                   //FIX Create the file
-           //        createTable(tableId);
-           //    }
-           // })
-           //Starting server or new user resetting all setting data to false...
-           //console.log("User: "+snapshot.key+" added.");
    userRef.child(snapshot.key).update({
           clear:false,
           train:false,
@@ -69,7 +40,6 @@ userRef.on("child_changed", function(snapshot,prevChildKey) {
       var train = false;
       var update_training_settings = false;
       snapshot.forEach(function(data) {
-        //console.log("The " + data.key + " has value " + data.val());
             if(data.key=="clear"){
                 clear = data.val();
             }else if(data.key=="train"){
@@ -107,7 +77,7 @@ function callTrain(id,retrain){
     if (retrain){
         console.log("Retraining model for user : "+id+" with updated parameters started.");
     }else{
-        console.log("Retraining model for user : "+id+" parameters not changed.");
+        console.log("Retraining model for user : "+id);
     }
     var timeStart=Date.now();
     db.ref("userSettings").child(id).once("value")
@@ -120,7 +90,7 @@ function callTrain(id,retrain){
             // The whole response has been received. Print out the result.
             resp.on('end', () => {
                 var timeTakenForTraining = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
-                console.log(data);
+                //console.log(data);
                 trainingResult = JSON.parse(data)
                 if (trainingResult.error == 0){
                     console.log("Done training for: "+id);
@@ -148,42 +118,10 @@ function callTrain(id,retrain){
             }).on("error", (err) => {
               console.log("Error in connection for: "+id);
             });
-            /*
-            var options = {
-                mode: 'text',
-                //pythonPath: '/usr/bin/python2.7',     //Check 3.7
-                args: ['-i',id]
-            };
-            //console.log(options);
-            PythonShell.run(mltrainer, options, function (err, results) {
-              var timeTakenForTraining = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
-              console.log("Model for user "+id+" created in "+timeTakenForTraining+" seconds");
-              if (results){
-                console.log(results[0])
-                console.log(results[results.length-1])
-              }
-              if (err) {
-                   console.log("Trainingerror:"+err);
-              }
-              if(retrain){
-                  db.ref("users").child(id).update({
-                      update_training_settings:false,
-                  });
-              }else{
-                    userRef.child(id).update({
-                      train:false
-                    });
-              }
-              db.ref("userSettings").child(id).update({
-                    modelExists:true,
-                    modelCreatedTime: admin.database.ServerValue.TIMESTAMP,
-              });
-            });*/
     });
 }
 
-//FIX this calls fuctions that deletes the user 
-//Can probably be done from here
+
 function callDeleteUser(id){
   console.log("Deleting user, model data and firebase entry for user : "+id+" started.");
   http.get('http://127.0.0.1:5000/delete?userId='+id, (resp) => {
@@ -195,7 +133,7 @@ function callDeleteUser(id){
     resp.on('end', () => {
         trainingResult = JSON.parse(data)
         if (trainingResult.error == 0){
-            userRef.child(id).update({   //think I have to do this first???
+            userRef.child(id).update({   //I have to do this first to get a handle so I can delet
               clear:false
             });
             userRef.child(id).remove();
@@ -214,24 +152,8 @@ function callDeleteUser(id){
       console.log("Error in connection for: "+id);
     });
 }
-      /*  var options = {
-          mode: 'text',
-          //pythonPath: '/usr/bin/python2.7',
-          pythonOptions: ['-u'],
-          args: ['-u',id]
-        };
-
-    PythonShell.run('pendlaren_deleteUser.py', options, function (err, results) {
-      console.log('results: %j', results);
-      if (err) {
-        console.log("Tensorflow threw the error:"+err);
-      }*/
-
-      // });
 
 
-
-//Fix this major rewriting needed use FastAI
 function doPrediction(id,val){
 //Check which parameters are active and that no training is currently active or just try????.
     db.ref("userSettings").child(id).once("value")
@@ -240,7 +162,6 @@ function doPrediction(id,val){
             var timeStart=Date.now();
             if (modelExists){
                 console.log("Model exists for: "+id);
-                //console.log(val)
                 http.get('http://127.0.0.1:5000/predict?userId='+id+
                 '&detectedActivity='+val.detectedActivity+
                 '&geoHash='+val.geoHash+
@@ -285,40 +206,6 @@ function doPrediction(id,val){
                     }).on("error", (err) => {
                         console.log("Error in connection for: "+id);
                     });
-                /*
-                var options = {
-                    mode: 'text',
-                    pythonOptions: ['-u'],
-                    args: ['-i',id,'-a',val.detectedActivity,'-g',val.geoHash,'-m',val.minuteOfDay,'-w',val.weekday]
-                };
-                //console.log(options);
-                PythonShell.run(mlpredictor, options, function (err, results) {
-                  var timeTakenForPrediction = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
-                  if (results){
-                    var fromStation = results[0];
-                    var toStation = results[1];
-                    var probability = results[2];
-                    console.log("Predicted for :"+id+" from: "+fromStation+" to: "+toStation+" with probability: "+
-                        probability+" prediction took: "+timeTakenForPrediction+"s");
-                    db.ref("result").child(id).child("new").set({
-                        probability: Math.round(probability*100),
-                        from:fromStation,
-                        to:toStation,
-                        time:admin.database.ServerValue.TIMESTAMP,
-                        timeTaken:timeTakenForPrediction
-                    });
-                    db.ref("userSettings").child(id).update({   //test to predict
-                        modelExists:true,
-                    });
-                  }
-                  if (err) {
-                    console.log("Predictionerror disabling prediction:"+err);
-                    db.ref("userSettings").child(id).update({   //test to predict
-                        modelExists:false,
-                    });
-                  }
-
-                });*/
             }else{
                     console.log("No model exists");
                     db.ref("userSettings").child(id).update({   //test to predict
@@ -329,9 +216,8 @@ function doPrediction(id,val){
 }
 
 
-//New learning or teaching data 
+//New learning or teaching data arrived below this point 
 
-var refLearning = db.ref("learningdata");
 var added =0;
 var saved=0;
 refLearning.on("child_added", function(snapshot, prevChildKey) {
@@ -360,11 +246,11 @@ refLearning.on("child_added", function(snapshot, prevChildKey) {
 });
 
 
-//New learning data addded BigQuery
+//New learning data added
 refLearning.on("child_removed", function(snapshot, prevChildKey) {
   saved=saved+1;
   var result = added-saved;
-  //console.log("Search saved for user: "+snapshot.val().uid+" total saved in this session: "+ saved + " not removed "+ result);
+  //console.log("Data saved for user: "+snapshot.val().uid+" total saved in this session: "+ saved + " not removed "+ result);
   //When retrain timer is started
   //updateTimeOrAddNewTraining(snapshot.val().uid);
 });
@@ -398,8 +284,6 @@ hour = minute*60;
 retrainAge = hour*1.5; //Retrain if age is > retrainAge
 //Start the timertask
 //var guid = setInterval(retrainModel,minute) ;
-//if I need to stop it
-//clearInterval(guid)?????
 
 function TimerObject(id, retrainTime) {
     this.id = id;
@@ -409,7 +293,7 @@ function TimerObject(id, retrainTime) {
     }
 }
 
-/*Searches for a saved retrain command for a pandlarUser (the user is identified with id)
+/*Searches for a saved retrain command for a pendlarUser (the user is identified with id)
 if the user is found in the list the retrainTime is updated (This reflects that the app is in use)
 adds a new retrain command if no exists. (Reflects that new searches are done)*/
 function updateTimeOrAddNewTraining(id){
@@ -428,7 +312,6 @@ function updateTimeOrAddNewTraining(id){
 /*Time it is time for retraining model
 This is done if entry is older than retrainTime*/
 function retrainModel(){
-    
   console.log("Checking if retrain is needed (for users with last OD search older than "+Math.round(retrainAge/minute)+ " minutes) time now: "+ new Date());
     for (var i = timerObjects.length; i --;){
       var diff = new Date().getTime()-timerObjects[i].retrainTime;
@@ -442,87 +325,4 @@ function retrainModel(){
         timerObjects.splice(i,1);
       }
     }
-}
-
-
-//Fix can be removed....
-function createTable(tableId){
-    //const dataset = bigquery.dataset('commuting');
-    const options = {"schema": {
-        "fields":[
-          {
-            "mode": "NULLABLE",
-            "name": "detectedActivity",
-            "type": "INTEGER"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "startStation",
-            "type": "STRING"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "endStation",
-            "type": "STRING"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "longitude",
-            "type": "FLOAT"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "latitude",
-            "type": "FLOAT"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "geoHash",
-            "type": "INTEGER"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "locationAccuracy",
-            "type": "INTEGER"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "time",
-            "type": "INTEGER"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "detectedActivityConfidence",
-            "type": "INTEGER"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "uid",
-            "type": "STRING"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "minuteOfDay",
-            "type": "INTEGER"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "weekday",
-            "type": "INTEGER"
-          },
-          {
-            "mode": "NULLABLE",
-            "name": "monthday",
-            "type": "INTEGER"
-          }
-        ]
-    }
-    }
-    dataset.createTable(tableId,options).then(function(data){
-        if(data[0]){
-            console.log("Table: "+tableId+" created");
-        }else{
-            console.log("Could not create: "+tableId);
-        }
-    });
 }

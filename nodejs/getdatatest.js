@@ -1,5 +1,5 @@
 /*Used for testing purposes
-listens for added serch and train data on the connected firebase db
+listens for added search and train data on the connected firebase db
 saves to files named as the user uid.csv*/
 
 var admin = require("firebase-admin");

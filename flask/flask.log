@@ -1,0 +1,29 @@
+ * Serving Flask app "predictTrainDelete.py" (lazy loading)
+ * Environment: production
+   WARNING: Do not use the development server in a production environment.
+   Use a production WSGI server instead.
+ * Debug mode: on
+Traceback (most recent call last):
+  File "/opt/anaconda3/bin/flask", line 11, in <module>
+    sys.exit(main())
+  File "/opt/anaconda3/lib/python3.7/site-packages/flask/cli.py", line 894, in main
+    cli.main(args=args, prog_name=name)
+  File "/opt/anaconda3/lib/python3.7/site-packages/flask/cli.py", line 557, in main
+    return super(FlaskGroup, self).main(*args, **kwargs)
+  File "/opt/anaconda3/lib/python3.7/site-packages/click/core.py", line 697, in main
+    rv = self.invoke(ctx)
+  File "/opt/anaconda3/lib/python3.7/site-packages/click/core.py", line 1066, in invoke
+    return _process_result(sub_ctx.command.invoke(sub_ctx))
+  File "/opt/anaconda3/lib/python3.7/site-packages/click/core.py", line 895, in invoke
+    return ctx.invoke(self.callback, **ctx.params)
+  File "/opt/anaconda3/lib/python3.7/site-packages/click/core.py", line 535, in invoke
+    return callback(*args, **kwargs)
+  File "/opt/anaconda3/lib/python3.7/site-packages/click/decorators.py", line 64, in new_func
+    return ctx.invoke(f, obj, *args[1:], **kwargs)
+  File "/opt/anaconda3/lib/python3.7/site-packages/click/core.py", line 535, in invoke
+    return callback(*args, **kwargs)
+  File "/opt/anaconda3/lib/python3.7/site-packages/flask/cli.py", line 771, in run_command
+    threaded=with_threads, ssl_context=cert)
+  File "/opt/anaconda3/lib/python3.7/site-packages/werkzeug/serving.py", line 795, in run_simple
+    s.bind(get_sockaddr(hostname, port, address_family))
+OSError: [Errno 98] Address already in use

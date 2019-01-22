@@ -11,28 +11,65 @@ from commuter import *
 model_dir = '../../userdata/models/'
 data_dir = '../../userdata/data/'
 import os
-#userId = "tnK534JMwwfhvUEycn69HPbhqkt2"
-#data = TabularDataBunch.load_empty(model_dir+userId)
-#learn = tabular_learner(data, layers=[200,100])
-#learn.load(userId)
 
 
 dep_var = 'journey'
 cat_names = ["detectedActivity","weekday"]
 cont_names =["geoHash","minuteOfDay"]
 procs = [FillMissing, Categorify, Normalize]
-
 teachingSetName="_teach.csv"
-debugging = True 
-debugdir = "debug/"
+trainedModels = []
 
+def get_immediate_subdirectories(a_dir):
+    return [name for name in os.listdir(a_dir)
+            if os.path.isdir(os.path.join(a_dir, name))]
+
+def loadAllModels(model_dir):
+    for model_dir_id in get_immediate_subdirectories(model_dir):
+        trainedModels.append(Model(model_dir_id,model_dir+model_dir_id))
+
+def updateModel(id):
+    found=-1
+    for i in range(len(trainedModels)):
+        if(trainedModels[i].id == id ):
+            found = i
+    del trainedModels[found]
+    if found > -1:
+        trainedModels.append(Model(id,model_dir+id))
+    return found
+
+def removeModel(id):
+    found=-1
+    for i in range(len(trainedModels)):
+        if(trainedModels[i].id == id ):
+            found = i
+    del trainedModels[found]
+    return found
+
+def getModel(id):
+    found=-1
+    for i in range(len(trainedModels)):
+        if(trainedModels[i].id == id ):
+            found = i
+    if found>-1:
+        return trainedModels[found].learn
+    else:
+        return None
+
+class Model(object):
+    def __init__(self,id,path):
+        data = TabularDataBunch.load_empty(path)
+        learn = tabular_learner(data, layers=[200,100])
+        learn.load(id);   
+        self.learn = learn
+        self.id = id
+
+loadAllModels(model_dir)
+#flask stuff
 app = Flask(__name__)
-
-#def save_debug_info(user,data):
-#        if debugging:
-#            file = open(debugdir+user+'.txt', 'a+')
-#            file.write(data+"\n")
-#            file.close()      
+data2 = TabularDataBunch.load_empty(model_dir+'ehaBtfOPDNZjzy1MEvjQmGo4Zv12')
+learn2 = tabular_learner(data2, layers=[200,100])
+learn2.load('ehaBtfOPDNZjzy1MEvjQmGo4Zv12');
 
 @app.route('/')
 def hello_world():
@@ -54,6 +91,7 @@ def retrain():
             learner.fit_one_cycle(7)
             learner.save(name=userId)
             data.export()
+            updateModel(userId)
             return json.dumps({"error":0 })
         except:
             return json.dumps({"error":2 })  # Training error or training file not found
@@ -70,10 +108,11 @@ def predict():
         weekday = request.args.get('weekday')
         if detectedActivity != None and geoHash != None and minuteOfDay != None and weekday != None and userId != None:
             try:
-                data = TabularDataBunch.load_empty(model_dir+userId)
-                learn = tabular_learner(data, layers=[200,100])
-                learn.load(userId);
-                prediction,accuracy = predict_journey(learn,detectedActivity,geoHash,minuteOfDay,weekday)
+                #data = TabularDataBunch.load_empty(model_dir+userId)
+                #learn = tabular_learner(data, layers=[200,100])
+                #learn.load(userId);
+                prediction,accuracy = predict_journey(getModel(userId),detectedActivity,geoHash,minuteOfDay,weekday)
+                #prediction,accuracy = predict_journey(learn,detectedActivity,geoHash,minuteOfDay,weekday)
                 return json.dumps({"probability": str(accuracy), "fromStation": str(prediction)[0:5], "toStation": str(prediction)[5:10],"error":0})
             except:
                 return json.dumps({"error":2}) 
@@ -93,8 +132,11 @@ def delete():
             for filename in os.listdir(data_dir):
                 if filename.startswith(userId):
                     os.remove(data_dir+filename)
+            removeModel(userId)        
             return json.dumps({"error":0})
         except:
             return json.dumps({"error":1})
     else:
-        return json.dumps({"error":2})   #no id
+        return json.dumps({"error":2})   #no id        
+
+    
