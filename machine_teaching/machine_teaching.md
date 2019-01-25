@@ -50,7 +50,7 @@ In Figure 1 the accuracy for the users journeys in the test sets are shown distr
 ![](../images/bjorn_teach1_small.png)
 ![](../images/maria_teach1_small.png)
 
-**Figure 2:** *The accuracy and SD for the accuracy distributed over a week for the different personas. The models used are trained using the teaching sets and evaluated towards the same test set for each user.*
+**Figure 2:** *The accuracy and generalisation error (SD) for the accuracy distributed over a week for the different personas. The models used are trained using the teaching sets and evaluated towards the same test set for each user.*
 
 In the figures below more details around the training result for each users is presented.
 
@@ -127,13 +127,13 @@ Andrea:
 <br>Maria:
 [Augmented](../data/tnK534JMwwfhvUEycn69HPbhqkt2_teaching_set_aug.csv)
 
-In Figure 9 the accuracy for the users journeys in the test sets are shown distributed over the week. Compared to Figure 2 the augmented teaching set is added and a significant increase in accuracy and a decrease in standard deviation can be observed. Especially the metrix for Björn has improved.
+In Figure 9 the accuracy for the users journeys in the test sets are shown distributed over the week. Compared to Figure 2 the augmented teaching set is added and a significant increase in accuracy and a decrease in genaralisation error (standard deviation) can be observed. Especially the metrix for Björn has improved.
 
 ![](../images/andrea_teach3.png)
 ![](../images/bjorn_teach3.png)
 ![](../images/maria_teach3.png)
 
-**Figure 9:** *The accuracy and SD for the accuracy distributed over a week for the different personas. The models used are trained using the teaching sets and evaluated towards the same test set for each user.*
+**Figure 9:** *The accuracy and genaralisation error (SD) for the accuracy distributed over a week for the different personas. The models used are trained using the teaching sets and evaluated towards the same test set for each user.*
 
 In the figures below more details around the training result for each users is presented.
 
