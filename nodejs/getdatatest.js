@@ -6,6 +6,7 @@ var admin = require("firebase-admin");
 var serviceAccount = require("../../key/skanependlaren-firebase-adminsdk-xemd8-4c798104f8.json");
 var fs = require('fs');
 results = "Node server starting"
+column_names = "detectedActivity,longitude,latitude,geoHash,locationAccuracy,time,minuteOfDay,weekday,monthday,detectedActivityConfidence,journey"
 console.log('results: %j', results);
 
 admin.initializeApp({
@@ -27,7 +28,7 @@ refLearning.on("child_added", function(snapshot, prevChildKey) {
     if (fs.existsSync(savepath+snapshot.val().uid+".csv")){
         addit(savepath+snapshot.val().uid+".csv",snapshot);
     }else{
-        fs.appendFileSync(savepath+snapshot.val().uid+".csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+"\n");
+        fs.appendFileSync(savepath+snapshot.val().uid+".csv",column_names+"\n");
         addit(savepath+snapshot.val().uid+".csv",snapshot);
     }
 });
@@ -44,15 +45,15 @@ function addit(filepathname,snapshot){
     if(snapshot.val().monthday==-1){ //This indicates that the entry is created by the teaching interface
         fs.appendFileSync(filepathname,+
            snapshot.val().detectedActivity+","+
-           //snapshot.val().longitude+","+
-           //snapshot.val().latitude+","+
+           snapshot.val().longitude+","+
+           snapshot.val().latitude+","+
            snapshot.val().geoHash+","+
-           //snapshot.val().locationAccuracy+","+
-           //snapshot.val().time+","+
+           snapshot.val().locationAccuracy+","+
+           snapshot.val().time+","+
            snapshot.val().minuteOfDay+","+
            snapshot.val().weekday+","+
-           
-           //snapshot.val().detectedActivityConfidence+","+
+           snapshot.val().monthday+","+
+           snapshot.val().detectedActivityConfidence+","+
            //snapshot.val().uid+
            snapshot.val().startStation+snapshot.val().endStation+
            "\n");

@@ -7,6 +7,7 @@ var savepath = '../../userdata/data/'
 //var mltrainer = '../ml/pendlaren_FastAI.py'
 //var mlpredictor = '../ml/pendlaren_FastAI_predict.py'
 //verbose = true; //Sends more information to Node server
+column_names = "detectedActivity,longitude,latitude,geoHash,locationAccuracy,time,minuteOfDay,weekday,monthday,detectedActivityConfidence,journey";
 results = "Node server starting"
 console.log('results: %j', results)
 admin.initializeApp({
@@ -109,10 +110,19 @@ function callTrain(id,retrain){
                     });
                 }else if(trainingResult.error == 1){
                     console.log("Training file not found for: "+id);
+                    userRef.child(id).update({
+                        train:false
+                    });
                 }else if (trainingResult.error == 2){
                     console.log("Unknown training error for: "+id);
+                    userRef.child(id).update({
+                        train:false
+                    });
                 }else{
                     console.log("Unknown training error for: "+id);
+                    userRef.child(id).update({
+                        train:false
+                    });
                 }
             });
             }).on("error", (err) => {
@@ -226,14 +236,14 @@ refLearning.on("child_added", function(snapshot, prevChildKey) {
         if (fs.existsSync(savepath+snapshot.val().uid+"_teach.csv")){
             addit(savepath+snapshot.val().uid+"_teach.csv",snapshot);
         }else{
-            fs.appendFileSync(savepath+snapshot.val().uid+"_teach.csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+"\n");
+            fs.appendFileSync(savepath+snapshot.val().uid+"_teach.csv",column_names+"\n");
             addit(savepath+snapshot.val().uid+"_teach.csv",snapshot);
         }
     }else{ //Search data
         if (fs.existsSync(savepath+snapshot.val().uid+".csv")){
             addit(savepath+snapshot.val().uid+".csv",snapshot);
         }else{
-            fs.appendFileSync(savepath+snapshot.val().uid+".csv","detectedActivity,geoHash,minuteOfDay,weekday,journey"+"\n");
+            fs.appendFileSync(savepath+snapshot.val().uid+".csv",column_names+"\n");
             addit(savepath+snapshot.val().uid+".csv",snapshot);
         }
     }
@@ -258,15 +268,15 @@ refLearning.on("child_removed", function(snapshot, prevChildKey) {
 function addit(filepathname,snapshot){
         fs.appendFileSync(filepathname,+
            snapshot.val().detectedActivity+","+
-           //snapshot.val().longitude+","+
-           //snapshot.val().latitude+","+
+           snapshot.val().longitude+","+
+           snapshot.val().latitude+","+
            snapshot.val().geoHash+","+
-           //snapshot.val().locationAccuracy+","+
-           //snapshot.val().time+","+
+           snapshot.val().locationAccuracy+","+
+           snapshot.val().time+","+
            snapshot.val().minuteOfDay+","+
            snapshot.val().weekday+","+
-           //snapshot.val().monthday+","+
-           //snapshot.val().detectedActivityConfidence+","+
+           snapshot.val().monthday+","+
+           snapshot.val().detectedActivityConfidence+","+
            //snapshot.val().uid+
            snapshot.val().startStation+snapshot.val().endStation+
            "\n");
