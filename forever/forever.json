@@ -1,0 +1,21 @@
+[
+ {
+    "append": true,
+    "watch": false,
+    "command": "python",
+    "script": "predictTrainDelete.py",
+    "sourceDir": "/home/jupyter/commuter/flask/",
+    "workingDir": "/home/jupyter/commuter/flask/",
+    "outFile":"/home/jupyter/userdata/loggs/outFlask.log",
+    "errFile":"/home/jupyter/userdata/loggs/errFlask.log"
+  },
+  {
+    "append": true,
+    "watch": false,
+    "script": "pendlaren_node_server.js",
+    "sourceDir": "/home/jupyter/commuter/nodejs/",
+    "workingDir": "/home/jupyter/commuter/nodejs/",
+    "outFile":"/home/jupyter/userdata/loggs/outNode.log",
+    "errFile":"/home/jupyter/userdata/loggs/errNode.log"
+  }
+]
