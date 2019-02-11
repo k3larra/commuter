@@ -21,7 +21,7 @@ In this initial use test, our central metric interest is in accuracy of journey 
 **Figure 1:** *In the first image the app has received a contextbased prediction and departure times has been collected from the transport provider. In the figure on the right the Machine Teaching UI is visible.*
 ### User tests
 In semi structured interviews, that will follow after the test, we are interested in feedback concretely around the teaching UI and ideas around how this UI should be designed for a better experience. We are also interested in the users experience in general in for example these directions:
-- Feel of control regarding the training.
+- Beeing in control of the training.
 - Understanding and transparency of the predictions in relation to the training.
 - Would a product like this change your commuting experience in the long term?
 - Would it be preferable to learn only interactively?
