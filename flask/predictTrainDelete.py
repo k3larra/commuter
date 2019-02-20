@@ -14,8 +14,10 @@ data_dir = '../../userdata/data/'
 
 dep_var = 'journey'
 cat_names = ["detectedActivity","weekday"]
-cont_names =["geoHash","minuteOfDay"]
-usecols=['detectedActivity','geoHash','minuteOfDay','weekday','journey']
+#cont_names =["geoHash","minuteOfDay"]
+cont_names =["longitude","latitude","minuteOfDay"]
+#usecols=['detectedActivity','geoHash','minuteOfDay','weekday','journey']
+usecols=['detectedActivity','longitude','latitude','minuteOfDay','weekday','journey']
 procs = [FillMissing, Categorify, Normalize]
 teachingSetName="_teach.csv"
 #trainedModels = []
@@ -105,16 +107,20 @@ def predict():
     userId = request.args.get('userId')
     if userId != None: 
         detectedActivity = request.args.get('detectedActivity')
-        geoHash = request.args.get('geoHash')
+        #geoHash = request.args.get('geoHash')
+        latitude = request.args.get('latitude')
+        longitude = request.args.get('longitude')
         minuteOfDay = request.args.get('minuteOfDay')
         weekday = request.args.get('weekday')
-        if detectedActivity != None and geoHash != None and minuteOfDay != None and weekday != None and userId != None:
+        if detectedActivity != None and latitude != None and longitude != None and minuteOfDay != None and weekday != None and userId != None:
             try:
-                data = TabularDataBunch.load_empty(path=Path(model_dir+userId))
+                print(Path(model_dir+userId))
+                data = TabularDataBunch.load_empty(path=Path(model_dir+userId))               
                 learn = tabular_learner(data, layers=[200,100])
                 learn.load(userId);
                 #prediction,accuracy = predict_journey(getModel(userId),detectedActivity,geoHash,minuteOfDay,weekday)
-                prediction,accuracy = predict_journey(learn,detectedActivity,geoHash,minuteOfDay,weekday)
+                #prediction,accuracy = predict_journey(learn,detectedActivity,geoHash,minuteOfDay,weekday)
+                prediction,accuracy = predict_journey(learn,detectedActivity,latitude,longitude,minuteOfDay,weekday)
                 return json.dumps({"probability": str(accuracy), "fromStation": str(prediction)[0:5], "toStation": str(prediction)[5:10],"error":0})
             except:
                 return json.dumps({"error":2}) 

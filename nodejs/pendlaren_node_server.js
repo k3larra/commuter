@@ -170,11 +170,13 @@ function doPrediction(id,val){
         .then(function(snapshot){
             var modelExists = snapshot.child("modelExists").val();
             var timeStart=Date.now();
+            //'&geoHash='+val.geoHash+
             if (modelExists){
                 console.log("Model exists for: "+id);
                 http.get('http://127.0.0.1:5000/predict?userId='+id+
                 '&detectedActivity='+val.detectedActivity+
-                '&geoHash='+val.geoHash+
+                '&longitude='+val.longitude+
+                '&latitude='+val.latitude+
                 '&minuteOfDay='+val.minuteOfDay+
                 '&weekday='+val.weekday, (resp) => {
                     let data = '';
@@ -187,6 +189,7 @@ function doPrediction(id,val){
                         var timeTakenForPrediction = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
                             if (predictionResult.error == 0){
                                 console.log("Predicted for :"+id+
+                                            " at time: "+new Date().toUTCString()+
                                             " from: "+predictionResult.fromStation+
                                             " to: "+predictionResult.toStation+
                                             " with probability: "+predictionResult.probability+
@@ -217,10 +220,10 @@ function doPrediction(id,val){
                         console.log("Error in connection for: "+id);
                     });
             }else{
-                    console.log("No model exists");
-                    db.ref("userSettings").child(id).update({   //test to predict
-                        modelExists:false,
-                    });
+                console.log("No model exists");
+                db.ref("userSettings").child(id).update({   //test to predict
+                    modelExists:false,
+                });
             }
     });
 }
@@ -281,7 +284,6 @@ function addit(filepathname,snapshot){
            snapshot.val().startStation+snapshot.val().endStation+
            "\n");
 }   
-
 
 //*************************************************************//
 //MISC
