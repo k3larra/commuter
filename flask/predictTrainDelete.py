@@ -114,7 +114,7 @@ def predict():
         weekday = request.args.get('weekday')
         if detectedActivity != None and latitude != None and longitude != None and minuteOfDay != None and weekday != None and userId != None:
             try:
-                print(Path(model_dir+userId))
+                #print(Path(model_dir+userId))
                 data = TabularDataBunch.load_empty(path=Path(model_dir+userId))               
                 learn = tabular_learner(data, layers=[200,100])
                 learn.load(userId);
@@ -131,7 +131,7 @@ def predict():
     
 @app.route('/delete')
 def delete():
-    print("delete")
+    #print("delete")
     userId = request.args.get('userId')
     if userId != None:
         try:

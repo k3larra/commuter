@@ -1,6 +1,6 @@
 from fastai import *          # Quick accesss to most common functionality
 from fastai.tabular import *  # Quick accesss to tabular functionality
-stations = pd.read_csv("../data/stations.csv")
+#stations = pd.read_csv("../data/stations.csv")
 
 def predict_journeys(learner,dataset):
     "This can be something that is already in the framework."
