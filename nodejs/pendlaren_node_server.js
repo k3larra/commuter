@@ -8,8 +8,8 @@ var savepath = '../../userdata/data/'
 //var mlpredictor = '../ml/pendlaren_FastAI_predict.py'
 //verbose = true; //Sends more information to Node server
 column_names = "detectedActivity,longitude,latitude,geoHash,locationAccuracy,time,minuteOfDay,weekday,monthday,detectedActivityConfidence,journey";
-results = "Node server starting"
-console.log('results: %j', results)
+column_names_prediction = "detectedActivity,longitude,latitude,geoHash,locationAccuracy,time,minuteOfDay,weekday,monthday,detectedActivityConfidence,predictedjourney,accuracy";
+console.log(new Date().toUTCString()+","+Date.now()+",,Node server starting")
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
   databaseURL: "https://skanependlaren.firebaseio.com"
@@ -57,14 +57,14 @@ userRef.on("child_changed", function(snapshot,prevChildKey) {
         callTrain(id,true);
       }else if (!clear && !train && !update_training_settings){
       }else{
-        console.log("ERROR: The combination for user: "+id+" train="+train+
+        console.log(new Date().toUTCString()+","+Date.now()+","+id+",,ERROR: The combination for user: train="+train+
         " clear="+clear+" update_training_settings="+update_training_settings+" should not occur");
       }
   }
 });
 
 userRef.on("child_removed", function(snapshot) {
-    console.log("User: " + snapshot.key+" removed");
+    console.log(new Date().toUTCString()+","+Date.now()+","+snapshot.key+",,:User removed");
 });
 
 //Listen for new prediction
@@ -76,9 +76,9 @@ predictRef.on("child_added", function(snapshot) {
 //Remove retrain??
 function callTrain(id,retrain){
     if (retrain){
-        console.log("Retraining model for user : "+id+" with updated parameters started.");
+        console.log(new Date().toUTCString()+","+Date.now()+","+id+",callTrain,Retraining model for user with updated parameters started.");
     }else{
-        console.log("Retraining model for user : "+id);
+        console.log(new Date().toUTCString()+","+Date.now()+","+id+",callTrain,Retraining model for user.");
     }
     var timeStart=Date.now();
     db.ref("userSettings").child(id).once("value")
@@ -94,7 +94,7 @@ function callTrain(id,retrain){
                 //console.log(data);
                 trainingResult = JSON.parse(data)
                 if (trainingResult.error == 0){
-                    console.log("Done training for: "+id);
+                    console.log(new Date().toUTCString()+","+Date.now()+","+id+",callTrain,Done training");
                     if(retrain){
                         db.ref("users").child(id).update({
                             update_training_settings:false,
@@ -109,31 +109,31 @@ function callTrain(id,retrain){
                         modelCreatedTime: admin.database.ServerValue.TIMESTAMP,
                     });
                 }else if(trainingResult.error == 1){
-                    console.log("Training file not found for: "+id);
+                    console.log(new Date().toUTCString()+","+Date.now()+","+id+",callTrain,Training file not found");
                     userRef.child(id).update({
                         train:false
                     });
                 }else if (trainingResult.error == 2){
-                    console.log("Unknown training error for: "+id);
+                    console.log(new Date().toUTCString()+","+Date.now()+","+id+",callTrain,Unknown training error 1");
                     userRef.child(id).update({
                         train:false
                     });
                 }else{
-                    console.log("Unknown training error for: "+id);
+                    console.log(new Date().toUTCString()+","+Date.now()+","+id+",callTrain,Unknown training error 2");
                     userRef.child(id).update({
                         train:false
                     });
                 }
             });
             }).on("error", (err) => {
-              console.log("Error in connection for: "+id);
+              console.log(new Date().toUTCString()+","+Date.now()+","+id+",callTrain,Error in connection");
             });
     });
 }
 
 
 function callDeleteUser(id){
-  console.log("Deleting user, model data and firebase entry for user : "+id+" started.");
+  console.log(new Date().toUTCString()+","+Date.now()+","+id+",callDeleteUser,Deleting user model data and firebase entry for user started.");
   http.get('http://127.0.0.1:5000/delete?userId='+id, (resp) => {
     let data = '';
     // A chunk of data has been recieved.
@@ -152,14 +152,14 @@ function callDeleteUser(id){
             });
             userSettingsRef.child(id).remove(); //Check if works....*/
         }else if(trainingResult.error == 1){
-            console.log("Unknown deleting error for: "+id);
+            console.log(new Date().toUTCString()+","+Date.now()+","+id+",callDeleteUser,Unknown deleting error 1 callDeletUser");
         }else{
-            console.log("Unknown error for: "+id);
+            console.log(new Date().toUTCString()+","+Date.now()+","+id+",callDeleteUser,Unknown deleting error 2 callDeletUser");
         }
         
     });
     }).on("error", (err) => {
-      console.log("Error in connection for: "+id);
+      console.log(new Date().toUTCString()+","+Date.now()+","+id+",callDeleteUser,Error in connection callDeletUser");
     });
 }
 
@@ -170,11 +170,13 @@ function doPrediction(id,val){
         .then(function(snapshot){
             var modelExists = snapshot.child("modelExists").val();
             var timeStart=Date.now();
+            //'&geoHash='+val.geoHash+
             if (modelExists){
-                console.log("Model exists for: "+id);
+                console.log(new Date().toUTCString()+","+Date.now()+","+id+",doPrediction,Model exists");
                 http.get('http://127.0.0.1:5000/predict?userId='+id+
                 '&detectedActivity='+val.detectedActivity+
-                '&geoHash='+val.geoHash+
+                '&longitude='+val.longitude+
+                '&latitude='+val.latitude+
                 '&minuteOfDay='+val.minuteOfDay+
                 '&weekday='+val.weekday, (resp) => {
                     let data = '';
@@ -186,11 +188,14 @@ function doPrediction(id,val){
                         predictionResult = JSON.parse(data)
                         var timeTakenForPrediction = (Math.round((Date.now()-timeStart)/(1000))); //In seconds 
                             if (predictionResult.error == 0){
-                                console.log("Predicted for :"+id+
+                                /*console.log("Predicted for :"+id+
+                                            " at time: "+new Date().toUTCString()+
                                             " from: "+predictionResult.fromStation+
                                             " to: "+predictionResult.toStation+
                                             " with probability: "+predictionResult.probability+
-                                            " prediction took: "+timeTakenForPrediction+"s");
+                                            " prediction took: "+timeTakenForPrediction+"s");*/
+                                console.log(new Date().toUTCString()+","+Date.now()+","+id+",doPrediction,predicted");
+                                savePrediction(id,val,predictionResult)
                                 db.ref("result").child(id).child("new").set({
                                     probability: Math.round(predictionResult.probability*100),
                                     from:predictionResult.fromStation,
@@ -202,25 +207,25 @@ function doPrediction(id,val){
                                     modelExists:true,
                                 });
                             }else if(predictionResult.error == 1){
-                                console.log("no id: "+id);
+                                console.log(new Date().toUTCString()+","+Date.now()+","+id+",doPrediction,no id");
                             }else if (predictionResult.error == 2){
-                                console.log("Prediction error or no trained mode found for: "+id);
+                                console.log(new Date().toUTCString()+","+Date.now()+","+id+",doPrediction,Prediction error or no trained mode found");
                                 db.ref("userSettings").child(id).update({   //Disable prediction for user
                                     modelExists:false,
                                 });
                             }else{
-                                console.log("Unknown prediction error for: "+id);
+                                console.log(new Date().toUTCString()+","+Date.now()+","+id+",doPrediction,Unknown prediction error");
                             }
                             //console.log(data);
                         });
                     }).on("error", (err) => {
-                        console.log("Error in connection for: "+id);
+                        console.log(new Date().toUTCString()+","+Date.now()+","+id+",doPrediction,Error in connection doPrediction");
                     });
             }else{
-                    console.log("No model exists");
-                    db.ref("userSettings").child(id).update({   //test to predict
-                        modelExists:false,
-                    });
+                console.log(new Date().toUTCString()+","+Date.now()+","+id+",doPrediction,No model exists");
+                db.ref("userSettings").child(id).update({   //test to predict
+                    modelExists:false,
+                });
             }
     });
 }
@@ -251,7 +256,7 @@ refLearning.on("child_added", function(snapshot, prevChildKey) {
     .then(function() {
       //console.log("Remove succeeded.")
     }).catch(function(error) {
-      console.log("Remove failed: " + error.message)
+      //console.log("Remove failed: " + error.message)
     });
 });
 
@@ -282,7 +287,26 @@ function addit(filepathname,snapshot){
            "\n");
 }   
 
-
+function savePrediction(id,val,predictionResult){
+    var filenamePath = savepath+id+"_predict.csv";
+    if (!fs.existsSync(filenamePath)){
+            fs.appendFileSync(filenamePath,column_names_prediction+"\n");
+    }
+    fs.appendFileSync(filenamePath,+
+        val.detectedActivity+","+
+        val.longitude+","+
+        val.latitude+","+
+        val.geoHash+","+
+        val.locationAccuracy+","+
+        val.time+","+
+        val.minuteOfDay+","+
+        val.weekday+","+
+        val.monthday+","+
+        val.detectedActivityConfidence+","+
+        predictionResult.fromStation+predictionResult.toStation+","+
+        predictionResult.probability+
+        "\n");
+}
 //*************************************************************//
 //MISC
 //FIX handles automatic retraining of the model
@@ -322,12 +346,12 @@ function updateTimeOrAddNewTraining(id){
 /*Time it is time for retraining model
 This is done if entry is older than retrainTime*/
 function retrainModel(){
-  console.log("Checking if retrain is needed (for users with last OD search older than "+Math.round(retrainAge/minute)+ " minutes) time now: "+ new Date());
+  //console.log("Checking if retrain is needed (for users with last OD search older than "+Math.round(retrainAge/minute)+ " minutes) time now: "+ new Date());
     for (var i = timerObjects.length; i --;){
       var diff = new Date().getTime()-timerObjects[i].retrainTime;
-      console.log("Last search from user : "+timerObjects[i].id+" was made : "+Math.round(diff/(1000*60))+ " minutes ago.");
+      //console.log("Last search from user : "+timerObjects[i].id+" was made : "+Math.round(diff/(1000*60))+ " minutes ago.");
       if(diff>retrainAge){
-        console.log("Time to train and remove: "+timerObjects[i].id);
+        //console.log("Time to train and remove: "+timerObjects[i].id);
         //This is a auomatic retrain an should not include retrain
         userRef.child(timerObjects[i].id).update({
           train:true

@@ -1,6 +1,6 @@
 from fastai import *          # Quick accesss to most common functionality
 from fastai.tabular import *  # Quick accesss to tabular functionality
-stations = pd.read_csv("../data/stations.csv")
+#stations = pd.read_csv("../data/stations.csv")
 
 def predict_journeys(learner,dataset):
     "This can be something that is already in the framework."
@@ -14,12 +14,17 @@ def predict_journeys(learner,dataset):
     accuracy=result/dataset.shape[0]
     return(accuracy)
 
-def predict_journey(learner,detectedActivity,geoHash,minuteOfday,weekday):
-    data = np.array([['','detectedActivity','geoHash','minuteOfDay','weekday'],
-                ["row1",detectedActivity,geoHash,minuteOfday,weekday]])            
+
+#def predict_journey(learner,detectedActivity,geoHash,minuteOfday,weekday):
+def predict_journey(learner,detectedActivity,latitude,longitude,minuteOfday,weekday):
+    #data = np.array([['','detectedActivity','geoHash','minuteOfDay','weekday'],
+    #            ["row1",detectedActivity,geoHash,minuteOfday,weekday]])
+    #.astype(np.int64)
+    data = np.array([['','detectedActivity','latitude','longitude','minuteOfDay','weekday'],
+                ["row1",detectedActivity,latitude,longitude,minuteOfday,weekday]])
     dr=pd.DataFrame(data=data[1:,1:],
                     index=data[1:,0],
-                    columns=data[0,1:]).astype(np.int64)
+                    columns=data[0,1:]).astype({"detectedActivity":'int64', "latitude":'float64', "longitude":'float64','minuteOfDay':'int64','weekday':'int64'})
     predicted = learner.predict(dr.iloc[0])
     return(predicted[0],str(round(predicted[2].max().item(),2)))
 
