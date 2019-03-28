@@ -1,4 +1,6 @@
 import os
+import sys
+import datetime
 from flask import Flask
 from flask import request
 import json
@@ -9,6 +11,7 @@ sys.path.append("../code")
 from commuter import *
 #model_dir = '../models/'
 #data_dir = '../data/'
+deleted_data_dir = '../../userdata/deleted_data/'
 model_dir = '../../userdata/models/'
 data_dir = '../../userdata/data/'
 
@@ -131,16 +134,19 @@ def predict():
     
 @app.route('/delete')
 def delete():
-    #print("delete")
     userId = request.args.get('userId')
     if userId != None:
         try:
+            #Delete model folder
             shutil.rmtree(model_dir+userId)  #The model
-            #oldname = ":"
+            #Create folder for backup
+            foldername = deleted_data_dir+datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') ##Remove then later after study
+            os.mkdir(foldername) ##Remove then later after study
+            os.chmod(foldername, 0o775)  ##Remove then later after study
             for filename in os.listdir(data_dir):
                 if filename.startswith(userId):
-                    os.remove(data_dir+filename)
-            #removeModel(userId)        
+                    shutil.copyfile(data_dir+filename, foldername+"/"+filename) ##Remove then later after study
+                    os.remove(data_dir+filename)       
             return json.dumps({"error":0})
         except:
             return json.dumps({"error":1})
