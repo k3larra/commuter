@@ -8,6 +8,10 @@ _The Commute app_
 _First weeks usage_
 
 _Send me a mail_
-Travel patterns that should be covered by the month.
-From What date do you want it to start.
+Travel patterns that should\
+be covered by the month.
+From What
+date do you want it to start.
+
 This page:
+https://github.com/k3larra/commuter/blob/master/UserStudy/week1/presentation.md
