@@ -1,3 +1,4 @@
+## [The CoDesign Study](UserStudy/plan.md)
 # Exploring Machine Learning in a commuting context.
 *In this project we explore in what way Machine Learning (ML) can be used to [personalize](#individual-approach-security-and-privacy) and improve performance in a commuter app using some selected contextual parameters (time, day, location and activity). We use an Human In The Loop (HITL) approach to ML in a series of experiments. We selected commuting and [commute patterns](#Commute-patterns) for our exploration since it is an area that has some characteristics that suits HITL well. From a ML perspective training our ML-artifact is an online iterative learning situation that includes cold start, outlier data, noisy, concept drift, batch learning and outdated training data. In the project we will also study if and how an HITL approach changes the user’s notion of ownership both with respect to the training outcome, towards the collected data and the trained model.*
 
