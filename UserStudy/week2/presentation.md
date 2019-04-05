@@ -23,12 +23,13 @@ To handle the Cold start problem there are different strategies and two are tran
 ### Second week usage: "ASSIGNMENT"
 Think through your weeks commute and teach the app so you think it will be able to predict the journeys you will do during the week. Then during the week **don't** clear teaching and **don't** reteach anything. Instead, make an note of how well the app performs in relation to your expectations (RQ1).
 
-# Feedback
+## Feedback
 
-***Add feedback here both general issues, thoughts and sketches or just notes so you remember, the more the better. Especially things that relates to the research questions above is valuable:***<br/>
+***Add feedback here both general issues, thoughts and sketches or just notes so you remember, the more the better. Especially things that relates to the research questions above is valuable:***
+
 ### ***https://github.com/k3larra/commuter/issues***
 
-#### You are here page:
+#### This page:
 https://github.com/k3larra/commuter/blob/master/UserStudy/week2/presentation.md
 
 #### References
