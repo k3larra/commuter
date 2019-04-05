@@ -41,4 +41,4 @@ https://github.com/k3larra/commuter/issues***<br/>
 https://github.com/k3larra/commuter/blob/master/UserStudy/week1/presentation.md
 
 [1] Ehn, Pelle, Elisabet M. Nilsson, and Richard Topgaard (eds.). (2014). Making Futures: Marginal Notes on Innovation, Design, and Democracy. MIT Press. (340 p)<br/>
-[1] P. Y. Simard et al., “Machine Teaching: A New Paradigm for Building Machine Learning Systems,” 2017.
+[2] P. Y. Simard et al., “Machine Teaching: A New Paradigm for Building Machine Learning Systems,” 2017.

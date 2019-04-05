@@ -33,5 +33,5 @@ https://github.com/k3larra/commuter/blob/master/UserStudy/week2/presentation.md
 
 ### References
 ??<br/>
-[1] [P. Y. Simard et al., “Machine Teaching: A New Paradigm for Building Machine Learning Systems,” 2017](https://arxiv.org/pdf/1707.06742v3.pdf).
+[1] [P. Y. Simard et al., “Machine Teaching: A New Paradigm for Building Machine Learning Systems,” 2017](https://arxiv.org/pdf/1707.06742v3.pdf).<br/>
 [2] [N. Banovic and J. Krumm, “Warming Up to Cold Start Personalization,” PACM Interact. Mob. Wearable Ubiquitous Technol, vol. 1, no. 13, 2017.](Warming_Up.pdf)
