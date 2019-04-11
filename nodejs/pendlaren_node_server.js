@@ -151,8 +151,8 @@ function callDeleteUser(id){
               modelExists:true
             });
             userSettingsRef.child(id).remove(); //Check if works....*/
-        }else if(trainingResult.error == 1){
-            console.log(new Date().toUTCString()+","+Date.now()+","+id+",callDeleteUser,Unknown deleting error 1 callDeletUser");
+        }else if(trainingResult.error == 1){ //IF no training has taken place we are here 
+            console.log(new Date().toUTCString()+","+Date.now()+","+id+",callDeleteUser,Unknown deleting error 1 no data saved remove other stuff");
         }else{
             console.log(new Date().toUTCString()+","+Date.now()+","+id+",callDeleteUser,Unknown deleting error 2 callDeletUser");
         }

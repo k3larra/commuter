@@ -138,7 +138,7 @@ def delete():
     if userId != None:
         try:
             #Delete model folder
-            shutil.rmtree(model_dir+userId)  #The model
+            shutil.rmtree(model_dir+userId,ignore_errors=True)  #The model
             #Create folder for backup
             foldername = deleted_data_dir+datetime.datetime.now().strftime('%Y-%m-%d_%H-%M-%S') ##Remove then later after study
             os.mkdir(foldername) ##Remove then later after study
