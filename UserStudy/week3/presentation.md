@@ -5,7 +5,7 @@ By teaching during use we will explore a teaching situation where you teach when
 
 Therefor we could get insights in how to answer research questions like these:
 
-**RQ1:** How does your expectations, given this implementation, on the teaching match the outcome when the teaching has takes place during use?
+**RQ1:** How does your expectations, given this implementation, on the teaching match the outcome when the teaching takes place during use?
 
 **RQ2:** How does the perceived performance of the predictions relate to measured performance of the predictions?
 
