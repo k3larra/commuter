@@ -1,4 +1,4 @@
-## Week 3 (In progress)
+## Week 3
 **In this CoDesign study we will together use a design probe and explore the area of Machine Teaching (MT)<sup>1</sup> in a commuting context.**
 ### Goal for the coming week
 By teaching during use we will explore a teaching situation where you teach when your are in the context (I have called this "teach as you go"). During the use you will, from the previous weeks use, have an understanding of how the teaching works in general.
