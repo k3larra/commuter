@@ -16,11 +16,12 @@ Therefor we could get insights in how to answer research questions regarding pri
 
 ### Fourth week usage: "ASSIGNMENT"
 * Use the app freely, teach, clear add more or less data and play around.
-* Reflect over privacy in the research questions and how an teaching UI for this context could be integrated in the app.
+* Reflect over privacy in the research questions
+* Think/sketch on how an teaching UI for this context could be integrated in the app.
 
 
 ### Background info: Privacy.
-Machine Teaching can be a way to build systems that provides privacy-by-design since you as a user define what to teach the system. Theoretically this means that a user or group of users can teach a model only the things he or she select and if the system is designed for privacy and security the user decides if any information should be shared. During this week we will discuss those issues, some related articles are attatched
+Machine Teaching can be a way to build systems that provides privacy-by-design since you as a user define what to teach the system. Theoretically this means that a user or group of users can teach a model only the things he or she select and if the system is designed for privacy and security the user decides if any information should be shared. During this week we will discuss those issues, some related articles are attached<sup>2</sup><sup>3</sup>
 
 ## Feedback
 
@@ -33,5 +34,5 @@ https://github.com/k3larra/commuter/blob/master/UserStudy/week3/presentation.md
 
 #### References
 [1] [P. Y. Simard et al., “Machine Teaching: A New Paradigm for Building Machine Learning Systems,” 2017](https://arxiv.org/pdf/1707.06742v3.pdf).<br/>
-[2]  [M. Ananny and K. Crawford, “Seeing without knowing: Limitations of the transparency ideal and its application to algorithmic accountability.”](Ananny_Crawford.pdf)
+[2]  [M. Ananny and K. Crawford, “Seeing without knowing: Limitations of the transparency ideal and its application to algorithmic accountability.”](Ananny_Crawford.pdf)<br>
 [3] [N. Boukhelifa, A. Bezerianos, and E. Lutton, “Evaluation of Interactive Machine Learning Systems,” ArXiv, pp. 1–20, 2018.](Boukhelifa_Bezerianos_Lutton.pdf)
