@@ -30,7 +30,7 @@ Machine Teaching can be a way to build systems that provides privacy-by-design s
 ### ***https://github.com/k3larra/commuter/issues***
 
 #### This page:
-https://github.com/k3larra/commuter/blob/master/UserStudy/week3/presentation.md
+https://github.com/k3larra/commuter/blob/master/UserStudy/week4/presentation.md
 
 #### References
 [1] [P. Y. Simard et al., “Machine Teaching: A New Paradigm for Building Machine Learning Systems,” 2017](https://arxiv.org/pdf/1707.06742v3.pdf).<br/>
