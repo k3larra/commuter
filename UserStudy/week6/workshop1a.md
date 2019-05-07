@@ -1,9 +1,5 @@
-## Week 6 Workshop 1a
-**In this CoDesign study we will together use a design probe and explore the area of Machine Teaching (MT)<sup>1</sup> in a commuting context.**
-
-### Goal for the workshop
+## Week 6 Workshop
 A one hour workshop were we mainly discuss and sketch:
-
 #### Part 1 Discuss and sketch:
 - UI for teaching in this context.
   - UI for batch teaching, teach as you go or a combination of those
@@ -13,6 +9,7 @@ A one hour workshop were we mainly discuss and sketch:
 #### Part 2 Discuss and sketch:
 - What does it mean that the whole feature space consisting of location/weekday/timeofday/activity is available and you can connect any point in this feature space to any journey.
 - Discuss teaching as a way to program.
+
 
 ### Sixth week usage: "ASSIGNMENT"
 * Teach the app with a made-up perhaps unrealistic behaviour.
