@@ -1,4 +1,4 @@
-## Week 2 (In progress)
+## Week 2
 **In this CoDesign study we will together use a design probe and explore the area of Machine Teaching (MT)<sup>1</sup> in a commuting context.**
 
 ### Goal for the week
