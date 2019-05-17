@@ -6,6 +6,7 @@ A one hour workshop were we mainly discuss and sketch:
 * What was the behaviour you taught?
 * Did it work the way you expected?
 * How would you like to present the behaviour to someone else.
+* Can you make any sense from the printouts of your behaviour. 
 
 #### Part 2: Discussion points
 
