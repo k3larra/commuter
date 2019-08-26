@@ -53,3 +53,6 @@ package-lock.json
 env/
 venv/
 ENV/
+
+#Paths for not publish API_key for maps
+machine_teaching/maps
