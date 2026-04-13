@@ -4,5 +4,8 @@
   "private": true,
   "dependencies": {
     "firebase-admin": "^13.8.0"
+  },
+  "overrides": {
+    "http-proxy-agent": "^7.0.2"
   }
 }
