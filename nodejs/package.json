@@ -1,0 +1,8 @@
+{
+  "name": "commuter-nodejs",
+  "version": "1.0.0",
+  "private": true,
+  "dependencies": {
+    "firebase-admin": "^13.8.0"
+  }
+}
